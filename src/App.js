@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import SettingsBar from "./components/settingsBar/SettingsBar";
+import PaletteInputContainer from "./containers/paletteInputContainer/PaletteInputContainer";
+import PaletteDisplayContainer from "./containers/paletteDisplayContainer/PaletteDisplayContainer";
+
+import "./App.css";
 
 function App() {
+  const [palette, setPalette] = useState([
+    "000000",
+    "14213d",
+    "fca311",
+    "e5e5e5",
+    "ffffff"
+  ]);
+  const [contrastStandard, setContrastStandard] = useState("AA");
+  const [colorblindSafe, setColorblindSafe] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SettingsBar />
+      <PaletteInputContainer />
+      <PaletteDisplayContainer
+        palette={palette}
+        contrastStandard={contrastStandard}
+        colorblindSafe={colorblindSafe}
+      />
     </div>
   );
 }
