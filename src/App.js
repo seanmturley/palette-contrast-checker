@@ -16,18 +16,18 @@ function App() {
   return (
     <div className="App">
       <SettingsBar
-      // contrastStandard={contrastStandard}
-      // setContrastStandard={setContrastStandard}
-      // colorblindSafe={colorblindSafe}
-      // setColorblindSafe={setColorblindSafe}
-      // grayScale={grayScale}
-      // setGrayScale={setGrayScale}
-      // theme={theme}
-      // setTheme={setTheme}
-      // showPaletteInput={showPaletteInput}
-      // setShowPaletteInput={setShowPaletteInput}
-      // showPaletteExport={showPaletteExport}
-      // setShowPaletteExport={setShowPaletteExport}
+        // contrastStandard={contrastStandard}
+        // setContrastStandard={setContrastStandard}
+        // colorblindSafe={colorblindSafe}
+        // setColorblindSafe={setColorblindSafe}
+        // grayScale={grayScale}
+        // setGrayScale={setGrayScale}
+        // theme={theme}
+        // setTheme={setTheme}
+        showPaletteInput={showPaletteInput}
+        setShowPaletteInput={setShowPaletteInput}
+        // showPaletteExport={showPaletteExport}
+        // setShowPaletteExport={setShowPaletteExport}
       />
       <PaletteAreaContainer
         // contrastStandard={contrastStandard}

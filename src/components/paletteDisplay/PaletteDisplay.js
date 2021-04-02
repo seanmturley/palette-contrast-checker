@@ -1,16 +1,22 @@
 import React from "react";
 
-import ColorStripe from "../colorStripe/ColorStripe";
+import ColorStripeContainer from "../../containers/colorStripeContainer/ColorStripeContainer";
 
-function PaletteDisplay({ paletteData }) {
+function PaletteDisplay({ paletteData, colorsPairingData }) {
+  // Will accept settings as props
+
   return (
     <section>
       {paletteData.map((color, index) => {
         return (
-          <ColorStripe
+          <ColorStripeContainer
             key={index}
-            backgroundColor={color.hex}
-            textColor={color.theme === "dark" ? "FFFFFF" : "000000"}
+            color={color}
+            pairingData={colorsPairingData[color.hex]}
+            // contrastStandard={contrastStandard}
+            // colorblindSafe={colorblindSafe}
+            // grayScale={grayScale}
+            // theme={theme}
           />
         );
       })}

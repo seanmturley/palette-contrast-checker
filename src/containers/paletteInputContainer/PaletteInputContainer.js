@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import PaletteInput from "../../components/paletteInput/PaletteInput";
 
-import { parseRawPalette, getPaletteData } from "../../Helpers";
+import { parseRawPalette, getPaletteData } from "../../helpers/ParsingHelpers";
 
 function PaletteInputContainer({
   showPaletteInput,
@@ -14,23 +14,25 @@ function PaletteInputContainer({
   const handleInputChange = (event) => {
     const rawPaletteInput = event.target.value;
 
-    const parsedPalette = parseRawPalette(rawPaletteInput);
+    const parsedPalette = parseRawPalette(event.target.value);
 
     if (parsedPalette) {
-      const updatedPaletteData = getPaletteData(parsedPalette);
-      setPaletteData(updatedPaletteData);
+      setPaletteData(getPaletteData(parsedPalette));
     }
 
     setRawPalette(rawPaletteInput);
   };
 
-  if (!showPaletteInput) return null;
   return (
-    <PaletteInput
-      rawPalette={rawPalette}
-      handleInputChange={handleInputChange}
-      handleInputSubmit={handleInputSubmit}
-    />
+    <>
+      {showPaletteInput && (
+        <PaletteInput
+          rawPalette={rawPalette}
+          handleInputChange={handleInputChange}
+          handleInputSubmit={handleInputSubmit}
+        />
+      )}
+    </>
   );
 }
 

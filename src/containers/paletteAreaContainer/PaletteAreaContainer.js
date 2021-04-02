@@ -3,19 +3,18 @@ import React, { useState } from "react";
 import PaletteInputContainer from "../paletteInputContainer/PaletteInputContainer";
 import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
-// import { getContrastData } from "../../Helpers";
+import { getColorsPairingData } from "../../helpers/ColorPairHelpers";
 
 function PaletteAreaContainer({ showPaletteInput }) {
   // Will accept settings as props
 
   const [paletteData, setPaletteData] = useState([]);
-  // const [contrastData, setContrastData] = useState([]);
+  const [colorsPairingData, setColorsPairingData] = useState({});
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
-    alert("Placeholder response for palette submission");
-    // Call helper function getContrastData with paletteData to calculate and produce object of all color pair contrasts
-    // setContrastData();
+
+    setColorsPairingData(getColorsPairingData(paletteData));
   };
 
   return (
@@ -27,9 +26,11 @@ function PaletteAreaContainer({ showPaletteInput }) {
       />
       <PaletteDisplay
         paletteData={paletteData}
-        // contrastData={contrastData}
+        colorsPairingData={colorsPairingData}
         // contrastStandard={contrastStandard}
         // colorblindSafe={colorblindSafe}
+        // grayScale={grayScale}
+        // theme={theme}
       />
     </main>
   );
