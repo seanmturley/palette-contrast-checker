@@ -6,8 +6,8 @@ import PaletteAreaContainer from "./containers/paletteAreaContainer/PaletteAreaC
 import "./App.css";
 
 function App() {
-  // const [contrastStandard, setContrastStandard] = useState("AA");
-  // const [colorblindSafe, setColorblindSafe] = useState(false);
+  const [contrastStandard, setContrastStandard] = useState("aa");
+  const [colorblindSafe, setColorblindSafe] = useState(false);
   // const [grayScale, setGrayScale] = useState(false);
   // const [theme, setTheme] = useState("both");
   const [showPaletteInput, setShowPaletteInput] = useState(true);
@@ -30,8 +30,8 @@ function App() {
         // setShowPaletteExport={setShowPaletteExport}
       />
       <PaletteAreaContainer
-        // contrastStandard={contrastStandard}
-        // colorblindSafe={colorblindSafe}
+        contrastStandard={contrastStandard}
+        colorblindSafe={colorblindSafe}
         // grayScale={grayScale}
         // theme={theme}
         showPaletteInput={showPaletteInput}

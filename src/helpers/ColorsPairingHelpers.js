@@ -18,13 +18,31 @@ export function getColorsPairingData(paletteData) {
       const color1 = paletteData[i];
       const color2 = paletteData[j];
 
-      const contrast = getContrast(color1.luminance, color2.luminance);
-      colorPairData[color1.hex][color2.hex]["contrast"] = contrast;
-      colorPairData[color2.hex][color1.hex]["contrast"] = contrast;
+      const hex1 = color1.hex;
+      const hex2 = color2.hex;
 
-      const colorBlindSafe = checkColorBlindSafe(color1.rgb, color2.rgb);
-      colorPairData[color1.hex][color2.hex]["colorBlindSafe"] = colorBlindSafe;
-      colorPairData[color2.hex][color1.hex]["colorBlindSafe"] = colorBlindSafe;
+      let contrast = getContrast(color1.luminance, color2.luminance);
+      contrast = Math.round((contrast + Number.EPSILON) * 10) / 10;
+      setColorPairData(colorPairData, hex1, hex2, "contrast", contrast);
+
+      if (contrast >= 7) {
+        setColorPairData(colorPairData, hex1, hex2, "aa", "Normal");
+        setColorPairData(colorPairData, hex1, hex2, "aaa", "Normal");
+      } else if (contrast >= 4.5) {
+        setColorPairData(colorPairData, hex1, hex2, "aa", "Normal");
+        setColorPairData(colorPairData, hex1, hex2, "aaa", "Large");
+      } else if (contrast >= 3) {
+        setColorPairData(colorPairData, hex1, hex2, "aa", "Large");
+      }
+
+      const colorblindSafe = checkColorblindSafe(color1.rgb, color2.rgb);
+      setColorPairData(
+        colorPairData,
+        hex1,
+        hex2,
+        "colorblindSafe",
+        colorblindSafe
+      );
     }
   }
 
@@ -43,7 +61,7 @@ function getContrast(luminance1, luminance2) {
   return contrast;
 }
 
-function checkColorBlindSafe(rgb1, rgb2) {
+function checkColorblindSafe(rgb1, rgb2) {
   return (
     safeBrightnessDifference(rgb1, rgb2) && safeColorDifference(rgb1, rgb2)
   );
@@ -67,4 +85,9 @@ function safeColorDifference(rgb1, rgb2) {
     Math.abs(rgb1[2] - rgb2[2]);
 
   return colorDifference >= 500;
+}
+
+function setColorPairData(colorPairData, hex1, hex2, key, value) {
+  colorPairData[hex1][hex2][key] = value;
+  colorPairData[hex2][hex1][key] = value;
 }

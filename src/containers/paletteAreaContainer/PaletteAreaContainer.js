@@ -3,9 +3,13 @@ import React, { useState } from "react";
 import PaletteInputContainer from "../paletteInputContainer/PaletteInputContainer";
 import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
-import { getColorsPairingData } from "../../helpers/ColorPairHelpers";
+import { getColorsPairingData } from "../../helpers/ColorsPairingHelpers";
 
-function PaletteAreaContainer({ showPaletteInput }) {
+function PaletteAreaContainer({
+  contrastStandard,
+  colorblindSafe,
+  showPaletteInput
+}) {
   // Will accept settings as props
 
   const [paletteData, setPaletteData] = useState([]);
@@ -27,8 +31,8 @@ function PaletteAreaContainer({ showPaletteInput }) {
       <PaletteDisplay
         paletteData={paletteData}
         colorsPairingData={colorsPairingData}
-        // contrastStandard={contrastStandard}
-        // colorblindSafe={colorblindSafe}
+        contrastStandard={contrastStandard}
+        colorblindSafe={colorblindSafe}
         // grayScale={grayScale}
         // theme={theme}
       />

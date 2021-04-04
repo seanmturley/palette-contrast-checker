@@ -2,7 +2,12 @@ import React from "react";
 
 import ColorStripeContainer from "../../containers/colorStripeContainer/ColorStripeContainer";
 
-function PaletteDisplay({ paletteData, colorsPairingData }) {
+function PaletteDisplay({
+  paletteData,
+  colorsPairingData,
+  contrastStandard,
+  colorblindSafe
+}) {
   // Will accept settings as props
 
   return (
@@ -13,8 +18,8 @@ function PaletteDisplay({ paletteData, colorsPairingData }) {
             key={index}
             color={color}
             pairingData={colorsPairingData[color.hex]}
-            // contrastStandard={contrastStandard}
-            // colorblindSafe={colorblindSafe}
+            contrastStandard={contrastStandard}
+            colorblindSafe={colorblindSafe}
             // grayScale={grayScale}
             // theme={theme}
           />

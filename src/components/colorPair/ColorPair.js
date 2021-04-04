@@ -1,12 +1,12 @@
 import React from "react";
 
-function ColorPair() {
+function ColorPair({ hex, contrast, textSize }) {
   return (
     <article>
-      <p>Contrast ratio</p>
-      <p>Hex value</p>
+      <p>{Math.round((contrast + Number.EPSILON) * 10) / 10} : 1</p>
+      <p>{hex}</p>
       <p>Favourite</p>
-      <p>Text size</p>
+      <p>{textSize} text</p>
     </article>
   );
 }
