@@ -5,7 +5,7 @@ import ColorPair from "../colorPair/ColorPair";
 function ColorStripe({
   stripeColor,
   stripeLabelColor,
-  colorPairProps,
+  filteredColorPairs,
   contrastStandard
 }) {
   return (
@@ -14,8 +14,8 @@ function ColorStripe({
       data-testid="color-stripe"
     >
       <h1 style={{ color: `#${stripeLabelColor}` }}>{stripeColor}</h1>
-      {colorPairProps &&
-        colorPairProps.map((colorPair, index) => {
+      {filteredColorPairs &&
+        filteredColorPairs.map((colorPair, index) => {
           return (
             <ColorPair
               hex={colorPair.hex}

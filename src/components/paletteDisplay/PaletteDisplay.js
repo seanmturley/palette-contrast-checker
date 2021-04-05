@@ -4,7 +4,7 @@ import ColorStripeContainer from "../../containers/colorStripeContainer/ColorStr
 
 function PaletteDisplay({
   paletteData,
-  colorsPairingData,
+  allColorPairs,
   contrastStandard,
   colorblindSafe
 }) {
@@ -17,7 +17,7 @@ function PaletteDisplay({
           <ColorStripeContainer
             key={index}
             color={color}
-            pairingData={colorsPairingData[color.hex]}
+            colorPairs={allColorPairs[color.hex]}
             contrastStandard={contrastStandard}
             colorblindSafe={colorblindSafe}
             // grayScale={grayScale}

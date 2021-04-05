@@ -2,7 +2,10 @@ import React, { useState } from "react";
 
 import PaletteInput from "../../components/paletteInput/PaletteInput";
 
-import { parseRawPalette, getPaletteData } from "../../helpers/ParsingHelpers";
+import {
+  parseRawPalette,
+  getPaletteData
+} from "./PaletteInputContainerHelpers";
 
 function PaletteInputContainer({
   showPaletteInput,

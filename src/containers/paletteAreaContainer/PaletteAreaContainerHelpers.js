@@ -1,13 +1,13 @@
-export function getColorsPairingData(paletteData) {
-  const colorPairData = {};
+export function getAllColorPairs(paletteData) {
+  const allColorPairs = {};
 
   // These loops just set up empty nested objects to store color-pair data
   paletteData.forEach((colorOuter) => {
-    colorPairData[colorOuter.hex] = {};
+    allColorPairs[colorOuter.hex] = {};
 
     paletteData.forEach((colorInner) => {
       if (colorInner.hex !== colorOuter.hex) {
-        colorPairData[colorOuter.hex][colorInner.hex] = {};
+        allColorPairs[colorOuter.hex][colorInner.hex] = {};
       }
     });
   });
@@ -23,21 +23,21 @@ export function getColorsPairingData(paletteData) {
 
       let contrast = getContrast(color1.luminance, color2.luminance);
       contrast = Math.round((contrast + Number.EPSILON) * 10) / 10;
-      setColorPairData(colorPairData, hex1, hex2, "contrast", contrast);
+      setColorPairData(allColorPairs, hex1, hex2, "contrast", contrast);
 
       if (contrast >= 7) {
-        setColorPairData(colorPairData, hex1, hex2, "aa", "Normal");
-        setColorPairData(colorPairData, hex1, hex2, "aaa", "Normal");
+        setColorPairData(allColorPairs, hex1, hex2, "aa", "Normal");
+        setColorPairData(allColorPairs, hex1, hex2, "aaa", "Normal");
       } else if (contrast >= 4.5) {
-        setColorPairData(colorPairData, hex1, hex2, "aa", "Normal");
-        setColorPairData(colorPairData, hex1, hex2, "aaa", "Large");
+        setColorPairData(allColorPairs, hex1, hex2, "aa", "Normal");
+        setColorPairData(allColorPairs, hex1, hex2, "aaa", "Large");
       } else if (contrast >= 3) {
-        setColorPairData(colorPairData, hex1, hex2, "aa", "Large");
+        setColorPairData(allColorPairs, hex1, hex2, "aa", "Large");
       }
 
       const colorblindSafe = checkColorblindSafe(color1.rgb, color2.rgb);
       setColorPairData(
-        colorPairData,
+        allColorPairs,
         hex1,
         hex2,
         "colorblindSafe",
@@ -46,7 +46,7 @@ export function getColorsPairingData(paletteData) {
     }
   }
 
-  return colorPairData;
+  return allColorPairs;
 }
 
 function getContrast(luminance1, luminance2) {
@@ -87,7 +87,7 @@ function safeColorDifference(rgb1, rgb2) {
   return colorDifference >= 500;
 }
 
-function setColorPairData(colorPairData, hex1, hex2, key, value) {
-  colorPairData[hex1][hex2][key] = value;
-  colorPairData[hex2][hex1][key] = value;
+function setColorPairData(allColorPairs, hex1, hex2, key, value) {
+  allColorPairs[hex1][hex2][key] = value;
+  allColorPairs[hex2][hex1][key] = value;
 }

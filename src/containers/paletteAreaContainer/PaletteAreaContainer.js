@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PaletteInputContainer from "../paletteInputContainer/PaletteInputContainer";
 import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
-import { getColorsPairingData } from "../../helpers/ColorsPairingHelpers";
+import { getAllColorPairs } from "./PaletteAreaContainerHelpers";
 
 function PaletteAreaContainer({
   contrastStandard,
@@ -13,12 +13,14 @@ function PaletteAreaContainer({
   // Will accept settings as props
 
   const [paletteData, setPaletteData] = useState([]);
-  const [colorsPairingData, setColorsPairingData] = useState({});
+  const [allColorPairs, setAllColorPairings] = useState({});
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
 
-    setColorsPairingData(getColorsPairingData(paletteData));
+    setAllColorPairings(getAllColorPairs(paletteData));
+
+    // Should also toggle palette input modal closed
   };
 
   return (
@@ -30,7 +32,7 @@ function PaletteAreaContainer({
       />
       <PaletteDisplay
         paletteData={paletteData}
-        colorsPairingData={colorsPairingData}
+        allColorPairs={allColorPairs}
         contrastStandard={contrastStandard}
         colorblindSafe={colorblindSafe}
         // grayScale={grayScale}
