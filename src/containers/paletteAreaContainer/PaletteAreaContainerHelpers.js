@@ -1,20 +1,42 @@
 export function getAllColorPairs(paletteData) {
-  const allColorPairs = {};
+  const rawColorPairs = getRawColorPairs(paletteData);
+
+  const allFilteredColorPairs = {};
+
+  for (const [color, pairingData] of Object.entries(rawColorPairs)) {
+    const [aa, aaa, aaColorblind, aaaColorblind] = getFilteredColorPairs(
+      pairingData
+    );
+
+    allFilteredColorPairs[color] = {};
+
+    allFilteredColorPairs[color]["aa"] = aa;
+    allFilteredColorPairs[color]["aaa"] = aaa;
+    allFilteredColorPairs[color]["aaColorblind"] = aaColorblind;
+    allFilteredColorPairs[color]["aaaColorblind"] = aaaColorblind;
+  }
+
+  return allFilteredColorPairs;
+}
+
+function getRawColorPairs(paletteData) {
+  const rawColorPairs = {};
 
   // These loops just set up empty nested objects to store color-pair data
   paletteData.forEach((colorOuter) => {
-    allColorPairs[colorOuter.hex] = {};
+    rawColorPairs[colorOuter.hex] = {};
 
     paletteData.forEach((colorInner) => {
       if (colorInner.hex !== colorOuter.hex) {
-        allColorPairs[colorOuter.hex][colorInner.hex] = {};
+        rawColorPairs[colorOuter.hex][colorInner.hex] = {};
       }
     });
   });
 
-  const length = paletteData.length;
-  for (let i = 0; i < length; i++) {
-    for (let j = i + 1; j < length; j++) {
+  const iStop = paletteData.length - 1;
+  const jStop = paletteData.length;
+  for (let i = 0; i < iStop; i++) {
+    for (let j = i + 1; j < jStop; j++) {
       const color1 = paletteData[i];
       const color2 = paletteData[j];
 
@@ -23,21 +45,21 @@ export function getAllColorPairs(paletteData) {
 
       let contrast = getContrast(color1.luminance, color2.luminance);
       contrast = Math.round((contrast + Number.EPSILON) * 10) / 10;
-      setColorPairData(allColorPairs, hex1, hex2, "contrast", contrast);
+      setColorPairData(rawColorPairs, hex1, hex2, "contrast", contrast);
 
       if (contrast >= 7) {
-        setColorPairData(allColorPairs, hex1, hex2, "aa", "Normal");
-        setColorPairData(allColorPairs, hex1, hex2, "aaa", "Normal");
+        setColorPairData(rawColorPairs, hex1, hex2, "aa", "Normal");
+        setColorPairData(rawColorPairs, hex1, hex2, "aaa", "Normal");
       } else if (contrast >= 4.5) {
-        setColorPairData(allColorPairs, hex1, hex2, "aa", "Normal");
-        setColorPairData(allColorPairs, hex1, hex2, "aaa", "Large");
+        setColorPairData(rawColorPairs, hex1, hex2, "aa", "Normal");
+        setColorPairData(rawColorPairs, hex1, hex2, "aaa", "Large");
       } else if (contrast >= 3) {
-        setColorPairData(allColorPairs, hex1, hex2, "aa", "Large");
+        setColorPairData(rawColorPairs, hex1, hex2, "aa", "Large");
       }
 
       const colorblindSafe = checkColorblindSafe(color1.rgb, color2.rgb);
       setColorPairData(
-        allColorPairs,
+        rawColorPairs,
         hex1,
         hex2,
         "colorblindSafe",
@@ -46,7 +68,7 @@ export function getAllColorPairs(paletteData) {
     }
   }
 
-  return allColorPairs;
+  return rawColorPairs;
 }
 
 function getContrast(luminance1, luminance2) {
@@ -87,7 +109,35 @@ function safeColorDifference(rgb1, rgb2) {
   return colorDifference >= 500;
 }
 
-function setColorPairData(allColorPairs, hex1, hex2, key, value) {
-  allColorPairs[hex1][hex2][key] = value;
-  allColorPairs[hex2][hex1][key] = value;
+function setColorPairData(rawColorPairs, hex1, hex2, key, value) {
+  rawColorPairs[hex1][hex2][key] = value;
+  rawColorPairs[hex2][hex1][key] = value;
+}
+
+function getFilteredColorPairs(pairingData) {
+  const sortedColorPairs = getSortedColorPairs(pairingData);
+
+  const aa = sortedColorPairs.filter((pair) => "aa" in pair);
+  const aaa = aa.filter((pair) => "aaa" in pair);
+
+  const aaColorblind = aa.filter((pair) => pair.colorblindSafe);
+  const aaaColorblind = aaa.filter((pair) => pair.colorblindSafe);
+
+  // console.log(aa);
+
+  return [aa, aaa, aaColorblind, aaaColorblind];
+}
+
+function getSortedColorPairs(pairingData) {
+  const sortedColorPairs = [];
+
+  Object.entries(pairingData).forEach((pairing) => {
+    sortedColorPairs.push(Object.assign({}, { hex: pairing[0] }, pairing[1]));
+  });
+
+  sortedColorPairs.sort((a, b) => {
+    return b.contrast - a.contrast;
+  });
+
+  return sortedColorPairs;
 }

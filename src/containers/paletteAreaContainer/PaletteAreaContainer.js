@@ -8,17 +8,18 @@ import { getAllColorPairs } from "./PaletteAreaContainerHelpers";
 function PaletteAreaContainer({
   contrastStandard,
   colorblindSafe,
+  theme,
   showPaletteInput
 }) {
   // Will accept settings as props
 
   const [paletteData, setPaletteData] = useState([]);
-  const [allColorPairs, setAllColorPairings] = useState({});
+  const [allColorPairs, setAllColorPairs] = useState({});
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
 
-    setAllColorPairings(getAllColorPairs(paletteData));
+    setAllColorPairs(getAllColorPairs(paletteData));
 
     // Should also toggle palette input modal closed
   };
@@ -36,7 +37,7 @@ function PaletteAreaContainer({
         contrastStandard={contrastStandard}
         colorblindSafe={colorblindSafe}
         // grayScale={grayScale}
-        // theme={theme}
+        theme={theme}
       />
     </main>
   );

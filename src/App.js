@@ -9,7 +9,7 @@ function App() {
   const [contrastStandard, setContrastStandard] = useState("aa");
   const [colorblindSafe, setColorblindSafe] = useState(false);
   // const [grayScale, setGrayScale] = useState(false);
-  // const [theme, setTheme] = useState("both");
+  const [theme, setTheme] = useState("both");
   const [showPaletteInput, setShowPaletteInput] = useState(true);
   // const [showPaletteExport, setShowPaletteExport] = useState(false);
 
@@ -33,7 +33,7 @@ function App() {
         contrastStandard={contrastStandard}
         colorblindSafe={colorblindSafe}
         // grayScale={grayScale}
-        // theme={theme}
+        theme={theme}
         showPaletteInput={showPaletteInput}
         // setShowPaletteInput={setShowPaletteInput}
         // showPaletteExport={showPaletteExport}

@@ -6,7 +6,8 @@ function PaletteDisplay({
   paletteData,
   allColorPairs,
   contrastStandard,
-  colorblindSafe
+  colorblindSafe,
+  theme
 }) {
   // Will accept settings as props
 
@@ -21,7 +22,7 @@ function PaletteDisplay({
             contrastStandard={contrastStandard}
             colorblindSafe={colorblindSafe}
             // grayScale={grayScale}
-            // theme={theme}
+            theme={theme}
           />
         );
       })}
