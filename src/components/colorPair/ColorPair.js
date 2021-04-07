@@ -2,7 +2,7 @@ import React from "react";
 
 function ColorPair({ hex, contrast, textSize }) {
   return (
-    <article style={{ color: `#${hex}` }}>
+    <article style={{ color: `#${hex}` }} data-testid="color-pair">
       <p>{Math.round((contrast + Number.EPSILON) * 10) / 10} : 1</p>
       <h1>{hex}</h1>
       {/* <p>Favourite</p> */}

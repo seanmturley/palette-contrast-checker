@@ -34,6 +34,12 @@ describe("Color stripe", () => {
     expect(stripe).toHaveStyle(`background-color: ${darkColor.backgroundRgb}`);
   });
 
+  it("should display the color's hex value", () => {
+    setup(darkColor);
+    const stripeLabel = screen.queryByText(darkColor.hex);
+    expect(stripeLabel).toBeInTheDocument();
+  });
+
   it("should display the color's hex value in white if the color is dark", () => {
     setup(darkColor);
     const stripeLabel = screen.getByText(darkColor.hex);
