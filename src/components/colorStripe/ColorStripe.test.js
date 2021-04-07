@@ -7,14 +7,14 @@ import { render, screen } from "@testing-library/react";
 const setup = (color) => {
   render(
     <ColorStripe
-      backgroundColor={color.hex}
-      textColor={color.theme === "dark" ? "FFFFFF" : "000000"}
+      stripeColor={color.hex}
+      stripeLabelColor={color.theme === "dark" ? "FFFFFF" : "000000"}
     />
   );
 };
 
 const darkColor = {
-  hex: "14213dff",
+  hex: "14213d",
   theme: "dark",
   backgroundRgb: "rgb(20, 33, 61)",
   textRgb: "rgb(255, 255, 255)"
@@ -28,7 +28,7 @@ const lightColor = {
 };
 
 describe("Color stripe", () => {
-  it("should have a background-color equal to the color's hex value", () => {
+  it("should have a background-color equal to the color's rgb value", () => {
     setup(darkColor);
     const stripe = screen.getByTestId("color-stripe");
     expect(stripe).toHaveStyle(`background-color: ${darkColor.backgroundRgb}`);

@@ -123,8 +123,6 @@ function getFilteredColorPairs(pairingData) {
   const aaColorblind = aa.filter((pair) => pair.colorblindSafe);
   const aaaColorblind = aaa.filter((pair) => pair.colorblindSafe);
 
-  // console.log(aa);
-
   return [aa, aaa, aaColorblind, aaaColorblind];
 }
 

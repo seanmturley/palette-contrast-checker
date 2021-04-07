@@ -9,8 +9,6 @@ function PaletteDisplay({
   colorblindSafe,
   theme
 }) {
-  // Will accept settings as props
-
   return (
     <section>
       {paletteData.map((color, index) => {

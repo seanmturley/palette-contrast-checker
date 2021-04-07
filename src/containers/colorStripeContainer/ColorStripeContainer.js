@@ -9,8 +9,6 @@ function ColorStripeContainer({
   colorblindSafe,
   theme
 }) {
-  // Will accept settings as props
-
   let colorPairsFilter;
   if (contrastStandard === "aa") {
     colorPairsFilter = colorblindSafe ? "aaColorblind" : "aa";
@@ -26,7 +24,6 @@ function ColorStripeContainer({
   }
 
   // Return will conditionally render the color stripe in grayScale based on setting.
-
   return (
     <>
       {displayStripe && (
