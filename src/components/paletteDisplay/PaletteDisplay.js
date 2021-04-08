@@ -11,10 +11,10 @@ function PaletteDisplay({
 }) {
   return (
     <section>
-      {paletteData.map((color, index) => {
+      {paletteData.map((color) => {
         return (
           <ColorStripeContainer
-            key={index}
+            key={color.hex}
             color={color}
             colorPairs={allColorPairs[color.hex]}
             contrastStandard={contrastStandard}

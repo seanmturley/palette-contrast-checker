@@ -15,13 +15,13 @@ function ColorStripe({
     >
       <h1 style={{ color: `#${stripeLabelColor}` }}>{stripeColor}</h1>
       {filteredColorPairs &&
-        filteredColorPairs.map((colorPair, index) => {
+        filteredColorPairs.map((colorPair) => {
           return (
             <ColorPair
+              key={colorPair.hex}
               hex={colorPair.hex}
               contrast={colorPair.contrast}
               textSize={colorPair[contrastStandard]}
-              key={index}
             />
           );
         })}
