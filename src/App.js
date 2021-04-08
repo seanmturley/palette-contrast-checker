@@ -16,14 +16,14 @@ function App() {
   return (
     <div className="App">
       <SettingsBar
-        // contrastStandard={contrastStandard}
-        // setContrastStandard={setContrastStandard}
+        contrastStandard={contrastStandard}
+        setContrastStandard={setContrastStandard}
         // colorblindSafe={colorblindSafe}
         // setColorblindSafe={setColorblindSafe}
         // grayScale={grayScale}
         // setGrayScale={setGrayScale}
-        // theme={theme}
-        // setTheme={setTheme}
+        theme={theme}
+        setTheme={setTheme}
         showPaletteInput={showPaletteInput}
         setShowPaletteInput={setShowPaletteInput}
         // showPaletteExport={showPaletteExport}

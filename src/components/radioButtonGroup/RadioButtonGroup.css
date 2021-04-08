@@ -1,0 +1,41 @@
+/* Proof of concept CSS - very rough */
+/* Will implement better styles later following BEM principles */
+
+nav form {
+  margin: 10px;
+}
+
+nav input[type="radio"] {
+  display: none;
+}
+
+nav label {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  color: #707070;
+  border-style: solid;
+  border-color: #707070;
+  border-width: 1px 0;
+}
+
+nav label:first-child {
+  border-width: 1px 0 1px 1px;
+  border-radius: 25px 0 0 25px;
+}
+
+nav label:last-child {
+  border-width: 1px 1px 1px 0;
+  border-radius: 0 25px 25px 0;
+}
+
+nav label:hover {
+  cursor: pointer;
+}
+
+nav label.selected {
+  background-color: #00c2ff;
+  border-color: #00c2ff;
+  color: white;
+  font-weight: bold;
+}
