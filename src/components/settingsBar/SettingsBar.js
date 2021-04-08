@@ -11,6 +11,7 @@ function SettingsBar({
   setShowPaletteInput
 }) {
   const contrastStandardProps = {
+    heading: "WCAG standard",
     name: "contrast-standard",
     options: ["aa", "aaa"],
     selected: contrastStandard,
@@ -18,6 +19,7 @@ function SettingsBar({
   };
 
   const themeProps = {
+    heading: "Theme",
     name: "theme",
     options: ["dark", "both", "light"],
     selected: theme,

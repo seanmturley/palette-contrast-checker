@@ -5,6 +5,16 @@ nav form {
   margin: 10px;
 }
 
+nav h1 {
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 0.83rem;
+}
+
+nav section {
+  display: inline-block;
+}
+
 nav input[type="radio"] {
   display: none;
 }
