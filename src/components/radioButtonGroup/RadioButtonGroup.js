@@ -9,8 +9,8 @@ function RadioButtonGroup({ heading, name, options, selected, setState }) {
 
   return (
     <form>
-      <h1>{heading}</h1>
-      <section>
+      <section role="radiogroup" aria-labelledby={name}>
+        <h1 id={name}>{heading}</h1>
         {options.map((option) => {
           return (
             <label

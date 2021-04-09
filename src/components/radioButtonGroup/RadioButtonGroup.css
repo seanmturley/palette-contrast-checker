@@ -29,7 +29,7 @@ nav label {
   border-width: 1px 0;
 }
 
-nav label:first-child {
+nav label:nth-child(2) {
   border-width: 1px 0 1px 1px;
   border-radius: 25px 0 0 25px;
 }
