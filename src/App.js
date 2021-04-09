@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
   const [contrastStandard, setContrastStandard] = useState("aa");
-  const [colorblindSafe, setColorblindSafe] = useState(false);
+  const [colorblindSafe, setColorblindSafe] = useState("off");
   // const [grayScale, setGrayScale] = useState(false);
   const [theme, setTheme] = useState("both");
   const [showPaletteInput, setShowPaletteInput] = useState(true);
@@ -18,8 +18,8 @@ function App() {
       <SettingsBar
         contrastStandard={contrastStandard}
         setContrastStandard={setContrastStandard}
-        // colorblindSafe={colorblindSafe}
-        // setColorblindSafe={setColorblindSafe}
+        colorblindSafe={colorblindSafe}
+        setColorblindSafe={setColorblindSafe}
         // grayScale={grayScale}
         // setGrayScale={setGrayScale}
         theme={theme}

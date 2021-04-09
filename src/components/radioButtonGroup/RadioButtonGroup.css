@@ -1,25 +1,25 @@
 /* Proof of concept CSS - very rough */
 /* Will implement better styles later following BEM principles */
 
-nav form {
+.radio-button-group form {
   margin: 10px;
 }
 
-nav h1 {
+.radio-button-group h1 {
   display: inline-block;
   font-size: 16px;
   margin-right: 0.83rem;
 }
 
-nav section {
+.radio-button-group section {
   display: inline-block;
 }
 
-nav input[type="radio"] {
+.radio-button-group input[type="radio"] {
   display: none;
 }
 
-nav label {
+.radio-button-group label {
   display: inline-block;
   width: 100px;
   height: 30px;
@@ -29,21 +29,21 @@ nav label {
   border-width: 1px 0;
 }
 
-nav label:nth-child(2) {
+.radio-button-group label:nth-child(2) {
   border-width: 1px 0 1px 1px;
   border-radius: 25px 0 0 25px;
 }
 
-nav label:last-child {
+.radio-button-group label:last-child {
   border-width: 1px 1px 1px 0;
   border-radius: 0 25px 25px 0;
 }
 
-nav label:hover {
+.radio-button-group label:hover {
   cursor: pointer;
 }
 
-nav label.selected {
+.radio-button-group label.selected {
   background-color: #00c2ff;
   border-color: #00c2ff;
   color: white;

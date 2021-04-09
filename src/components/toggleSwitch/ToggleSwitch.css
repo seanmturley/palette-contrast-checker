@@ -1,0 +1,96 @@
+/* CSS still a bit rough, but main slider is looking good */
+/* Use units relative to outer container for scaling? */
+
+.toggle-switch {
+  display: inline-flex;
+}
+
+.toggle-switch__heading {
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 0.83rem;
+}
+
+.toggle-switch__label-text {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.toggle-switch__input {
+  display: none;
+}
+
+.toggle-switch .toggle-switch__label {
+  display: inline-block;
+  overflow: hidden;
+  height: 34px;
+  width: 70px;
+  border-radius: 18px;
+  border: 1px solid #707070;
+}
+
+.toggle-switch--on .toggle-switch__label {
+  transition: border-color 0.1s ease;
+  border-color: #00c2ff;
+}
+
+.toggle-switch__sliding-container {
+  display: inline-flex;
+  position: relative;
+  height: 36px;
+  line-height: 34px;
+  text-transform: uppercase;
+}
+
+.toggle-switch--off .toggle-switch__sliding-container {
+  transition: all 0.1s ease;
+  left: -38px;
+  background-color: transparent;
+}
+
+.toggle-switch--on .toggle-switch__sliding-container {
+  transition: all 0.1s ease;
+  left: 0;
+  background-color: #00c2ff;
+}
+
+.toggle-switch__on-label {
+  width: 37px;
+  height: 34px;
+  color: transparent;
+}
+
+.toggle-switch--on .toggle-switch__on-label {
+  transition: color 0.1s ease;
+  color: white;
+}
+
+.toggle-switch__off-label {
+  width: 37px;
+  height: 34px;
+  color: #707070;
+}
+
+.toggle-switch--on .toggle-switch__off-label {
+  transition: color 0.1s ease;
+  color: transparent;
+}
+
+.toggle-switch__circle {
+  height: 32px;
+  width: 32px;
+  border-radius: 17px;
+  background-color: white;
+  border: 1px solid #707070;
+}
+
+.toggle-switch--on .toggle-switch__circle {
+  transition: border-color 0.1s ease;
+  border-color: #00c2ff;
+}

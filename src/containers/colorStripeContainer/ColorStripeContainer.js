@@ -11,9 +11,9 @@ function ColorStripeContainer({
 }) {
   let colorPairsFilter;
   if (contrastStandard === "aa") {
-    colorPairsFilter = colorblindSafe ? "aaColorblind" : "aa";
+    colorPairsFilter = colorblindSafe === "on" ? "aaColorblind" : "aa";
   } else if (contrastStandard === "aaa") {
-    colorPairsFilter = colorblindSafe ? "aaaColorblind" : "aaa";
+    colorPairsFilter = colorblindSafe === "on" ? "aaaColorblind" : "aaa";
   }
 
   let displayStripe;
