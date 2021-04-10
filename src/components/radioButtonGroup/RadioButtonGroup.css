@@ -1,51 +1,54 @@
-/* Proof of concept CSS - very rough */
-/* Will implement better styles later following BEM principles */
-
-.radio-button-group form {
-  margin: 10px;
+.radio-button-group__container {
+  display: flex;
+  align-items: center;
+  color: #707070;
 }
-
-.radio-button-group h1 {
-  display: inline-block;
+.radio-button-group__heading {
   font-size: 16px;
-  margin-right: 0.83rem;
+  font-weight: normal;
+  white-space: pre-line;
+  margin: 0;
+  margin-right: 10px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.radio-button-group section {
-  display: inline-block;
-}
-
-.radio-button-group input[type="radio"] {
+.radio-button-group__input {
   display: none;
 }
 
-.radio-button-group label {
-  display: inline-block;
-  width: 100px;
-  height: 30px;
-  color: #707070;
+.radio-button-group__label {
+  width: 72px;
+  height: 34px;
+  line-height: 34px;
+  text-transform: uppercase;
   border-style: solid;
   border-color: #707070;
   border-width: 1px 0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.radio-button-group label:nth-child(2) {
+.radio-button-group__label:nth-child(2) {
   border-width: 1px 0 1px 1px;
   border-radius: 25px 0 0 25px;
 }
 
-.radio-button-group label:last-child {
+.radio-button-group__label:last-child {
   border-width: 1px 1px 1px 0;
   border-radius: 0 25px 25px 0;
 }
 
-.radio-button-group label:hover {
+.radio-button-group__label:hover {
   cursor: pointer;
 }
 
-.radio-button-group label.selected {
-  background-color: #00c2ff;
-  border-color: #00c2ff;
+.radio-button-group__label--selected {
+  background-color: #e80070;
+  border-color: #e80070;
   color: white;
-  font-weight: bold;
 }

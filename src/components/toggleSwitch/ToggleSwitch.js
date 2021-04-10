@@ -9,7 +9,7 @@ function ToggleSwitch({ heading, name, options, labels, state, setState }) {
 
   return (
     <form className={`toggle-switch toggle-switch--${state}`}>
-      <section>
+      <section className="toggle-switch__container">
         <h1 className="toggle-switch__heading">{heading}</h1>
         <label htmlFor={name} className="toggle-switch__label">
           <span className="toggle-switch__label-text">{heading}</span>

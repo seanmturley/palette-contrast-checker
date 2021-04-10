@@ -9,16 +9,25 @@ function RadioButtonGroup({ heading, name, options, selected, setState }) {
 
   return (
     <form className="radio-button-group">
-      <section role="radiogroup" aria-labelledby={name}>
-        <h1 id={name}>{heading}</h1>
+      <section
+        className="radio-button-group__container"
+        role="radiogroup"
+        aria-labelledby={name}
+      >
+        <h1 className="radio-button-group__heading" id={name}>
+          {heading}
+        </h1>
         {options.map((option) => {
+          const isSelected =
+            option === selected ? " radio-button-group__label--selected" : "";
           return (
             <label
               key={option}
               htmlFor={option}
-              className={option === selected ? "selected" : null}
+              className={`radio-button-group__label${isSelected}`}
             >
               <input
+                className="radio-button-group__input"
                 type="radio"
                 name={name}
                 id={option}

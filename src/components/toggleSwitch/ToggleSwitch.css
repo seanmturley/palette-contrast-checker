@@ -1,14 +1,19 @@
-/* CSS still a bit rough, but main slider is looking good */
-/* Use units relative to outer container for scaling? */
-
-.toggle-switch {
-  display: inline-flex;
+.toggle-switch__container {
+  display: flex;
+  align-items: center;
+  color: #707070;
 }
 
 .toggle-switch__heading {
-  display: inline-block;
   font-size: 16px;
-  margin-right: 0.83rem;
+  font-weight: normal;
+  white-space: pre-line;
+  margin: 0;
+  margin-right: 10px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .toggle-switch__label-text {
@@ -26,8 +31,7 @@
   display: none;
 }
 
-.toggle-switch .toggle-switch__label {
-  display: inline-block;
+.toggle-switch__label {
   overflow: hidden;
   height: 34px;
   width: 70px;
@@ -35,15 +39,19 @@
   border: 1px solid #707070;
 }
 
+.toggle-switch__label:hover {
+  cursor: pointer;
+}
+
 .toggle-switch--on .toggle-switch__label {
   transition: border-color 0.1s ease;
-  border-color: #00c2ff;
+  border-color: #e80070;
 }
 
 .toggle-switch__sliding-container {
   display: inline-flex;
   position: relative;
-  height: 36px;
+  height: 34px;
   line-height: 34px;
   text-transform: uppercase;
 }
@@ -57,13 +65,17 @@
 .toggle-switch--on .toggle-switch__sliding-container {
   transition: all 0.1s ease;
   left: 0;
-  background-color: #00c2ff;
+  background-color: #e80070;
 }
 
 .toggle-switch__on-label {
   width: 37px;
   height: 34px;
   color: transparent;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .toggle-switch--on .toggle-switch__on-label {
@@ -74,7 +86,10 @@
 .toggle-switch__off-label {
   width: 37px;
   height: 34px;
-  color: #707070;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .toggle-switch--on .toggle-switch__off-label {
@@ -92,5 +107,5 @@
 
 .toggle-switch--on .toggle-switch__circle {
   transition: border-color 0.1s ease;
-  border-color: #00c2ff;
+  border-color: #e80070;
 }
