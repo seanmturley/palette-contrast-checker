@@ -2,10 +2,19 @@ import React from "react";
 
 import "./ToggleSwitch.css";
 
-function ToggleSwitch({ heading, name, options, labels, state, setState }) {
+function ToggleSwitch({
+  heading,
+  name,
+  optionLabels,
+  showLabels,
+  state,
+  setState
+}) {
   const handleChange = (event) => {
-    setState(event.target.value);
+    setState(event.target.value === optionLabels.true);
   };
+
+  // State now being true/false instead of a string is causing issues with component logic below - rewrite it all. Take into account CSS too!
 
   return (
     <form className={`toggle-switch toggle-switch--${state}`}>
@@ -18,17 +27,17 @@ function ToggleSwitch({ heading, name, options, labels, state, setState }) {
             type="checkbox"
             name={name}
             id={name}
-            value={state === options.on ? options.off : options.on}
+            value={state ? optionLabels.false : optionLabels.true}
             onChange={handleChange}
-            checked={state === options.on}
+            checked={state}
           />
           <div className="toggle-switch__sliding-container">
             <div className="toggle-switch__on-label">
-              {labels && options.on}
+              {showLabels && optionLabels.true}
             </div>
             <div className="toggle-switch__circle"></div>
             <div className="toggle-switch__off-label">
-              {labels && options.off}
+              {showLabels && optionLabels.false}
             </div>
           </div>
         </label>

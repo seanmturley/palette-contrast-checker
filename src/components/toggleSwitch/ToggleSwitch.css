@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.toggle-switch--on .toggle-switch__label {
+.toggle-switch--true .toggle-switch__label {
   transition: border-color 0.1s ease;
   border-color: #e80070;
 }
@@ -56,13 +56,13 @@
   text-transform: uppercase;
 }
 
-.toggle-switch--off .toggle-switch__sliding-container {
+.toggle-switch--false .toggle-switch__sliding-container {
   transition: all 0.1s ease;
   left: -38px;
   background-color: transparent;
 }
 
-.toggle-switch--on .toggle-switch__sliding-container {
+.toggle-switch--true .toggle-switch__sliding-container {
   transition: all 0.1s ease;
   left: 0;
   background-color: #e80070;
@@ -78,7 +78,7 @@
   user-select: none;
 }
 
-.toggle-switch--on .toggle-switch__on-label {
+.toggle-switch--true .toggle-switch__on-label {
   transition: color 0.1s ease;
   color: white;
 }
@@ -92,7 +92,7 @@
   user-select: none;
 }
 
-.toggle-switch--on .toggle-switch__off-label {
+.toggle-switch--true .toggle-switch__off-label {
   transition: color 0.1s ease;
   color: transparent;
 }
@@ -105,7 +105,7 @@
   border: 1px solid #707070;
 }
 
-.toggle-switch--on .toggle-switch__circle {
+.toggle-switch--true .toggle-switch__circle {
   transition: border-color 0.1s ease;
   border-color: #e80070;
 }

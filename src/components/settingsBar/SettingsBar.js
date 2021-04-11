@@ -8,8 +8,8 @@ import "./SettingsBar.css";
 function SettingsBar({
   contrastStandard,
   setContrastStandard,
-  colorblindSafe,
-  setColorblindSafe,
+  grayscale,
+  setGrayscale,
   theme,
   setTheme,
   showPaletteInput,
@@ -31,20 +31,20 @@ function SettingsBar({
     setState: setTheme
   };
 
-  const colorblindSafeProps = {
-    heading: "Colorblind \n safe",
-    name: "colorblind-safe",
-    options: { on: "on", off: "off" },
-    labels: true,
-    state: colorblindSafe,
-    setState: setColorblindSafe
+  const grayscaleProps = {
+    heading: "Grayscale \n mode",
+    name: "grayscale-mode",
+    optionLabels: { true: "on", false: "off" },
+    showLabels: true,
+    state: grayscale,
+    setState: setGrayscale
   };
 
   return (
     <nav className="settings-bar">
       <RadioButtonGroup {...contrastStandardProps} />
       <RadioButtonGroup {...themeProps} />
-      <ToggleSwitch {...colorblindSafeProps} />
+      <ToggleSwitch {...grayscaleProps} />
     </nav>
   );
 }

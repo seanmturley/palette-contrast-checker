@@ -17,8 +17,8 @@ function App() {
       <SettingsBar
         contrastStandard={contrastStandard}
         setContrastStandard={setContrastStandard}
-        // grayscale={grayscale}
-        // setGrayscale={setGrayscale}
+        grayscale={grayscale}
+        setGrayscale={setGrayscale}
         theme={theme}
         setTheme={setTheme}
         showPaletteInput={showPaletteInput}
