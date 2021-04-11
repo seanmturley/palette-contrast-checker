@@ -8,6 +8,7 @@ import { getAllColorPairs } from "./PaletteAreaContainerHelpers";
 function PaletteAreaContainer({
   contrastStandard,
   colorblindSafe,
+  grayscale,
   theme,
   showPaletteInput
 }) {
@@ -36,7 +37,7 @@ function PaletteAreaContainer({
         allColorPairs={allColorPairs}
         contrastStandard={contrastStandard}
         colorblindSafe={colorblindSafe}
-        // grayScale={grayScale}
+        grayscale={grayscale}
         theme={theme}
       />
     </main>

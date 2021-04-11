@@ -40,11 +40,13 @@ export function getPaletteData(parsedPalette) {
 
   parsedPalette.forEach((color) => {
     const luminance = getLuminance(color.rgb);
+    const grayscaleEquivalent = getGrayscaleEquivalent(luminance);
     const theme = luminance >= thresholdLuminance ? "light" : "dark";
 
     const colorData = {
       hex: color.hex,
       rgb: color.rgb,
+      grayscaleEquivalent: grayscaleEquivalent,
       luminance: luminance,
       theme: theme
     };
@@ -73,4 +75,12 @@ function getLuminance(rgb) {
     0.0722 * channelLuminance[2];
 
   return relativeLuminance;
+}
+
+function getGrayscaleEquivalent(luminance) {
+  let singleChannelHex = Math.round(luminance * 255).toString(16);
+  if (singleChannelHex.length === 1) {
+    singleChannelHex = "0" + singleChannelHex;
+  }
+  return singleChannelHex.repeat(3);
 }

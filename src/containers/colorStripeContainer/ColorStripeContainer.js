@@ -7,6 +7,7 @@ function ColorStripeContainer({
   colorPairs,
   contrastStandard,
   colorblindSafe,
+  grayscale,
   theme
 }) {
   let colorPairsFilter;
@@ -23,15 +24,16 @@ function ColorStripeContainer({
     displayStripe = false;
   }
 
-  // Return will conditionally render the color stripe in grayScale based on setting.
   return (
     <>
       {displayStripe && (
         <ColorStripe
           stripeColor={color.hex}
+          grayscaleEquivalent={color.grayscaleEquivalent}
           stripeLabelColor={color.theme === "dark" ? "FFFFFF" : "000000"}
           filteredColorPairs={colorPairs && colorPairs[colorPairsFilter]}
           contrastStandard={contrastStandard}
+          grayscale={grayscale}
         />
       )}
     </>

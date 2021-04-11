@@ -4,13 +4,17 @@ import ColorPair from "../colorPair/ColorPair";
 
 function ColorStripe({
   stripeColor,
+  grayscaleEquivalent,
   stripeLabelColor,
   filteredColorPairs,
-  contrastStandard
+  contrastStandard,
+  grayscale
 }) {
   return (
     <section
-      style={{ backgroundColor: `#${stripeColor}` }}
+      style={{
+        backgroundColor: `#${grayscale ? grayscaleEquivalent : stripeColor}`
+      }}
       data-testid="color-stripe"
     >
       <h1 style={{ color: `#${stripeLabelColor}` }}>{stripeColor}</h1>
