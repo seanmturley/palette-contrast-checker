@@ -6,7 +6,6 @@ function PaletteDisplay({
   paletteData,
   allColorPairs,
   contrastStandard,
-  colorblindSafe,
   grayscale,
   theme
 }) {
@@ -19,7 +18,6 @@ function PaletteDisplay({
             color={color}
             colorPairs={allColorPairs[color.hex]}
             contrastStandard={contrastStandard}
-            colorblindSafe={colorblindSafe}
             grayscale={grayscale}
             theme={theme}
           />

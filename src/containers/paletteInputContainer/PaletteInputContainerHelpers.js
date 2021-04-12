@@ -45,7 +45,6 @@ export function getPaletteData(parsedPalette) {
 
     const colorData = {
       hex: color.hex,
-      rgb: color.rgb,
       grayscaleEquivalent: grayscaleEquivalent,
       luminance: luminance,
       theme: theme

@@ -7,7 +7,6 @@ import "./App.css";
 
 function App() {
   const [contrastStandard, setContrastStandard] = useState("aa");
-  const [colorblindSafe, setColorblindSafe] = useState("off");
   const [grayscale, setGrayscale] = useState(false);
   const [theme, setTheme] = useState("both");
   const [showPaletteInput, setShowPaletteInput] = useState(true);
@@ -18,8 +17,6 @@ function App() {
       <SettingsBar
         contrastStandard={contrastStandard}
         setContrastStandard={setContrastStandard}
-        colorblindSafe={colorblindSafe}
-        setColorblindSafe={setColorblindSafe}
         // grayscale={grayscale}
         // setGrayscale={setGrayscale}
         theme={theme}
@@ -31,7 +28,6 @@ function App() {
       />
       <PaletteAreaContainer
         contrastStandard={contrastStandard}
-        colorblindSafe={colorblindSafe}
         grayscale={grayscale}
         theme={theme}
         showPaletteInput={showPaletteInput}

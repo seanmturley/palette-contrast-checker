@@ -4,16 +4,12 @@ export function getAllColorPairs(paletteData) {
   const allFilteredColorPairs = {};
 
   for (const [color, pairingData] of Object.entries(rawColorPairs)) {
-    const [aa, aaa, aaColorblind, aaaColorblind] = getFilteredColorPairs(
-      pairingData
-    );
+    const [aa, aaa] = getFilteredColorPairs(pairingData);
 
     allFilteredColorPairs[color] = {};
 
     allFilteredColorPairs[color]["aa"] = aa;
     allFilteredColorPairs[color]["aaa"] = aaa;
-    allFilteredColorPairs[color]["aaColorblind"] = aaColorblind;
-    allFilteredColorPairs[color]["aaaColorblind"] = aaaColorblind;
   }
 
   return allFilteredColorPairs;
@@ -56,15 +52,6 @@ function getRawColorPairs(paletteData) {
       } else if (contrast >= 3) {
         setColorPairData(rawColorPairs, hex1, hex2, "aa", "Large");
       }
-
-      const colorblindSafe = checkColorblindSafe(color1.rgb, color2.rgb);
-      setColorPairData(
-        rawColorPairs,
-        hex1,
-        hex2,
-        "colorblindSafe",
-        colorblindSafe
-      );
     }
   }
 
@@ -83,32 +70,6 @@ function getContrast(luminance1, luminance2) {
   return contrast;
 }
 
-function checkColorblindSafe(rgb1, rgb2) {
-  return (
-    safeBrightnessDifference(rgb1, rgb2) && safeColorDifference(rgb1, rgb2)
-  );
-}
-
-function safeBrightnessDifference(rgb1, rgb2) {
-  const brightness1 = getBrightness(rgb1);
-  const brightness2 = getBrightness(rgb2);
-
-  return Math.abs(brightness1 - brightness2) >= 125;
-}
-
-function getBrightness(rgb) {
-  return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
-}
-
-function safeColorDifference(rgb1, rgb2) {
-  const colorDifference =
-    Math.abs(rgb1[0] - rgb2[0]) +
-    Math.abs(rgb1[1] - rgb2[1]) +
-    Math.abs(rgb1[2] - rgb2[2]);
-
-  return colorDifference >= 500;
-}
-
 function setColorPairData(rawColorPairs, hex1, hex2, key, value) {
   rawColorPairs[hex1][hex2][key] = value;
   rawColorPairs[hex2][hex1][key] = value;
@@ -120,10 +81,7 @@ function getFilteredColorPairs(pairingData) {
   const aa = sortedColorPairs.filter((pair) => "aa" in pair);
   const aaa = aa.filter((pair) => "aaa" in pair);
 
-  const aaColorblind = aa.filter((pair) => pair.colorblindSafe);
-  const aaaColorblind = aaa.filter((pair) => pair.colorblindSafe);
-
-  return [aa, aaa, aaColorblind, aaaColorblind];
+  return [aa, aaa];
 }
 
 function getSortedColorPairs(pairingData) {
