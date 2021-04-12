@@ -39,6 +39,15 @@ function getRawColorPairs(paletteData) {
       const hex1 = color1.hex;
       const hex2 = color2.hex;
 
+      setColorPairData(
+        rawColorPairs,
+        hex1,
+        hex2,
+        "grayscaleEquivalent",
+        color2.grayscaleEquivalent,
+        color1.grayscaleEquivalent
+      );
+
       let contrast = getContrast(color1.luminance, color2.luminance);
       contrast = Math.round((contrast + Number.EPSILON) * 10) / 10;
       setColorPairData(rawColorPairs, hex1, hex2, "contrast", contrast);
@@ -70,9 +79,9 @@ function getContrast(luminance1, luminance2) {
   return contrast;
 }
 
-function setColorPairData(rawColorPairs, hex1, hex2, key, value) {
-  rawColorPairs[hex1][hex2][key] = value;
-  rawColorPairs[hex2][hex1][key] = value;
+function setColorPairData(rawColorPairs, hex1, hex2, key, value1, value2) {
+  rawColorPairs[hex1][hex2][key] = value1;
+  rawColorPairs[hex2][hex1][key] = value2 || value1;
 }
 
 function getFilteredColorPairs(pairingData) {

@@ -23,7 +23,9 @@ function ColorStripe({
           return (
             <ColorPair
               key={colorPair.hex}
-              hex={colorPair.hex}
+              pairColor={colorPair.hex}
+              pairGrayscaleEquivalent={colorPair.grayscaleEquivalent}
+              grayscale={grayscale}
               contrast={colorPair.contrast}
               textSize={colorPair[contrastStandard]}
             />
