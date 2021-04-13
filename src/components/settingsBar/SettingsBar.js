@@ -2,6 +2,9 @@ import React from "react";
 
 import RadioButtonGroup from "../radioButtonGroup/RadioButtonGroup";
 import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
+import IconButton from "../iconButton/IconButton";
+
+import { FaPalette } from "react-icons/fa";
 
 import "./SettingsBar.css";
 
@@ -40,11 +43,21 @@ function SettingsBar({
     setState: setGrayscale
   };
 
+  const editPaletteProps = {
+    heading: "Edit \n palette",
+    name: "edit-palette",
+    icon: <FaPalette />,
+    disableOnClick: true,
+    state: showPaletteInput,
+    setState: setShowPaletteInput
+  };
+
   return (
     <nav className="settings-bar">
       <RadioButtonGroup {...contrastStandardProps} />
       <RadioButtonGroup {...themeProps} />
       <ToggleSwitch {...grayscaleProps} />
+      <IconButton {...editPaletteProps} />
     </nav>
   );
 }

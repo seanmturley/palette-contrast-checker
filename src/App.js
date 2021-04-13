@@ -31,7 +31,7 @@ function App() {
         grayscale={grayscale}
         theme={theme}
         showPaletteInput={showPaletteInput}
-        // setShowPaletteInput={setShowPaletteInput}
+        setShowPaletteInput={setShowPaletteInput}
         // showPaletteExport={showPaletteExport}
         // setShowPaletteExport={setShowPaletteExport}
       />

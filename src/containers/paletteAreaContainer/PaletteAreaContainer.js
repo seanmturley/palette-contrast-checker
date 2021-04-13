@@ -9,7 +9,8 @@ function PaletteAreaContainer({
   contrastStandard,
   grayscale,
   theme,
-  showPaletteInput
+  showPaletteInput,
+  setShowPaletteInput
 }) {
   // Will accept settings as props
 
@@ -21,7 +22,7 @@ function PaletteAreaContainer({
 
     setAllColorPairs(getAllColorPairs(paletteData));
 
-    // Should also toggle palette input modal closed
+    setShowPaletteInput(false);
   };
 
   return (
