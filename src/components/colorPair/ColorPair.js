@@ -1,5 +1,7 @@
 import React from "react";
 
+import { RiHeartAddLine } from "react-icons/ri";
+
 function ColorPair({
   pairColor,
   pairGrayscaleEquivalent,
@@ -14,7 +16,9 @@ function ColorPair({
     >
       <p>{Math.round((contrast + Number.EPSILON) * 10) / 10} : 1</p>
       <h1>{pairColor}</h1>
-      {/* <p>Favourite</p> */}
+      <p>
+        <RiHeartAddLine />
+      </p>
       <p>{textSize} text</p>
     </article>
   );
