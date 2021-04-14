@@ -1,4 +1,13 @@
 .icon-button {
+  font-size: var(--base-unit);
+  --icon-button__primary-color: var(--primary-color);
+  --icon-button__accent-color: var(--accent-color);
+  --icon-button__disabled-color: var(--disabled-color);
+  --icon-button__text: var(--sans-regular);
+  --icon-button__button-height: var(--button-height);
+}
+
+.icon-button {
   display: flex;
   align-items: center;
   appearance: none;
@@ -12,21 +21,20 @@
 }
 
 .icon-button__heading {
-  color: #707070;
-  font-size: 16px;
-  font-weight: normal;
+  font: var(--icon-button__text);
+  color: var(--icon-button__primary-color);
   white-space: pre-line;
   margin: 0;
-  margin-right: 10px;
+  margin-right: 0.5em;
 }
 
 .icon-button__icon {
-  color: #e80070;
-  height: 36px;
-  width: 36px;
+  color: var(--icon-button__accent-color);
+  height: var(--icon-button__button-height);
+  width: var(--icon-button__button-height);
 }
 
 .icon-button--disabled .icon-button__heading,
 .icon-button--disabled .icon-button__icon {
-  color: #959595;
+  color: var(--icon-button__disabled-color);
 }

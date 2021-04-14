@@ -26,7 +26,7 @@ function PaletteAreaContainer({
   };
 
   return (
-    <main>
+    <>
       <PaletteInputContainer
         showPaletteInput={showPaletteInput}
         setPaletteData={setPaletteData}
@@ -39,7 +39,7 @@ function PaletteAreaContainer({
         grayscale={grayscale}
         theme={theme}
       />
-    </main>
+    </>
   );
 }
 

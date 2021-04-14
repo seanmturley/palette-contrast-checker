@@ -1,0 +1,4 @@
+.color-stripe {
+  transition: flex-grow 0.2s ease-in-out;
+  flex-grow: 1;
+}

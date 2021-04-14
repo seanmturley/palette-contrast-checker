@@ -32,12 +32,16 @@ function ToggleSwitch({
             checked={state}
           />
           <div className="toggle-switch__sliding-container">
-            <div className="toggle-switch__on-label">
-              {showLabels && optionLabels.true}
+            <div className="toggle-switch__text-container">
+              <span className="toggle-switch__text-true">
+                {showLabels && optionLabels.true}
+              </span>
             </div>
             <div className="toggle-switch__circle"></div>
-            <div className="toggle-switch__off-label">
-              {showLabels && optionLabels.false}
+            <div className="toggle-switch__text-container">
+              <span className="toggle-switch__text-false">
+                {showLabels && optionLabels.false}
+              </span>
             </div>
           </div>
         </label>

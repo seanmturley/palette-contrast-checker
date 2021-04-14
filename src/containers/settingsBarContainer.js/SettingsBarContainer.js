@@ -1,12 +1,10 @@
 import React from "react";
 
-import RadioButtonGroup from "../radioButtonGroup/RadioButtonGroup";
-import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
-import IconButton from "../iconButton/IconButton";
+import RadioButtonGroup from "../../components/radioButtonGroup/RadioButtonGroup";
+import ToggleSwitch from "../../components/toggleSwitch/ToggleSwitch";
+import IconButton from "../../components/iconButton/IconButton";
 
 import { FaPalette } from "react-icons/fa";
-
-import "./SettingsBar.css";
 
 function SettingsBar({
   contrastStandard,
@@ -53,12 +51,12 @@ function SettingsBar({
   };
 
   return (
-    <nav className="settings-bar">
+    <>
       <RadioButtonGroup {...contrastStandardProps} />
       <RadioButtonGroup {...themeProps} />
       <ToggleSwitch {...grayscaleProps} />
       <IconButton {...editPaletteProps} />
-    </nav>
+    </>
   );
 }
 

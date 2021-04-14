@@ -1,38 +1,30 @@
-.App {
+.app {
+  --base-unit: 1rem;
+  --primary-color: #707070;
+  --accent-color: #e80070;
+  --disabled-color: #959595;
+  --sans-regular: 400 1.8em "Poppins", sans-serif;
+  --sans-medium: 600 1.8em "Poppins", sans-serif;
+  --settings-bar-height: 9em;
+  --button-height: 4em;
+  --border-width: 0.1em;
+}
+
+.app {
+  font-size: var(--base-unit);
+  height: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app__settings-bar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: var(--settings-bar-height);
+  border-bottom: var(--border-width) solid var(--primary-color);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app__main {
+  height: calc(100% - var(--settings-bar-height));
 }

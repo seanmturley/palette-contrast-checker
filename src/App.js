@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import SettingsBar from "./components/settingsBar/SettingsBar";
+import SettingsBar from "./containers/settingsBarContainer.js/SettingsBarContainer";
 import PaletteAreaContainer from "./containers/paletteAreaContainer/PaletteAreaContainer";
 
 import "./App.css";
@@ -13,28 +13,32 @@ function App() {
   // const [showPaletteExport, setShowPaletteExport] = useState(false);
 
   return (
-    <div className="App">
-      <SettingsBar
-        contrastStandard={contrastStandard}
-        setContrastStandard={setContrastStandard}
-        grayscale={grayscale}
-        setGrayscale={setGrayscale}
-        theme={theme}
-        setTheme={setTheme}
-        showPaletteInput={showPaletteInput}
-        setShowPaletteInput={setShowPaletteInput}
-        // showPaletteExport={showPaletteExport}
-        // setShowPaletteExport={setShowPaletteExport}
-      />
-      <PaletteAreaContainer
-        contrastStandard={contrastStandard}
-        grayscale={grayscale}
-        theme={theme}
-        showPaletteInput={showPaletteInput}
-        setShowPaletteInput={setShowPaletteInput}
-        // showPaletteExport={showPaletteExport}
-        // setShowPaletteExport={setShowPaletteExport}
-      />
+    <div className="app">
+      <nav className="app__settings-bar">
+        <SettingsBar
+          contrastStandard={contrastStandard}
+          setContrastStandard={setContrastStandard}
+          grayscale={grayscale}
+          setGrayscale={setGrayscale}
+          theme={theme}
+          setTheme={setTheme}
+          showPaletteInput={showPaletteInput}
+          setShowPaletteInput={setShowPaletteInput}
+          // showPaletteExport={showPaletteExport}
+          // setShowPaletteExport={setShowPaletteExport}
+        />
+      </nav>
+      <main className="app__main">
+        <PaletteAreaContainer
+          contrastStandard={contrastStandard}
+          grayscale={grayscale}
+          theme={theme}
+          showPaletteInput={showPaletteInput}
+          setShowPaletteInput={setShowPaletteInput}
+          // showPaletteExport={showPaletteExport}
+          // setShowPaletteExport={setShowPaletteExport}
+        />
+      </main>
     </div>
   );
 }

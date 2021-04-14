@@ -35,7 +35,7 @@ function RadioButtonGroup({ heading, name, options, selected, setState }) {
                 onChange={handleChange}
                 checked={option === selected}
               />
-              {option}
+              <span className="radio-button-group__label-text">{option}</span>
             </label>
           );
         })}

@@ -2,6 +2,8 @@ import React from "react";
 
 import ColorStripeContainer from "../../containers/colorStripeContainer/ColorStripeContainer";
 
+import "./PaletteDisplay.css";
+
 function PaletteDisplay({
   paletteData,
   allColorPairs,
@@ -10,7 +12,7 @@ function PaletteDisplay({
   theme
 }) {
   return (
-    <section>
+    <section className="palette-display">
       {paletteData.map((color) => {
         return (
           <ColorStripeContainer

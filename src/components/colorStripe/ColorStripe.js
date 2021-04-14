@@ -2,6 +2,8 @@ import React from "react";
 
 import ColorPair from "../colorPair/ColorPair";
 
+import "./ColorStripe.css";
+
 function ColorStripe({
   stripeColor,
   grayscaleEquivalent,
@@ -12,12 +14,18 @@ function ColorStripe({
 }) {
   return (
     <section
+      className="color-stripe"
       style={{
         backgroundColor: `#${grayscale ? grayscaleEquivalent : stripeColor}`
       }}
       data-testid="color-stripe"
     >
-      <h1 style={{ color: `#${stripeLabelColor}` }}>{stripeColor}</h1>
+      <h1
+        className="color-stripe__heading"
+        style={{ color: `#${stripeLabelColor}` }}
+      >
+        {stripeColor}
+      </h1>
       {filteredColorPairs &&
         filteredColorPairs.map((colorPair) => {
           return (
