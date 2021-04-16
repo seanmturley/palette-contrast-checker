@@ -3,8 +3,10 @@
   --primary-color: #707070;
   --accent-color: #e80070;
   --disabled-color: #959595;
-  --sans-regular: 400 1.8em "Poppins", sans-serif;
-  --sans-medium: 600 1.8em "Poppins", sans-serif;
+  --sans-regular: 400 1.8em/1.3 "Poppins", sans-serif;
+  --sans-medium: 600 1.8em/1.3 "Poppins", sans-serif;
+  --mono-regular: 400 1.8em/1.3 "Roboto Mono", monospace;
+  --mono-medium: 600 2.6em/1 "Roboto Mono", monospace;
   --settings-bar-height: 9em;
   --button-height: 4em;
   --border-width: 0.1em;

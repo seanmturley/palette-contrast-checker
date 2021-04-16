@@ -7,8 +7,9 @@ import "./ColorStripe.css";
 function ColorStripe({
   stripeColor,
   grayscaleEquivalent,
-  stripeLabelColor,
+  stripeTheme,
   filteredColorPairs,
+  placeholdersRequired,
   contrastStandard,
   grayscale
 }) {
@@ -21,24 +22,33 @@ function ColorStripe({
       data-testid="color-stripe"
     >
       <h1
-        className="color-stripe__heading"
-        style={{ color: `#${stripeLabelColor}` }}
+        className={`color-stripe__heading color-stripe__heading--theme-${stripeTheme}`}
       >
         {stripeColor}
       </h1>
-      {filteredColorPairs &&
-        filteredColorPairs.map((colorPair) => {
-          return (
-            <ColorPair
-              key={colorPair.hex}
-              pairColor={colorPair.hex}
-              pairGrayscaleEquivalent={colorPair.grayscaleEquivalent}
-              grayscale={grayscale}
-              contrast={colorPair.contrast}
-              textSize={colorPair[contrastStandard]}
-            />
-          );
-        })}
+      <section className="color-stripe__pairs-container">
+        {filteredColorPairs &&
+          filteredColorPairs.map((colorPair) => {
+            return (
+              <ColorPair
+                key={colorPair.hex}
+                pairColor={colorPair.hex}
+                pairGrayscaleEquivalent={colorPair.grayscaleEquivalent}
+                grayscale={grayscale}
+                contrast={colorPair.contrast}
+                textSize={colorPair[contrastStandard]}
+              />
+            );
+          })}
+        {placeholdersRequired > 0 && (
+          <div
+            className="color-stripe__placeholder"
+            style={{
+              flex: `${placeholdersRequired} ${placeholdersRequired} ${placeholdersRequired}em`
+            }}
+          ></div>
+        )}
+      </section>
     </section>
   );
 }

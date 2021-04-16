@@ -1,7 +1,8 @@
-export function getAllColorPairs(paletteData) {
+export function getAllColorPairData(paletteData) {
   const rawColorPairs = getRawColorPairs(paletteData);
 
   const allFilteredColorPairs = {};
+  let maxPairsCount = 0;
 
   for (const [color, pairingData] of Object.entries(rawColorPairs)) {
     const [aa, aaa] = getFilteredColorPairs(pairingData);
@@ -10,9 +11,17 @@ export function getAllColorPairs(paletteData) {
 
     allFilteredColorPairs[color]["aa"] = aa;
     allFilteredColorPairs[color]["aaa"] = aaa;
+
+    const aaPairsCount = aa.length;
+    allFilteredColorPairs[color]["aaPairsCount"] = aaPairsCount;
+    allFilteredColorPairs[color]["aaaPairsCount"] = aaa.length;
+
+    if (aaPairsCount > maxPairsCount) {
+      maxPairsCount = aaPairsCount;
+    }
   }
 
-  return allFilteredColorPairs;
+  return [allFilteredColorPairs, maxPairsCount];
 }
 
 function getRawColorPairs(paletteData) {

@@ -1,4 +1,32 @@
 .color-stripe {
-  transition: flex-grow 0.2s ease-in-out;
-  flex-grow: 1;
+  font-size: var(--base-unit);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+}
+
+.color-stripe__heading {
+  font: var(--mono-regular);
+  text-transform: uppercase;
+  margin: 0.8em 0 0.8em;
+  flex: 0 1 auto;
+}
+
+.color-stripe__heading--theme-dark {
+  color: white;
+}
+
+.color-stripe__heading--theme-light {
+  color: black;
+}
+
+.color-stripe__pairs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1 1 auto;
+}
+
+.color-stripe__placeholder {
+  font: var(--mono-medium);
 }

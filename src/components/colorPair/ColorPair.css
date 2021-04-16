@@ -1,0 +1,19 @@
+.color-pair {
+  font-size: var(--base-unit);
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.color-pair__contrast,
+.color-pair__heart,
+.color-pair__test-size {
+  display: none;
+}
+
+.color-pair__heading {
+  font: var(--mono-medium);
+  text-transform: uppercase;
+  margin: 0;
+}

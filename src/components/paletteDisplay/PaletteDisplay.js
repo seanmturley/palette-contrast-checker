@@ -7,6 +7,7 @@ import "./PaletteDisplay.css";
 function PaletteDisplay({
   paletteData,
   allColorPairs,
+  maxPairsCount,
   contrastStandard,
   grayscale,
   theme
@@ -19,6 +20,7 @@ function PaletteDisplay({
             key={color.hex}
             color={color}
             colorPairs={allColorPairs[color.hex]}
+            maxPairsCount={maxPairsCount}
             contrastStandard={contrastStandard}
             grayscale={grayscale}
             theme={theme}

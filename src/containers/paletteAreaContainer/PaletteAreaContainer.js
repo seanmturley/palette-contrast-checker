@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PaletteInputContainer from "../paletteInputContainer/PaletteInputContainer";
 import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
-import { getAllColorPairs } from "./PaletteAreaContainerHelpers";
+import { getAllColorPairData } from "./PaletteAreaContainerHelpers";
 
 function PaletteAreaContainer({
   contrastStandard,
@@ -16,11 +16,15 @@ function PaletteAreaContainer({
 
   const [paletteData, setPaletteData] = useState([]);
   const [allColorPairs, setAllColorPairs] = useState({});
+  const [maxPairsCount, setMaxPairsCount] = useState(0);
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
 
-    setAllColorPairs(getAllColorPairs(paletteData));
+    const [colorPairs, maxPairs] = getAllColorPairData(paletteData);
+
+    setAllColorPairs(colorPairs);
+    setMaxPairsCount(maxPairs);
 
     setShowPaletteInput(false);
   };
@@ -35,6 +39,7 @@ function PaletteAreaContainer({
       <PaletteDisplay
         paletteData={paletteData}
         allColorPairs={allColorPairs}
+        maxPairsCount={maxPairsCount}
         contrastStandard={contrastStandard}
         grayscale={grayscale}
         theme={theme}

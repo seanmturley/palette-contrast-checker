@@ -5,6 +5,7 @@ import ColorStripe from "../../components/colorStripe/ColorStripe";
 function ColorStripeContainer({
   color,
   colorPairs,
+  maxPairsCount,
   contrastStandard,
   grayscale,
   theme
@@ -16,7 +17,14 @@ function ColorStripeContainer({
     displayStripe = false;
   }
 
+  // Why is this logic here? Can't just use contrastStandard directly?
   const colorPairsFilter = contrastStandard === "aaa" ? "aaa" : "aa";
+
+  const placeholdersRequired = {};
+  if (colorPairs) {
+    placeholdersRequired["aa"] = maxPairsCount - colorPairs["aaPairsCount"];
+    placeholdersRequired["aaa"] = maxPairsCount - colorPairs["aaaPairsCount"];
+  }
 
   return (
     <>
@@ -24,8 +32,11 @@ function ColorStripeContainer({
         <ColorStripe
           stripeColor={color.hex}
           grayscaleEquivalent={color.grayscaleEquivalent}
-          stripeLabelColor={color.theme === "dark" ? "FFFFFF" : "000000"}
+          stripeTheme={color.theme}
           filteredColorPairs={colorPairs && colorPairs[colorPairsFilter]}
+          placeholdersRequired={
+            colorPairs && placeholdersRequired[colorPairsFilter]
+          }
           contrastStandard={contrastStandard}
           grayscale={grayscale}
         />
