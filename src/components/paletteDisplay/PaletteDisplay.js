@@ -8,6 +8,7 @@ function PaletteDisplay({
   paletteData,
   allColorPairs,
   maxPairsCount,
+  showPaletteInput,
   contrastStandard,
   grayscale,
   theme
@@ -21,6 +22,7 @@ function PaletteDisplay({
             color={color}
             colorPairs={allColorPairs[color.hex]}
             maxPairsCount={maxPairsCount}
+            showPaletteInput={showPaletteInput}
             contrastStandard={contrastStandard}
             grayscale={grayscale}
             theme={theme}

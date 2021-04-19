@@ -1,19 +1,85 @@
 .color-pair {
   font-size: var(--base-unit);
-  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  position: relative;
+  margin: 0 2em;
+  transition: all 0.2s ease;
+  flex: 1 1 1em;
+  border: solid transparent;
+  border-width: 2px 0;
 }
 
-.color-pair__contrast,
-.color-pair__heart,
-.color-pair__test-size {
+.color-pair--hide {
   display: none;
+}
+
+.color-pair:hover {
+  transition: border-color 0.2s ease;
+  border-color: unset;
+}
+
+.color-pair--enable-hover-grow:hover {
+  transition: flex 0.2s ease;
+  flex: 2 1 1em;
+}
+
+.color-pair::before,
+.color-pair::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2em;
+}
+
+.color-pair::before {
+  right: 100%;
+}
+
+.color-pair::after {
+  left: 100%;
 }
 
 .color-pair__heading {
   font: var(--mono-medium);
   text-transform: uppercase;
+  margin: 0 0 0.3em;
+}
+
+.color-pair__contrast,
+.color-pair__text-size--Any {
+  font: var(--sans-regular);
+}
+
+.color-pair__text-size--Large {
+  font: var(--sans-medium);
+}
+
+.color-pair__contrast,
+.color-pair__text-size {
   margin: 0;
+  transition: all 0.2s ease;
+  font-size: 0;
+  opacity: 0;
+}
+
+.color-pair:hover .color-pair__contrast,
+.color-pair:hover .color-pair__text-size {
+  transition: all 0.2s ease;
+  font-size: 1.8em;
+  opacity: 1;
+}
+
+.color-pair__heart {
+  width: 3em;
+  height: 3em;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.color-pair:hover .color-pair__heart {
+  transition: opacity 0.2s ease;
+  opacity: 1;
 }

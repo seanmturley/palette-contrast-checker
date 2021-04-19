@@ -7,11 +7,13 @@ import "./ColorStripe.css";
 function ColorStripe({
   stripeColor,
   grayscaleEquivalent,
-  stripeTheme,
   filteredColorPairs,
   placeholdersRequired,
+  hoverGrowClass,
+  hidePairs,
   contrastStandard,
-  grayscale
+  grayscale,
+  stripeTheme
 }) {
   return (
     <section
@@ -21,11 +23,6 @@ function ColorStripe({
       }}
       data-testid="color-stripe"
     >
-      <h1
-        className={`color-stripe__heading color-stripe__heading--theme-${stripeTheme}`}
-      >
-        {stripeColor}
-      </h1>
       <section className="color-stripe__pairs-container">
         {filteredColorPairs &&
           filteredColorPairs.map((colorPair) => {
@@ -34,9 +31,11 @@ function ColorStripe({
                 key={colorPair.hex}
                 pairColor={colorPair.hex}
                 pairGrayscaleEquivalent={colorPair.grayscaleEquivalent}
-                grayscale={grayscale}
                 contrast={colorPair.contrast}
+                hoverGrowClass={hoverGrowClass}
                 textSize={colorPair[contrastStandard]}
+                hidePairs={hidePairs}
+                grayscale={grayscale}
               />
             );
           })}
@@ -49,6 +48,11 @@ function ColorStripe({
           ></div>
         )}
       </section>
+      <h1
+        className={`color-stripe__heading color-stripe__heading--theme-${stripeTheme}`}
+      >
+        {stripeColor}
+      </h1>
     </section>
   );
 }

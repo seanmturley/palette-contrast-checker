@@ -62,10 +62,10 @@ function getRawColorPairs(paletteData) {
       setColorPairData(rawColorPairs, hex1, hex2, "contrast", contrast);
 
       if (contrast >= 7) {
-        setColorPairData(rawColorPairs, hex1, hex2, "aa", "Normal");
-        setColorPairData(rawColorPairs, hex1, hex2, "aaa", "Normal");
+        setColorPairData(rawColorPairs, hex1, hex2, "aa", "Any");
+        setColorPairData(rawColorPairs, hex1, hex2, "aaa", "Any");
       } else if (contrast >= 4.5) {
-        setColorPairData(rawColorPairs, hex1, hex2, "aa", "Normal");
+        setColorPairData(rawColorPairs, hex1, hex2, "aa", "Any");
         setColorPairData(rawColorPairs, hex1, hex2, "aaa", "Large");
       } else if (contrast >= 3) {
         setColorPairData(rawColorPairs, hex1, hex2, "aa", "Large");

@@ -6,6 +6,7 @@ function ColorStripeContainer({
   color,
   colorPairs,
   maxPairsCount,
+  showPaletteInput,
   contrastStandard,
   grayscale,
   theme
@@ -17,8 +18,7 @@ function ColorStripeContainer({
     displayStripe = false;
   }
 
-  // Why is this logic here? Can't just use contrastStandard directly?
-  const colorPairsFilter = contrastStandard === "aaa" ? "aaa" : "aa";
+  const hidePairs = showPaletteInput ? " color-pair--hide" : "";
 
   const placeholdersRequired = {};
   if (colorPairs) {
@@ -26,19 +26,24 @@ function ColorStripeContainer({
     placeholdersRequired["aaa"] = maxPairsCount - colorPairs["aaaPairsCount"];
   }
 
+  const hoverGrowClass =
+    maxPairsCount > 5 ? " color-pair--enable-hover-grow" : "";
+
   return (
     <>
       {displayStripe && (
         <ColorStripe
           stripeColor={color.hex}
           grayscaleEquivalent={color.grayscaleEquivalent}
-          stripeTheme={color.theme}
-          filteredColorPairs={colorPairs && colorPairs[colorPairsFilter]}
+          filteredColorPairs={colorPairs && colorPairs[contrastStandard]}
           placeholdersRequired={
-            colorPairs && placeholdersRequired[colorPairsFilter]
+            colorPairs && placeholdersRequired[contrastStandard]
           }
+          hoverGrowClass={hoverGrowClass}
+          hidePairs={hidePairs}
           contrastStandard={contrastStandard}
           grayscale={grayscale}
+          stripeTheme={color.theme}
         />
       )}
     </>

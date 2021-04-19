@@ -1,5 +1,6 @@
 import React from "react";
 
+import { IconContext } from "react-icons";
 import { RiHeartAddLine } from "react-icons/ri";
 
 import "./ColorPair.css";
@@ -7,24 +8,30 @@ import "./ColorPair.css";
 function ColorPair({
   pairColor,
   pairGrayscaleEquivalent,
-  grayscale,
   contrast,
-  textSize
+  hoverGrowClass,
+  textSize,
+  hidePairs,
+  grayscale
 }) {
   return (
     <article
-      className="color-pair"
+      className={`color-pair${hidePairs}${hoverGrowClass}`}
       style={{ color: `#${grayscale ? pairGrayscaleEquivalent : pairColor}` }}
       data-testid="color-pair"
     >
       <p className="color-pair__contrast">
         {Math.round((contrast + Number.EPSILON) * 10) / 10} : 1
       </p>
-      <h1 className="color-pair__heading">{pairColor}</h1>
-      <p className="color-pair__heart">
-        <RiHeartAddLine />
+      <div>
+        <h1 className="color-pair__heading">{pairColor}</h1>
+        <IconContext.Provider value={{ className: "color-pair__heart" }}>
+          <RiHeartAddLine />
+        </IconContext.Provider>
+      </div>
+      <p className={`color-pair__text-size color-pair__text-size--${textSize}`}>
+        {textSize} font
       </p>
-      <p className="color-pair__test-size">{textSize} text</p>
     </article>
   );
 }

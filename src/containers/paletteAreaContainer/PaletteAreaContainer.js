@@ -40,6 +40,7 @@ function PaletteAreaContainer({
         paletteData={paletteData}
         allColorPairs={allColorPairs}
         maxPairsCount={maxPairsCount}
+        showPaletteInput={showPaletteInput}
         contrastStandard={contrastStandard}
         grayscale={grayscale}
         theme={theme}
