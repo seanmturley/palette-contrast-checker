@@ -1,0 +1,44 @@
+.palette-input {
+  font-size: var(--base-unit);
+  position: fixed;
+  padding: 2em;
+  background-color: white;
+  border-radius: 1em;
+  box-shadow: 0 0 2em rgb(0 0 0 / 25%);
+}
+
+.palette-input__controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.palette-input__heading {
+  font: var(--sans-medium);
+  font-size: 2.6em;
+  color: var(--accent-color);
+}
+
+.palette-input__submit-button {
+  appearance: none;
+  border: none;
+  padding: unset;
+  background-color: transparent;
+  font: var(--sans-medium);
+  font-size: 4.6em;
+  line-height: 0.7;
+  color: var(--accent-color);
+}
+
+.palette-input__submit-button:hover {
+  cursor: pointer;
+}
+
+.palette-input__text-area {
+  font: var(--mono-regular);
+  color: var(--primary-color);
+  margin: 0.8em 0.8em 0.5em;
+  padding: 0.5em 0.81em;
+  border: var(--border-width) solid var(--primary-color);
+  border-radius: 0.3em;
+}
