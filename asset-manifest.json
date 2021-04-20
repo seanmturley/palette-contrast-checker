@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/palette-contrast-checker/static/css/main.32e60e25.chunk.css",
+    "main.js": "/palette-contrast-checker/static/js/main.be52a207.chunk.js",
+    "main.js.map": "/palette-contrast-checker/static/js/main.be52a207.chunk.js.map",
+    "runtime-main.js": "/palette-contrast-checker/static/js/runtime-main.b09acf2f.js",
+    "runtime-main.js.map": "/palette-contrast-checker/static/js/runtime-main.b09acf2f.js.map",
+    "static/css/2.679831fc.chunk.css": "/palette-contrast-checker/static/css/2.679831fc.chunk.css",
+    "static/js/2.6ec049e1.chunk.js": "/palette-contrast-checker/static/js/2.6ec049e1.chunk.js",
+    "static/js/2.6ec049e1.chunk.js.map": "/palette-contrast-checker/static/js/2.6ec049e1.chunk.js.map",
+    "static/js/3.98f4e688.chunk.js": "/palette-contrast-checker/static/js/3.98f4e688.chunk.js",
+    "static/js/3.98f4e688.chunk.js.map": "/palette-contrast-checker/static/js/3.98f4e688.chunk.js.map",
+    "index.html": "/palette-contrast-checker/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/palette-contrast-checker/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.32e60e25.chunk.css.map": "/palette-contrast-checker/static/css/main.32e60e25.chunk.css.map",
+    "static/js/2.6ec049e1.chunk.js.LICENSE.txt": "/palette-contrast-checker/static/js/2.6ec049e1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b09acf2f.js",
+    "static/css/2.679831fc.chunk.css",
+    "static/js/2.6ec049e1.chunk.js",
+    "static/css/main.32e60e25.chunk.css",
+    "static/js/main.be52a207.chunk.js"
+  ]
+}
