@@ -2,13 +2,12 @@
   font-size: var(--base-unit);
   display: flex;
   flex-direction: column;
-  flex: 1 1;
+  flex-grow: 1;
 }
 
 .color-stripe__heading {
   font: var(--mono-regular);
   text-transform: uppercase;
-  flex: 0 1 auto;
   margin: 0 0 1em;
 }
 
@@ -24,6 +23,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex: 1 1 auto;
+  flex-grow: 1;
   margin: 1em 0 1em;
 }

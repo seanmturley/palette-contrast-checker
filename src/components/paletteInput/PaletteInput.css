@@ -1,6 +1,7 @@
 .palette-input {
   font-size: var(--base-unit);
   position: fixed;
+  align-self: center;
   padding: 2em;
   background-color: white;
   border-radius: 1em;
