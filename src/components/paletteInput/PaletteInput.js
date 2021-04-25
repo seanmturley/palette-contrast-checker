@@ -2,6 +2,8 @@ import React from "react";
 
 import "./PaletteInput.css";
 
+import PropTypes from "prop-types";
+
 function PaletteInput({ rawPalette, handleInputChange, handleInputSubmit }) {
   return (
     <section className="palette-input">
@@ -33,5 +35,11 @@ function PaletteInput({ rawPalette, handleInputChange, handleInputSubmit }) {
     </section>
   );
 }
+
+PaletteInput.propTypes = {
+  rawPalette: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleInputSubmit: PropTypes.func.isRequired
+};
 
 export default PaletteInput;

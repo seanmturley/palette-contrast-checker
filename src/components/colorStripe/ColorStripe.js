@@ -4,6 +4,8 @@ import ColorPair from "../colorPair/ColorPair";
 
 import "./ColorStripe.css";
 
+import PropTypes from "prop-types";
+
 function ColorStripe({
   stripeColor,
   grayscaleEquivalent,
@@ -56,5 +58,25 @@ function ColorStripe({
     </section>
   );
 }
+
+ColorStripe.propTypes = {
+  stripeColor: PropTypes.string.isRequired,
+  grayscaleEquivalent: PropTypes.string.isRequired,
+  filteredColorPairs: PropTypes.arrayOf(
+    PropTypes.shape({
+      hex: PropTypes.string.isRequired,
+      grayscaleEquivalent: PropTypes.string.isRequired,
+      contrast: PropTypes.number.isRequired,
+      aa: PropTypes.string.isRequired,
+      aaa: PropTypes.string.isRequired
+    })
+  ),
+  placeholdersRequired: PropTypes.number,
+  hoverGrowClass: PropTypes.string.isRequired,
+  hidePairs: PropTypes.string.isRequired,
+  contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
+  grayscale: PropTypes.bool.isRequired,
+  stripeTheme: PropTypes.oneOf(["dark", "light"]).isRequired
+};
 
 export default ColorStripe;

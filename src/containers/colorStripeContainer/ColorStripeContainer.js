@@ -2,6 +2,8 @@ import React from "react";
 
 import ColorStripe from "../../components/colorStripe/ColorStripe";
 
+import PropTypes from "prop-types";
+
 function ColorStripeContainer({
   color,
   colorPairs,
@@ -49,5 +51,41 @@ function ColorStripeContainer({
     </>
   );
 }
+
+ColorStripeContainer.propTypes = {
+  color: PropTypes.shape({
+    hex: PropTypes.string.isRequired,
+    grayscaleEquivalent: PropTypes.string.isRequired,
+    luminance: PropTypes.number.isRequired,
+    theme: PropTypes.oneOf(["dark", "light"]).isRequired
+  }).isRequired,
+  colorPairs: PropTypes.shape({
+    aa: PropTypes.arrayOf(
+      PropTypes.shape({
+        hex: PropTypes.string.isRequired,
+        grayscaleEquivalent: PropTypes.string.isRequired,
+        contrast: PropTypes.number.isRequired,
+        aa: PropTypes.string.isRequired,
+        aaa: PropTypes.string.isRequired
+      }).isRequired
+    ),
+    aaPairsCount: PropTypes.number.isRequired,
+    aaa: PropTypes.arrayOf(
+      PropTypes.shape({
+        hex: PropTypes.string.isRequired,
+        grayscaleEquivalent: PropTypes.string.isRequired,
+        contrast: PropTypes.number.isRequired,
+        aa: PropTypes.string.isRequired,
+        aaa: PropTypes.string.isRequired
+      }).isRequired
+    ),
+    aaaPairsCount: PropTypes.number.isRequired
+  }),
+  maxPairsCount: PropTypes.number.isRequired,
+  showPaletteInput: PropTypes.bool.isRequired,
+  contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
+  grayscale: PropTypes.bool.isRequired,
+  theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired
+};
 
 export default ColorStripeContainer;

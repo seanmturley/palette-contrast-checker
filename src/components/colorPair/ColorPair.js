@@ -5,6 +5,8 @@ import { RiHeartAddLine } from "react-icons/ri";
 
 import "./ColorPair.css";
 
+import PropTypes from "prop-types";
+
 function ColorPair({
   pairColor,
   pairGrayscaleEquivalent,
@@ -35,5 +37,15 @@ function ColorPair({
     </article>
   );
 }
+
+ColorPair.propTypes = {
+  pairColor: PropTypes.string.isRequired,
+  pairGrayscaleEquivalent: PropTypes.string.isRequired,
+  contrast: PropTypes.number.isRequired,
+  hoverGrowClass: PropTypes.string.isRequired,
+  textSize: PropTypes.string.isRequired,
+  hidePairs: PropTypes.string.isRequired,
+  grayscale: PropTypes.bool.isRequired
+};
 
 export default ColorPair;

@@ -5,6 +5,8 @@ import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
 import { getAllColorPairData } from "./PaletteAreaContainerHelpers";
 
+import PropTypes from "prop-types";
+
 function PaletteAreaContainer({
   contrastStandard,
   grayscale,
@@ -48,5 +50,13 @@ function PaletteAreaContainer({
     </>
   );
 }
+
+PaletteAreaContainer.propTypes = {
+  contrastStandard: PropTypes.oneOf(["aa", "aaa"]),
+  grayscale: PropTypes.bool.isRequired,
+  theme: PropTypes.oneOf(["dark", "both", "light"]),
+  showPaletteInput: PropTypes.bool.isRequired,
+  setShowPaletteInput: PropTypes.func.isRequired
+};
 
 export default PaletteAreaContainer;
