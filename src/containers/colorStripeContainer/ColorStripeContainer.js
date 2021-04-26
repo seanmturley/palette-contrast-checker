@@ -66,9 +66,9 @@ ColorStripeContainer.propTypes = {
         grayscaleEquivalent: PropTypes.string.isRequired,
         contrast: PropTypes.number.isRequired,
         aa: PropTypes.string.isRequired,
-        aaa: PropTypes.string.isRequired
+        aaa: PropTypes.string
       }).isRequired
-    ),
+    ).isRequired,
     aaPairsCount: PropTypes.number.isRequired,
     aaa: PropTypes.arrayOf(
       PropTypes.shape({
@@ -78,7 +78,7 @@ ColorStripeContainer.propTypes = {
         aa: PropTypes.string.isRequired,
         aaa: PropTypes.string.isRequired
       }).isRequired
-    ),
+    ).isRequired,
     aaaPairsCount: PropTypes.number.isRequired
   }),
   maxPairsCount: PropTypes.number.isRequired,

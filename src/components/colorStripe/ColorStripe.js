@@ -68,7 +68,7 @@ ColorStripe.propTypes = {
       grayscaleEquivalent: PropTypes.string.isRequired,
       contrast: PropTypes.number.isRequired,
       aa: PropTypes.string.isRequired,
-      aaa: PropTypes.string.isRequired
+      aaa: PropTypes.string
     })
   ),
   placeholdersRequired: PropTypes.number,
