@@ -6,7 +6,7 @@ import IconButton from "../../components/iconButton/IconButton";
 
 import { FaPalette } from "react-icons/fa";
 
-function SettingsBar({
+function SettingsBarContainer({
   contrastStandard,
   setContrastStandard,
   grayscale,
@@ -60,4 +60,4 @@ function SettingsBar({
   );
 }
 
-export default SettingsBar;
+export default SettingsBarContainer;

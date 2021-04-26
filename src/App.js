@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import SettingsBar from "./containers/settingsBarContainer.js/SettingsBarContainer";
+import SettingsBarContainer from "./containers/settingsBarContainer.js/SettingsBarContainer";
 import PaletteAreaContainer from "./containers/paletteAreaContainer/PaletteAreaContainer";
 
 import "./App.css";
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="app">
       <nav className="app__settings-bar">
-        <SettingsBar
+        <SettingsBarContainer
           contrastStandard={contrastStandard}
           setContrastStandard={setContrastStandard}
           grayscale={grayscale}
