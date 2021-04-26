@@ -25,12 +25,10 @@ function ColorPair({
       <p className="color-pair__contrast">
         {Math.round((contrast + Number.EPSILON) * 10) / 10} : 1
       </p>
-      <div>
-        <h1 className="color-pair__heading">{pairColor}</h1>
-        <IconContext.Provider value={{ className: "color-pair__heart" }}>
-          <RiHeartAddLine />
-        </IconContext.Provider>
-      </div>
+      <h1 className="color-pair__heading">{pairColor}</h1>
+      <IconContext.Provider value={{ className: "color-pair__heart" }}>
+        <RiHeartAddLine />
+      </IconContext.Provider>
       <p className={`color-pair__text-size color-pair__text-size--${textSize}`}>
         {textSize} font
       </p>
