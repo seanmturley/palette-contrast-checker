@@ -2,6 +2,8 @@ import React from "react";
 
 import "./ToggleSwitch.css";
 
+import PropTypes from "prop-types";
+
 function ToggleSwitch({
   heading,
   name,
@@ -49,5 +51,14 @@ function ToggleSwitch({
     </form>
   );
 }
+
+ToggleSwitch.propTypes = {
+  heading: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  optionLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  showLabels: PropTypes.bool.isRequired,
+  state: PropTypes.bool.isRequired,
+  setState: PropTypes.func.isRequired
+};
 
 export default ToggleSwitch;

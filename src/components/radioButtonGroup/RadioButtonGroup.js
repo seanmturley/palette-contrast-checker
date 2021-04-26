@@ -2,6 +2,8 @@ import React from "react";
 
 import "./RadioButtonGroup.css";
 
+import PropTypes from "prop-types";
+
 function RadioButtonGroup({ heading, name, options, selected, setState }) {
   const handleChange = (event) => {
     setState(event.target.value);
@@ -43,5 +45,13 @@ function RadioButtonGroup({ heading, name, options, selected, setState }) {
     </form>
   );
 }
+
+RadioButtonGroup.propTypes = {
+  heading: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  selected: PropTypes.string.isRequired,
+  setState: PropTypes.func.isRequired
+};
 
 export default RadioButtonGroup;

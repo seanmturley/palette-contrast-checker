@@ -6,6 +6,8 @@ import IconButton from "../../components/iconButton/IconButton";
 
 import { FaPalette } from "react-icons/fa";
 
+import PropTypes from "prop-types";
+
 function SettingsBarContainer({
   contrastStandard,
   setContrastStandard,
@@ -59,5 +61,16 @@ function SettingsBarContainer({
     </>
   );
 }
+
+SettingsBarContainer.propTypes = {
+  contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
+  setContrastStandard: PropTypes.func.isRequired,
+  grayscale: PropTypes.bool.isRequired,
+  setGrayscale: PropTypes.func.isRequired,
+  theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
+  setTheme: PropTypes.func.isRequired,
+  showPaletteInput: PropTypes.bool.isRequired,
+  setShowPaletteInput: PropTypes.func.isRequired
+};
 
 export default SettingsBarContainer;

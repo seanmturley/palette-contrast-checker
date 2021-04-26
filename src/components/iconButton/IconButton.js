@@ -4,6 +4,8 @@ import { IconContext } from "react-icons";
 
 import "./IconButton.css";
 
+import PropTypes from "prop-types";
+
 function IconButton({ heading, name, icon, disableOnClick, state, setState }) {
   const handleClick = () => {
     setState(!state);
@@ -31,5 +33,14 @@ function IconButton({ heading, name, icon, disableOnClick, state, setState }) {
     </button>
   );
 }
+
+IconButton.propTypes = {
+  heading: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.element.isRequired,
+  disableOnClick: PropTypes.bool.isRequired,
+  state: PropTypes.bool.isRequired,
+  setState: PropTypes.func.isRequired
+};
 
 export default IconButton;
