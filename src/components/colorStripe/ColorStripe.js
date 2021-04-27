@@ -51,9 +51,14 @@ function ColorStripe({
         )}
       </section>
       <h1
-        className={`color-stripe__heading color-stripe__heading--theme-${stripeTheme}`}
+        className={`color-stripe__heading color-stripe__heading--theme-${stripeTheme} color-stripe__heading--${stripeColor}`}
       >
         {stripeColor}
+        <style>
+          {`.color-stripe__heading--${stripeColor} {
+            background: linear-gradient(to top, #${stripeColor}, 60%, transparent 105%);
+          }`}
+        </style>
       </h1>
     </section>
   );

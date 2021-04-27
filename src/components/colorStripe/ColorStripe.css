@@ -8,7 +8,8 @@
 .color-stripe__heading {
   font: var(--mono-regular);
   text-transform: uppercase;
-  margin: 0 0 1em;
+  margin: 0;
+  padding: 1.5em 0 0.5em;
 }
 
 .color-stripe__heading--theme-dark {
@@ -24,5 +25,5 @@
   flex-direction: column;
   justify-content: flex-start;
   flex-grow: 1;
-  margin: 1em 0 1em;
+  margin-top: 1em;
 }
