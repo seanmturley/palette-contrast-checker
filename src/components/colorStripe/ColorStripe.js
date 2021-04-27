@@ -10,6 +10,7 @@ function ColorStripe({
   stripeColor,
   grayscaleEquivalent,
   filteredColorPairs,
+  maxPairsCount,
   placeholdersRequired,
   hoverGrowClass,
   hidePairs,
@@ -25,7 +26,10 @@ function ColorStripe({
       }}
       data-testid="color-stripe"
     >
-      <section className="color-stripe__pairs-container">
+      <section
+        className="color-stripe__pairs-container"
+        style={{ minHeight: `${maxPairsCount * 4 + 12}em` }}
+      >
         {filteredColorPairs &&
           filteredColorPairs.map((colorPair) => {
             return (

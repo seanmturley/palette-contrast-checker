@@ -38,6 +38,7 @@ function ColorStripeContainer({
           stripeColor={color.hex}
           grayscaleEquivalent={color.grayscaleEquivalent}
           filteredColorPairs={colorPairs && colorPairs[contrastStandard]}
+          maxPairsCount={maxPairsCount}
           placeholdersRequired={
             colorPairs && placeholdersRequired[contrastStandard]
           }

@@ -5,11 +5,13 @@
   align-items: center;
   position: relative;
   margin: 0 2em;
-  transition: all 0.2s ease;
-  justify-content: center;
-  flex: 1 1 1em;
-  border: solid transparent;
+  border-style: solid;
   border-width: 2px 0;
+  transition: all 0.2s ease;
+  border-color: transparent;
+  justify-content: center;
+  min-height: 0;
+  flex: 1 1 1em;
 }
 
 .color-pair--hide {
@@ -18,12 +20,13 @@
 
 .color-pair:hover {
   transition: all 0.2s ease;
-  justify-content: space-evenly;
   border-color: unset;
+  justify-content: space-evenly;
+  min-height: 12em;
 }
 
 .color-pair--enable-hover-grow:hover {
-  transition: flex 0.2s ease;
+  transition: all 0.2s ease;
   flex: 2 1 1em;
 }
 
