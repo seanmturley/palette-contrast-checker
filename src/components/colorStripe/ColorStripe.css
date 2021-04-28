@@ -2,7 +2,7 @@
   font-size: var(--base-unit);
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex: 1 0 13.5em;
 }
 
 .color-stripe__heading {
