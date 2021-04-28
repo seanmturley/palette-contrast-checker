@@ -19,7 +19,7 @@ const twoButtonsProps = {
 describe("Default radio button group", () => {
   it("should render one button for each option", () => {
     setup(twoButtonsProps);
-    const buttons = screen.queryAllByRole(/radio/i);
+    const buttons = screen.queryAllByRole(/^radio$/i);
     expect(buttons.length).toBe(twoButtonsProps.options.length);
   });
 
@@ -31,8 +31,12 @@ describe("Default radio button group", () => {
 
   it("should render with the default value label styled appropriately", () => {
     setup(twoButtonsProps);
-    const defaultButtonLabel = screen.getByText(twoButtonsProps.selected);
-    expect(defaultButtonLabel).toHaveClass("selected");
+    const defaultButtonLabel = screen
+      .getByText(twoButtonsProps.selected)
+      .closest("label");
+    expect(defaultButtonLabel).toHaveClass(
+      "radio-button-group__label--selected"
+    );
   });
 });
 
