@@ -10,7 +10,7 @@ const setup = (visible, handleInputSubmit) => {
     <PaletteInputContainer
       showPaletteInput={visible}
       setPaletteData={jest.fn()}
-      handleInputSubmit={handleInputSubmit}
+      handleInputSubmit={handleInputSubmit || jest.fn()}
     />
   );
 };
