@@ -4,7 +4,7 @@ import ColorStripe from "./ColorStripe";
 
 import { render, screen } from "@testing-library/react";
 
-const setup = (color) => {
+const setup = (color, grayscale) => {
   render(
     <ColorStripe
       stripeColor={color.hex}
@@ -12,7 +12,7 @@ const setup = (color) => {
       hoverGrowClass={color.hoverGrowClass}
       hidePairs={color.hidePairs}
       contrastStandard={color.contrastStandard}
-      grayscale={color.grayscale}
+      grayscale={grayscale || false}
       stripeTheme={color.stripeTheme}
     />
   );
@@ -24,37 +24,22 @@ const darkColor = {
   hoverGrowClass: "",
   hidePairs: "",
   contrastStandard: "aa",
-  grayscale: false,
   stripeTheme: "dark",
   backgroundRgb: "rgb(20, 33, 61)",
   grayscaleRgb: "rgb(32, 32, 32)",
   textRgb: "rgb(255, 255, 255)"
 };
 
-const lightColor = {
+const lightUnsaturatedColor = {
   hex: "e5e5e5",
   grayscaleEquivalent: "e5e5e5",
   hoverGrowClass: "",
   hidePairs: "",
   contrastStandard: "aa",
-  grayscale: false,
   stripeTheme: "light",
   backgroundRgb: "rgb(229, 229, 229)",
   grayscaleRgb: "rgb(229, 229, 229)",
   textRgb: "rgb(0, 0, 0)"
-};
-
-const darkColorGrayscaleMode = {
-  hex: "14213d",
-  grayscaleEquivalent: "202020",
-  hoverGrowClass: "",
-  hidePairs: "",
-  contrastStandard: "aa",
-  grayscale: true,
-  stripeTheme: "dark",
-  backgroundRgb: "rgb(20, 33, 61)",
-  grayscaleRgb: "rgb(32, 32, 32)",
-  textRgb: "rgb(255, 255, 255)"
 };
 
 describe("Color stripe", () => {
@@ -77,16 +62,24 @@ describe("Color stripe", () => {
   });
 
   it("should display the color's hex value in black if the color is light", () => {
-    setup(lightColor);
-    const stripeLabel = screen.getByText(lightColor.hex);
+    setup(lightUnsaturatedColor);
+    const stripeLabel = screen.getByText(lightUnsaturatedColor.hex);
     expect(stripeLabel).toHaveClass("color-stripe__heading--theme-light");
   });
+});
 
-  it("should have a background-color equal to the color's grayscale equivalent rgb value in grayscale mode", () => {
-    setup(darkColorGrayscaleMode);
+describe("ColorStripe in grayscale mode", () => {
+  it("should have a background-color equal to the color's grayscale equivalent rgb value", () => {
+    setup(darkColor, true);
+    const stripe = screen.getByTestId("color-stripe");
+    expect(stripe).toHaveStyle(`background-color: ${darkColor.grayscaleRgb}`);
+  });
+
+  it("should NOT change background color for unsaturated colors", () => {
+    setup(lightUnsaturatedColor, true);
     const stripe = screen.getByTestId("color-stripe");
     expect(stripe).toHaveStyle(
-      `background-color: ${darkColorGrayscaleMode.grayscaleRgb}`
+      `background-color: ${lightUnsaturatedColor.backgroundRgb}`
     );
   });
 });
