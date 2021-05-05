@@ -14,8 +14,6 @@ function PaletteAreaContainer({
   showPaletteInput,
   setShowPaletteInput
 }) {
-  // Will accept settings as props
-
   const [paletteData, setPaletteData] = useState([]);
   const [allColorPairs, setAllColorPairs] = useState({});
   const [maxPairsCount, setMaxPairsCount] = useState(0);
