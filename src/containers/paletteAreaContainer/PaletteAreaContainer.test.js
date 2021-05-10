@@ -24,6 +24,13 @@ ffffff
 E80070
 `;
 
+const rgbPalette = `
+rgb(149, 149, 149)
+rgb(112 112 112)
+rgba(255, 255, 255, 1)
+rgba(232 0 112 0.5)
+`;
+
 describe("Palette input should accept hex values and", () => {
   it("should produce the correct number of stripes", () => {
     setup();
@@ -53,5 +60,26 @@ describe("Palette input should accept hex values and", () => {
     const pairs = screen.getAllByTestId("color-pair");
     expect(pairs[0].firstChild).toHaveTextContent(/3\s*:\s*1/);
     expect(pairs[5].firstChild).toHaveTextContent(/4\.5\s*:\s*1/);
+  });
+});
+
+describe("Palette input should accept rgb values and", () => {
+  it("should produce the correct number of stripes", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, rgbPalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    expect(stripes).toHaveLength(4);
+  });
+
+  it("should produce the correct stripe labels", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, rgbPalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    const firstStripeLabel = within(stripes[0]).queryByText(/959595/i);
+    expect(firstStripeLabel).toBeInTheDocument();
+    const lastStripeLabel = within(stripes[3]).queryByText(/E80070/i);
+    expect(lastStripeLabel).toBeInTheDocument();
   });
 });

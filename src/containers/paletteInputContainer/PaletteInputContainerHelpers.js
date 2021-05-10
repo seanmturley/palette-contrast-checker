@@ -1,23 +1,30 @@
 export function parseRawPalette(rawPalette) {
-  // Parses palette input for hex values (extend later for other color formats)
-  // Returns array of objects containing the hex and rgb values for each match
+  const parsedPalette = [];
 
   const hexPattern = /([a-f\d]{6})/gi;
   const hexMatch = rawPalette.match(hexPattern);
 
-  const colorValues = [];
-
   if (hexMatch) {
     hexMatch.forEach((hex) => {
-      const rgb = hexToRgb(hex);
-      const newColorValue = {
-        hex: hex,
-        rgb: rgb
-      };
-      colorValues.push(newColorValue);
+      const rgbChannels = hexToRgb(hex);
+
+      addParsedColor(hex, rgbChannels, parsedPalette);
     });
-    return colorValues;
   }
+
+  const rgbPattern = /(rgba?\(\d{1,3},?\s*\d{1,3},?\s*\d{1,3}(,?\s*\d?\.?\d*)?\))/gi;
+  const rgbMatch = rawPalette.match(rgbPattern);
+
+  if (rgbMatch) {
+    rgbMatch.forEach((rgbRaw) => {
+      const rgbChannels = parseRgb(rgbRaw);
+      const hex = rgbToHex(rgbChannels);
+
+      addParsedColor(hex, rgbChannels, parsedPalette);
+    });
+  }
+
+  return parsedPalette;
 }
 
 function hexToRgb(hex) {
@@ -30,6 +37,39 @@ function hexToRgb(hex) {
       parseInt(match[3], 16)
     ];
   }
+}
+
+function parseRgb(rgbRaw) {
+  const channelPattern = /(\d{1,3})/gi;
+  const channelMatch = rgbRaw.match(channelPattern);
+
+  if (channelMatch) {
+    return [channelMatch[0], channelMatch[1], channelMatch[2]];
+  }
+}
+
+function rgbToHex(rgbChannels) {
+  let hex = "";
+
+  rgbChannels.forEach((rgbChannel) => {
+    let hexChannel = Number(rgbChannel).toString(16);
+
+    if (hexChannel.length === 1) {
+      hexChannel = "0" + hexChannel;
+    }
+
+    hex += hexChannel;
+  });
+
+  return hex;
+}
+
+function addParsedColor(hex, rgbChannels, parsedPalette) {
+  const newColorValue = {
+    hex: hex,
+    rgb: rgbChannels
+  };
+  parsedPalette.push(newColorValue);
 }
 
 // The quadratic formula is used to solve for "threshold luminance" i.e. the luminance which has equal contrast with black or white.
