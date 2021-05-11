@@ -31,6 +31,13 @@ rgba(255, 255, 255, 1)
 rgba(232 0 112 0.5)
 `;
 
+const hslPalette = `
+hsl(0, 0%, 58%)
+hsl(0deg 0% 44%)
+hsla(0, 0%, 100%, 1)
+hsla(331 100% 45% 0.5)
+`;
+
 describe("Palette input should accept hex values and", () => {
   it("should produce the correct number of stripes", () => {
     setup();
@@ -80,6 +87,28 @@ describe("Palette input should accept rgb values and", () => {
     const firstStripeLabel = within(stripes[0]).queryByText(/959595/i);
     expect(firstStripeLabel).toBeInTheDocument();
     const lastStripeLabel = within(stripes[3]).queryByText(/E80070/i);
+    expect(lastStripeLabel).toBeInTheDocument();
+  });
+});
+
+describe("Palette input should accept hsl values and", () => {
+  it("should produce the correct number of stripes", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, hslPalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    expect(stripes).toHaveLength(4);
+  });
+
+  it("should produce the correct stripe labels", () => {
+    // NOTE: HSL values are inherently lower resolution, so the stripe labels produced differ slightly from the hex/RGB inputs
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, hslPalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    const firstStripeLabel = within(stripes[0]).queryByText(/949494/i);
+    expect(firstStripeLabel).toBeInTheDocument();
+    const lastStripeLabel = within(stripes[3]).queryByText(/E6006F/i);
     expect(lastStripeLabel).toBeInTheDocument();
   });
 });

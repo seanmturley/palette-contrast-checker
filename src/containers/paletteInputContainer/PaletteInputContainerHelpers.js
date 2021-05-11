@@ -17,7 +17,20 @@ export function parseRawPalette(rawPalette) {
 
   if (rgbMatch) {
     rgbMatch.forEach((rgbRaw) => {
-      const rgbChannels = parseRgb(rgbRaw);
+      const rgbChannels = parseChannels(rgbRaw);
+      const hex = rgbToHex(rgbChannels);
+
+      addParsedColor(hex, rgbChannels, parsedPalette);
+    });
+  }
+
+  const hslPattern = /(hsla?\(\d{1,3}(deg)?,?\s*\d{1,3}%,?\s*\d{1,3}%,?\s*(,?\s*\d?\.?\d*)?\))/gi;
+  const hslMatch = rawPalette.match(hslPattern);
+
+  if (hslMatch) {
+    hslMatch.forEach((hslRaw) => {
+      const hslChannels = parseChannels(hslRaw);
+      const rgbChannels = hslToRgb(hslChannels);
       const hex = rgbToHex(rgbChannels);
 
       addParsedColor(hex, rgbChannels, parsedPalette);
@@ -25,6 +38,15 @@ export function parseRawPalette(rawPalette) {
   }
 
   return parsedPalette;
+}
+
+function parseChannels(channelsRaw) {
+  const channelPattern = /(\d{1,3})/gi;
+  const channelMatch = channelsRaw.match(channelPattern);
+
+  if (channelMatch) {
+    return [channelMatch[0], channelMatch[1], channelMatch[2]];
+  }
 }
 
 function hexToRgb(hex) {
@@ -36,15 +58,6 @@ function hexToRgb(hex) {
       parseInt(match[2], 16),
       parseInt(match[3], 16)
     ];
-  }
-}
-
-function parseRgb(rgbRaw) {
-  const channelPattern = /(\d{1,3})/gi;
-  const channelMatch = rgbRaw.match(channelPattern);
-
-  if (channelMatch) {
-    return [channelMatch[0], channelMatch[1], channelMatch[2]];
   }
 }
 
@@ -62,6 +75,20 @@ function rgbToHex(rgbChannels) {
   });
 
   return hex;
+}
+
+function hslToRgb(hslChannels) {
+  // Formula from: https://en.wikipedia.org/wiki/HSL_and_HSV#HSL_to_RGB_alternative
+  const h = hslChannels[0];
+  const s = hslChannels[1] / 100;
+  const l = hslChannels[2] / 100;
+
+  const a = s * Math.min(l, 1 - l);
+
+  const f = (n, k = (n + h / 30) % 12) =>
+    Math.round(255 * (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))));
+
+  return [f(0), f(8), f(4)];
 }
 
 function addParsedColor(hex, rgbChannels, parsedPalette) {
