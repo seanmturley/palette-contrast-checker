@@ -38,6 +38,13 @@ hsla(0, 0%, 100%, 1)
 hsla(331 100% 45% 0.5)
 `;
 
+const duplicatePalette = `
+000000
+ffffff
+000000
+FFFFFF
+`;
+
 describe("Palette input should accept hex values and", () => {
   it("should produce the correct number of stripes", () => {
     setup();
@@ -110,5 +117,15 @@ describe("Palette input should accept hsl values and", () => {
     expect(firstStripeLabel).toBeInTheDocument();
     const lastStripeLabel = within(stripes[3]).queryByText(/E6006F/i);
     expect(lastStripeLabel).toBeInTheDocument();
+  });
+});
+
+describe("When editing the palette", () => {
+  it("should ignore duplicate colors", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, duplicatePalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    expect(stripes).toHaveLength(2);
   });
 });

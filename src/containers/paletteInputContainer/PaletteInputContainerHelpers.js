@@ -5,8 +5,9 @@ export function parseRawPalette(rawPalette) {
   const hexMatch = rawPalette.match(hexPattern);
 
   if (hexMatch) {
-    hexMatch.forEach((hex) => {
-      const rgbChannels = hexToRgb(hex);
+    hexMatch.forEach((hexRaw) => {
+      const rgbChannels = hexToRgb(hexRaw);
+      const hex = hexRaw.toLowerCase();
 
       addParsedColor(hex, rgbChannels, parsedPalette);
     });
@@ -96,7 +97,14 @@ function addParsedColor(hex, rgbChannels, parsedPalette) {
     hex: hex,
     rgb: rgbChannels
   };
-  parsedPalette.push(newColorValue);
+
+  const isDuplicate = parsedPalette.some(
+    (color) => color.hex === newColorValue.hex
+  );
+
+  if (!isDuplicate) {
+    parsedPalette.push(newColorValue);
+  }
 }
 
 // The quadratic formula is used to solve for "threshold luminance" i.e. the luminance which has equal contrast with black or white.
