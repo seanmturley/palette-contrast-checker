@@ -38,12 +38,58 @@ describe("Palette input textbox", () => {
   });
 });
 
-describe("Palette input submit button", () => {
-  it("should fire the handleInputSubmit function when clicked", () => {
+describe("When the input contains two or more colors the submit button", () => {
+  it("should be styled as clickable", () => {
+    setup(true);
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, "000000, ffffff");
+    const submit = screen.getByRole(/^button$/i);
+    expect(submit).toHaveClass("palette-input__submit-button--clickable");
+  });
+
+  it("should be clickable", () => {
+    setup(true);
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, "000000, ffffff");
+    const submit = screen.getByRole(/^button$/i);
+    expect(submit).not.toHaveAttribute("disabled");
+  });
+
+  it("should fire the handleInputSubmit function on click", () => {
     const handleInputSubmit = jest.fn((event) => event.preventDefault());
     setup(true, handleInputSubmit);
-    const submit = screen.getByRole("button");
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, "000000, ffffff");
+    const submit = screen.getByRole(/^button$/i);
     userEvent.click(submit);
     expect(handleInputSubmit).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("When the input contains less than two colors the submit button", () => {
+  it("should NOT be styled as clickable", () => {
+    setup(true);
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, "000000");
+    const submit = screen.getByRole(/^button$/i);
+    expect(submit).toHaveClass("palette-input__submit-button--disabled");
+  });
+
+  it("should NOT be clickable", () => {
+    setup(true);
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, "000000");
+    const submit = screen.getByRole(/^button$/i);
+    expect(submit).toHaveAttribute("disabled");
+  });
+
+  it("should NOT fire the handleInputSubmit function on click", () => {
+    const handleInputSubmit = jest.fn((event) => event.preventDefault());
+    setup(true, handleInputSubmit);
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, "000000");
+    const submit = screen.getByRole(/^button$/i);
+    userEvent.click(submit);
+    expect(handleInputSubmit).toHaveBeenCalledTimes(0);
   });
 });

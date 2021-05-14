@@ -29,11 +29,18 @@
   font: var(--sans-medium);
   font-size: 4.6em;
   line-height: 0.7;
+}
+
+.palette-input__submit-button--clickable {
   color: var(--accent-color);
 }
 
-.palette-input__submit-button:hover {
+.palette-input__submit-button--clickable:hover {
   cursor: pointer;
+}
+
+.palette-input__submit-button--disabled {
+  color: var(--disabled-color);
 }
 
 .palette-input__text-area {

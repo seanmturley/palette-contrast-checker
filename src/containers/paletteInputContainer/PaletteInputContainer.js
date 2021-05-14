@@ -15,6 +15,7 @@ function PaletteInputContainer({
   handleInputSubmit
 }) {
   const [rawPalette, setRawPalette] = useState("");
+  const [paletteLength, setPaletteLength] = useState(0);
 
   const handleInputChange = (event) => {
     const rawPaletteInput = event.target.value;
@@ -23,6 +24,7 @@ function PaletteInputContainer({
 
     if (parsedPalette) {
       setPaletteData(getPaletteData(parsedPalette));
+      setPaletteLength(parsedPalette.length);
     }
 
     setRawPalette(rawPaletteInput);
@@ -35,6 +37,7 @@ function PaletteInputContainer({
           rawPalette={rawPalette}
           handleInputChange={handleInputChange}
           handleInputSubmit={handleInputSubmit}
+          paletteLength={paletteLength}
         />
       )}
     </>
