@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
 function PaletteAreaContainer({
   contrastStandard,
   grayscale,
+  setGrayscale,
+  previousGrayscale,
   theme,
   showPaletteInput,
   setShowPaletteInput
@@ -26,6 +28,7 @@ function PaletteAreaContainer({
     setAllColorPairs(colorPairs);
     setMaxPairsCount(maxPairs);
 
+    setGrayscale(previousGrayscale);
     setShowPaletteInput(false);
   };
 
@@ -52,6 +55,8 @@ function PaletteAreaContainer({
 PaletteAreaContainer.propTypes = {
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]),
   grayscale: PropTypes.bool.isRequired,
+  setGrayscale: PropTypes.func.isRequired,
+  previousGrayscale: PropTypes.bool.isRequired,
   theme: PropTypes.oneOf(["dark", "both", "light"]),
   showPaletteInput: PropTypes.bool.isRequired,
   setShowPaletteInput: PropTypes.func.isRequired

@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 function IconButton({ heading, name, icon, disableOnClick, state, setState }) {
   const handleClick = () => {
-    setState(!state);
+    setState();
   };
 
   const preventFocusOnClick = (event) => {

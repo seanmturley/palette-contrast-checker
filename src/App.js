@@ -8,6 +8,7 @@ import "./App.css";
 function App() {
   const [contrastStandard, setContrastStandard] = useState("aa");
   const [grayscale, setGrayscale] = useState(false);
+  const [previousGrayscale, setPreviousGrayscale] = useState(grayscale);
   const [theme, setTheme] = useState("both");
   const [showPaletteInput, setShowPaletteInput] = useState(true);
   // const [showPaletteExport, setShowPaletteExport] = useState(false);
@@ -20,6 +21,7 @@ function App() {
           setContrastStandard={setContrastStandard}
           grayscale={grayscale}
           setGrayscale={setGrayscale}
+          setPreviousGrayscale={setPreviousGrayscale}
           theme={theme}
           setTheme={setTheme}
           showPaletteInput={showPaletteInput}
@@ -32,6 +34,8 @@ function App() {
         <PaletteAreaContainer
           contrastStandard={contrastStandard}
           grayscale={grayscale}
+          setGrayscale={setGrayscale}
+          previousGrayscale={previousGrayscale}
           theme={theme}
           showPaletteInput={showPaletteInput}
           setShowPaletteInput={setShowPaletteInput}

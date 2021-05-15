@@ -9,6 +9,7 @@ function ToggleSwitch({
   name,
   optionLabels,
   showLabels,
+  disabled,
   state,
   setState
 }) {
@@ -16,23 +17,25 @@ function ToggleSwitch({
     setState(event.target.value === optionLabels.true);
   };
 
-  // State now being true/false instead of a string is causing issues with component logic below - rewrite it all. Take into account CSS too!
+  const clickability = disabled ? "disabled" : "clickable";
 
   return (
-    <form className={`toggle-switch toggle-switch--${state}`}>
-      <section className="toggle-switch__container">
+    <form
+      className={`toggle-switch toggle-switch--${state} toggle-switch--${clickability}`}
+    >
+      <label htmlFor={name} className="toggle-switch__label">
         <h1 className="toggle-switch__heading">{heading}</h1>
-        <label htmlFor={name} className="toggle-switch__label">
-          <span className="toggle-switch__label-text">{heading}</span>
-          <input
-            className="toggle-switch__input"
-            type="checkbox"
-            name={name}
-            id={name}
-            value={state ? optionLabels.false : optionLabels.true}
-            onChange={handleChange}
-            checked={state}
-          />
+        <input
+          className="toggle-switch__input"
+          type="checkbox"
+          name={name}
+          id={name}
+          value={state ? optionLabels.false : optionLabels.true}
+          onChange={handleChange}
+          checked={state}
+          disabled={disabled}
+        />
+        <div className="toggle-switch__container">
           <div className="toggle-switch__sliding-container">
             <div className="toggle-switch__text-container">
               <span className="toggle-switch__text-true">
@@ -46,8 +49,8 @@ function ToggleSwitch({
               </span>
             </div>
           </div>
-        </label>
-      </section>
+        </div>
+      </label>
     </form>
   );
 }
@@ -57,6 +60,7 @@ ToggleSwitch.propTypes = {
   name: PropTypes.string.isRequired,
   optionLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   showLabels: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   state: PropTypes.bool.isRequired,
   setState: PropTypes.func.isRequired
 };

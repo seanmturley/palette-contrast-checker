@@ -5,8 +5,14 @@ import ToggleSwitch from "./ToggleSwitch";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-const setup = (switchProps, state) => {
-  render(<ToggleSwitch {...switchProps} state={state || false} />);
+const setup = (switchProps, state, disabled) => {
+  render(
+    <ToggleSwitch
+      {...switchProps}
+      state={state || false}
+      disabled={disabled || false}
+    />
+  );
 };
 
 const switchProps = {
@@ -18,10 +24,10 @@ const switchProps = {
 };
 
 describe("Toggle switch", () => {
-  it("should display the supplied heading and use it as hidden label text", () => {
+  it("should display the supplied heading", () => {
     setup(switchProps);
-    const switchHeading = screen.queryAllByText(switchProps.heading);
-    expect(switchHeading).toHaveLength(2);
+    const switchHeading = screen.queryByText(switchProps.heading);
+    expect(switchHeading).toBeInTheDocument();
   });
 
   it("should display the 'true' label", () => {
@@ -53,5 +59,26 @@ describe("Toggle switch", () => {
     setup(switchProps, true);
     const switchForm = screen.getByRole(/^checkbox$/i).closest("form");
     expect(switchForm).toHaveClass("toggle-switch--true");
+  });
+});
+
+describe("The disabled toggle switch", () => {
+  it("should NOT be styled as clickable", () => {
+    setup(switchProps, false, true);
+    const switchForm = screen.getByRole(/^checkbox$/i).closest("form");
+    expect(switchForm).toHaveClass("toggle-switch--disabled");
+  });
+
+  it("should NOT be clickable", () => {
+    setup(switchProps, false, true);
+    const switchCheckbox = screen.getByRole(/^checkbox$/i);
+    expect(switchCheckbox).toHaveAttribute("disabled");
+  });
+
+  it("should NOT fire the setState function on click", () => {
+    setup(switchProps, false, true);
+    const switchCheckbox = screen.getByRole(/^checkbox$/i);
+    userEvent.click(switchCheckbox);
+    expect(switchProps.setState).toHaveBeenCalledTimes(0);
   });
 });

@@ -13,6 +13,7 @@ function SettingsBarContainer({
   setContrastStandard,
   grayscale,
   setGrayscale,
+  setPreviousGrayscale,
   theme,
   setTheme,
   showPaletteInput,
@@ -39,8 +40,15 @@ function SettingsBarContainer({
     name: "grayscale-mode",
     optionLabels: { true: "on", false: "off" },
     showLabels: true,
+    disabled: showPaletteInput,
     state: grayscale,
     setState: setGrayscale
+  };
+
+  const editPaletteSetState = () => {
+    setPreviousGrayscale(grayscale);
+    setGrayscale(false);
+    setShowPaletteInput(!showPaletteInput);
   };
 
   const editPaletteProps = {
@@ -49,7 +57,7 @@ function SettingsBarContainer({
     icon: <FaPalette />,
     disableOnClick: true,
     state: showPaletteInput,
-    setState: setShowPaletteInput
+    setState: editPaletteSetState
   };
 
   return (
@@ -67,6 +75,7 @@ SettingsBarContainer.propTypes = {
   setContrastStandard: PropTypes.func.isRequired,
   grayscale: PropTypes.bool.isRequired,
   setGrayscale: PropTypes.func.isRequired,
+  setPreviousGrayscale: PropTypes.func.isRequired,
   theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
   setTheme: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
