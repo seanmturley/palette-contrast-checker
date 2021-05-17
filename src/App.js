@@ -10,6 +10,7 @@ function App() {
   const [grayscale, setGrayscale] = useState(false);
   const [previousGrayscale, setPreviousGrayscale] = useState(grayscale);
   const [theme, setTheme] = useState("both");
+  const [previousTheme, setPreviousTheme] = useState(theme);
   const [showPaletteInput, setShowPaletteInput] = useState(true);
   // const [showPaletteExport, setShowPaletteExport] = useState(false);
 
@@ -24,6 +25,7 @@ function App() {
           setPreviousGrayscale={setPreviousGrayscale}
           theme={theme}
           setTheme={setTheme}
+          setPreviousTheme={setPreviousTheme}
           showPaletteInput={showPaletteInput}
           setShowPaletteInput={setShowPaletteInput}
           // showPaletteExport={showPaletteExport}
@@ -37,6 +39,8 @@ function App() {
           setGrayscale={setGrayscale}
           previousGrayscale={previousGrayscale}
           theme={theme}
+          setTheme={setTheme}
+          previousTheme={previousTheme}
           showPaletteInput={showPaletteInput}
           setShowPaletteInput={setShowPaletteInput}
           // showPaletteExport={showPaletteExport}

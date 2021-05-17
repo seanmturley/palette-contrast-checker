@@ -13,6 +13,8 @@ function PaletteAreaContainer({
   setGrayscale,
   previousGrayscale,
   theme,
+  setTheme,
+  previousTheme,
   showPaletteInput,
   setShowPaletteInput
 }) {
@@ -29,6 +31,7 @@ function PaletteAreaContainer({
     setMaxPairsCount(maxPairs);
 
     setGrayscale(previousGrayscale);
+    setTheme(previousTheme);
     setShowPaletteInput(false);
   };
 
@@ -53,11 +56,13 @@ function PaletteAreaContainer({
 }
 
 PaletteAreaContainer.propTypes = {
-  contrastStandard: PropTypes.oneOf(["aa", "aaa"]),
+  contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,
   setGrayscale: PropTypes.func.isRequired,
   previousGrayscale: PropTypes.bool.isRequired,
-  theme: PropTypes.oneOf(["dark", "both", "light"]),
+  theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
+  setTheme: PropTypes.func.isRequired,
+  previousTheme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
   setShowPaletteInput: PropTypes.func.isRequired
 };

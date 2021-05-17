@@ -5,11 +5,14 @@ import RadioButtonGroup from "./RadioButtonGroup";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-const setup = (buttonGroupProps) => {
-  render(<RadioButtonGroup {...buttonGroupProps} />);
+const setup = (buttonGroupProps, disabled) => {
+  render(
+    <RadioButtonGroup {...buttonGroupProps} disabled={disabled || false} />
+  );
 };
 
 const twoButtonsProps = {
+  heading: "WCAG standard",
   name: "contrast-standard",
   options: ["aa", "aaa"],
   selected: "aa",
@@ -41,7 +44,7 @@ describe("Default radio button group", () => {
 });
 
 describe("Selecting a radio button", () => {
-  it("should fire the handleChange function when unselected button is clicked", () => {
+  it("should fire the handleChange function when an unselected button is clicked", () => {
     setup(twoButtonsProps);
     const unselectedButtonInput = screen.getByLabelText("aaa");
     userEvent.click(unselectedButtonInput);
@@ -52,6 +55,30 @@ describe("Selecting a radio button", () => {
     setup(twoButtonsProps);
     const selectedButtonInput = screen.getByLabelText(twoButtonsProps.selected);
     userEvent.click(selectedButtonInput);
+    expect(twoButtonsProps.setState).toHaveBeenCalledTimes(0);
+  });
+});
+
+describe("The disabled radio button group", () => {
+  it("should NOT be styled as clickable", () => {
+    setup(twoButtonsProps, true);
+    const radioButtonGroupForm = screen
+      .getByLabelText(twoButtonsProps.heading)
+      .closest("form");
+    expect(radioButtonGroupForm).toHaveClass("radio-button-group--disabled");
+  });
+
+  it("should NOT have clickable buttons", () => {
+    setup(twoButtonsProps, true);
+    const buttons = screen.getAllByRole(/^radio$/i);
+    expect(buttons[0]).toHaveAttribute("disabled");
+    expect(buttons[1]).toHaveAttribute("disabled");
+  });
+
+  it("should NOT fire the handleChange function when an unselected button is clicked", () => {
+    setup(twoButtonsProps, true);
+    const unselectedButtonInput = screen.getByLabelText("aaa");
+    userEvent.click(unselectedButtonInput);
     expect(twoButtonsProps.setState).toHaveBeenCalledTimes(0);
   });
 });

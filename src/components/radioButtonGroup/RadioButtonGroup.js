@@ -4,13 +4,22 @@ import "./RadioButtonGroup.css";
 
 import PropTypes from "prop-types";
 
-function RadioButtonGroup({ heading, name, options, selected, setState }) {
+function RadioButtonGroup({
+  heading,
+  name,
+  options,
+  disabled,
+  selected,
+  setState
+}) {
   const handleChange = (event) => {
     setState(event.target.value);
   };
 
+  const clickability = disabled ? "disabled" : "clickable";
+
   return (
-    <form className="radio-button-group">
+    <form className={`radio-button-group radio-button-group--${clickability}`}>
       <section
         className="radio-button-group__container"
         role="radiogroup"
@@ -36,6 +45,7 @@ function RadioButtonGroup({ heading, name, options, selected, setState }) {
                 value={option}
                 onChange={handleChange}
                 checked={option === selected}
+                disabled={disabled}
               />
               <span className="radio-button-group__label-text">{option}</span>
             </label>
@@ -50,6 +60,7 @@ RadioButtonGroup.propTypes = {
   heading: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  disabled: PropTypes.bool.isRequired,
   selected: PropTypes.string.isRequired,
   setState: PropTypes.func.isRequired
 };

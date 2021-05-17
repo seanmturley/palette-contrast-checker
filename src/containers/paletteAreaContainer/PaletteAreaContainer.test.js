@@ -10,7 +10,11 @@ const setup = () => {
     <PaletteAreaContainer
       contrastStandard="aa"
       grayscale={false}
+      setGrayscale={jest.fn()}
+      previousGrayscale={false}
       theme="both"
+      setTheme={jest.fn()}
+      previousTheme="both"
       showPaletteInput={true}
       setShowPaletteInput={jest.fn()}
     />

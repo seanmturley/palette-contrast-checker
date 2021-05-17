@@ -16,6 +16,7 @@ function SettingsBarContainer({
   setPreviousGrayscale,
   theme,
   setTheme,
+  setPreviousTheme,
   showPaletteInput,
   setShowPaletteInput
 }) {
@@ -23,6 +24,7 @@ function SettingsBarContainer({
     heading: "WCAG \n standard",
     name: "contrast-standard",
     options: ["aa", "aaa"],
+    disabled: false,
     selected: contrastStandard,
     setState: setContrastStandard
   };
@@ -31,6 +33,7 @@ function SettingsBarContainer({
     heading: "Theme",
     name: "theme",
     options: ["dark", "both", "light"],
+    disabled: showPaletteInput,
     selected: theme,
     setState: setTheme
   };
@@ -48,6 +51,8 @@ function SettingsBarContainer({
   const editPaletteSetState = () => {
     setPreviousGrayscale(grayscale);
     setGrayscale(false);
+    setPreviousTheme(theme);
+    setTheme("both");
     setShowPaletteInput(!showPaletteInput);
   };
 
@@ -78,6 +83,7 @@ SettingsBarContainer.propTypes = {
   setPreviousGrayscale: PropTypes.func.isRequired,
   theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
   setTheme: PropTypes.func.isRequired,
+  setPreviousTheme: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
   setShowPaletteInput: PropTypes.func.isRequired
 };
