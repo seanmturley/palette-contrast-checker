@@ -9,7 +9,7 @@
   z-index: 1;
 }
 
-.palette-input__controls {
+.palette-input__top-controls {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -46,8 +46,19 @@
 .palette-input__text-area {
   font: var(--mono-regular);
   color: var(--primary-color);
-  margin: 0.8em 0.8em 0.5em;
+  margin: 0.8em;
   padding: 0.5em 0.81em;
   border: var(--border-width) solid var(--primary-color);
   border-radius: 0.3em;
+}
+
+.palette-input__bottom-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.palette-input__bottom-controls .icon-button__icon {
+  width: 2.5em;
+  height: 2.5em;
 }

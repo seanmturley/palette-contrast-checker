@@ -1,5 +1,7 @@
 import React from "react";
 
+import IconButton from "../../components/iconButton/IconButton";
+
 import "./PaletteInput.css";
 
 import PropTypes from "prop-types";
@@ -8,15 +10,15 @@ function PaletteInput({
   rawPalette,
   handleInputChange,
   handleInputSubmit,
-  paletteLength
+  disableSubmit,
+  clearInputProps
 }) {
-  const disableSubmit = paletteLength < 2;
   const clickability = disableSubmit ? "disabled" : "clickable";
 
   return (
     <section className="palette-input">
       <form aria-label="form" onSubmit={handleInputSubmit}>
-        <div className="palette-input__controls">
+        <section className="palette-input__top-controls">
           <label className="palette-input__heading" htmlFor="palette-input">
             Add palette
           </label>
@@ -26,7 +28,7 @@ function PaletteInput({
             value="+"
             disabled={disableSubmit}
           />
-        </div>
+        </section>
         <textarea
           className="palette-input__text-area"
           type="textarea"
@@ -40,6 +42,9 @@ function PaletteInput({
           onChange={handleInputChange}
           spellCheck="false"
         />
+        <section className="palette-input__bottom-controls">
+          <IconButton {...clearInputProps} />
+        </section>
       </form>
     </section>
   );
@@ -48,7 +53,9 @@ function PaletteInput({
 PaletteInput.propTypes = {
   rawPalette: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  handleInputSubmit: PropTypes.func.isRequired
+  handleInputSubmit: PropTypes.func.isRequired,
+  disableSubmit: PropTypes.bool.isRequired,
+  clearInputProps: PropTypes.object.isRequired
 };
 
 export default PaletteInput;

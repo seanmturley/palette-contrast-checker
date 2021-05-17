@@ -15,7 +15,9 @@ const typePalette = () => {
 };
 
 const submitPalette = () => {
-  const paletteSubmit = screen.getByDisplayValue(/^\+$/i);
+  const paletteSubmit = screen.getByRole("button", {
+    name: /^\+$/i
+  });
   userEvent.click(paletteSubmit);
 };
 

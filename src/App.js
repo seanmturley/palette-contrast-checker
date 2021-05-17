@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import SettingsBarContainer from "./containers/settingsBarContainer.js/SettingsBarContainer";
+import SettingsBarContainer from "./containers/settingsBarContainer/SettingsBarContainer";
 import PaletteAreaContainer from "./containers/paletteAreaContainer/PaletteAreaContainer";
 
 import "./App.css";

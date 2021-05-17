@@ -73,7 +73,9 @@ describe("Palette input should accept hex values and", () => {
     setup();
     const input = screen.getByLabelText(/add palette/i);
     userEvent.type(input, hexPalette);
-    const submit = screen.getByRole("button");
+    const submit = screen.getByRole("button", {
+      name: /^\+$/i
+    });
     userEvent.click(submit);
     const pairs = screen.getAllByTestId("color-pair");
     expect(pairs[0].firstChild).toHaveTextContent(/3\s*:\s*1/);

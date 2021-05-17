@@ -26,10 +26,10 @@ function IconButton({ heading, name, icon, disableOnClick, state, setState }) {
       onMouseDown={preventFocusOnClick}
       disabled={disableOnClick && state}
     >
-      <h1 className="icon-button__heading">{heading}</h1>
       <IconContext.Provider value={{ className: "icon-button__icon" }}>
         {icon}
       </IconContext.Provider>
+      <h1 className="icon-button__heading">{heading}</h1>
     </button>
   );
 }

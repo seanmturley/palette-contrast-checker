@@ -29,6 +29,15 @@
   border-bottom: var(--border-width) solid var(--primary-color);
 }
 
+.app__settings-bar .icon-button {
+  flex-direction: row-reverse;
+}
+
+.app__settings-bar .icon-button__heading {
+  margin-left: 0;
+  margin-right: 0.5em;
+}
+
 .app__main {
   overflow: auto;
   display: flex;
