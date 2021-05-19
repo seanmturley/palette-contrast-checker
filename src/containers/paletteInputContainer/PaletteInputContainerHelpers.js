@@ -19,9 +19,10 @@ export function parseRawPalette(rawPalette) {
   if (rgbMatch) {
     rgbMatch.forEach((rgbRaw) => {
       const rgbChannels = parseChannels(rgbRaw);
-      const hex = rgbToHex(rgbChannels);
+      const checkedRgbChannels = checkRgbChannels(rgbChannels);
+      const hex = rgbToHex(checkedRgbChannels);
 
-      addParsedColor(hex, rgbChannels, parsedPalette);
+      addParsedColor(hex, checkedRgbChannels, parsedPalette);
     });
   }
 
@@ -31,7 +32,8 @@ export function parseRawPalette(rawPalette) {
   if (hslMatch) {
     hslMatch.forEach((hslRaw) => {
       const hslChannels = parseChannels(hslRaw);
-      const rgbChannels = hslToRgb(hslChannels);
+      const checkedHslChannels = checkHslChannels(hslChannels);
+      const rgbChannels = hslToRgb(checkedHslChannels);
       const hex = rgbToHex(rgbChannels);
 
       addParsedColor(hex, rgbChannels, parsedPalette);
@@ -47,6 +49,29 @@ function parseChannels(channelsRaw) {
 
   if (channelMatch) {
     return [channelMatch[0], channelMatch[1], channelMatch[2]];
+  }
+}
+
+function checkRgbChannels(rgbChannels) {
+  if (rgbChannels.some((channel) => channel > 255)) {
+    const correctedRgbChannels = rgbChannels.map((channel) =>
+      channel > 255 ? 255 : channel
+    );
+    return correctedRgbChannels;
+  } else {
+    return rgbChannels;
+  }
+}
+
+function checkHslChannels(hslChannels) {
+  if (hslChannels[0] > 360 || hslChannels[1] > 100 || hslChannels[2] > 100) {
+    const correctedHslChannels = hslChannels.map((channel, index) => {
+      let max = index === 0 ? 360 : 100;
+      return channel > max ? max : channel;
+    });
+    return correctedHslChannels;
+  } else {
+    return hslChannels;
   }
 }
 

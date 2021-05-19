@@ -49,6 +49,19 @@ ffffff
 FFFFFF
 `;
 
+const invalidHexPalette = `
+000000
+ffffff
+gggggg
+`;
+
+const aboveMaxPalette = `
+rgb(300, 300, 300)
+hsl(400, 100%, 50%)
+hsl(120, 100%, 50%)
+hsl(240, 200%, 50%)
+`;
+
 describe("Palette input should accept hex values and", () => {
   it("should produce the correct number of stripes", () => {
     setup();
@@ -126,7 +139,30 @@ describe("Palette input should accept hsl values and", () => {
   });
 });
 
-describe("When editing the palette", () => {
+describe("When there are errors in the input the parser", () => {
+  it("should ignore invalid hex values", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, invalidHexPalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    expect(stripes).toHaveLength(2);
+  });
+
+  it("should cap excessive channel values (RGB/HSL) at their logical maximum", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, aboveMaxPalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    const firstStripeLabel = within(stripes[0]).queryByText(/ffffff/i);
+    expect(firstStripeLabel).toBeInTheDocument();
+    const secondStripeLabel = within(stripes[1]).queryByText(/ff0000/i);
+    expect(secondStripeLabel).toBeInTheDocument();
+    const thirdStripeLabel = within(stripes[2]).queryByText(/00ff00/i);
+    expect(thirdStripeLabel).toBeInTheDocument();
+    const fourthStripeLabel = within(stripes[3]).queryByText(/0000ff/i);
+    expect(fourthStripeLabel).toBeInTheDocument();
+  });
+
   it("should ignore duplicate colors", () => {
     setup();
     const input = screen.getByLabelText(/add palette/i);
