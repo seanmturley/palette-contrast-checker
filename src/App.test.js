@@ -149,3 +149,23 @@ describe("Upon closing the palette input, the 'theme' radio button group", () =>
     expect(lightThemeButton).toHaveClass("radio-button-group__label--selected");
   });
 });
+
+describe("The 'contrast standard' radio button", () => {
+  it("should be disabled when the palette input is open", () => {
+    setup();
+    const contrastStandardForm = screen
+      .getByLabelText(/wcag\s+standard/i)
+      .closest("form");
+    expect(contrastStandardForm).toHaveClass("radio-button-group--disabled");
+  });
+
+  it("should NOT be disabled when the palette input is closed", () => {
+    setup();
+    typePalette();
+    submitPalette();
+    const contrastStandardForm = screen
+      .getByLabelText(/wcag\s+standard/i)
+      .closest("form");
+    expect(contrastStandardForm).toHaveClass("radio-button-group--clickable");
+  });
+});

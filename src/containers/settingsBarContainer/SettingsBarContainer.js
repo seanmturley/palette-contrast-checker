@@ -24,7 +24,7 @@ function SettingsBarContainer({
     heading: "WCAG \n standard",
     name: "contrast-standard",
     options: ["aa", "aaa"],
-    disabled: false,
+    disabled: showPaletteInput,
     selected: contrastStandard,
     setState: setContrastStandard
   };
