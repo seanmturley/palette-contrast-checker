@@ -9,10 +9,13 @@ const setup = () => {
   render(<App />);
 };
 
-const typePalette = () => {
+const typePalette = (palette) => {
   const paletteInput = screen.getByLabelText(/add palette/i);
-  userEvent.type(paletteInput, "000000, ffffff");
+  userEvent.type(paletteInput, palette || "000000, ffffff");
 };
+
+const darkPalette = "000000, 111111";
+const lightPalette = "ffffff, eeeeee";
 
 const submitPalette = () => {
   const paletteSubmit = screen.getByRole("button", {
@@ -146,6 +149,35 @@ describe("Upon closing the palette input, the 'theme' radio button group", () =>
     expect(bothThemeButton).toHaveClass("radio-button-group__label--selected");
 
     submitPalette();
+    expect(lightThemeButton).toHaveClass("radio-button-group__label--selected");
+  });
+});
+
+describe("When the palette contains only colors of a single theme, the 'theme' radio button group", () => {
+  it("should be disabled", () => {
+    setup();
+    typePalette(darkPalette);
+    submitPalette();
+
+    const themeForm = screen.getByLabelText(/theme/i).closest("form");
+    expect(themeForm).toHaveClass("radio-button-group--disabled");
+  });
+
+  it("should be set to 'dark' if there are only dark colors", () => {
+    setup();
+    typePalette(darkPalette);
+    submitPalette();
+
+    const darkThemeButton = screen.getByLabelText(/dark/i).closest("label");
+    expect(darkThemeButton).toHaveClass("radio-button-group__label--selected");
+  });
+
+  it("should be set to 'light' if there are only light colors", () => {
+    setup();
+    typePalette(lightPalette);
+    submitPalette();
+
+    const lightThemeButton = screen.getByLabelText(/light/i).closest("label");
     expect(lightThemeButton).toHaveClass("radio-button-group__label--selected");
   });
 });

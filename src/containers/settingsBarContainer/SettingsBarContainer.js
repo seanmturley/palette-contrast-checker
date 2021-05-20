@@ -17,6 +17,8 @@ function SettingsBarContainer({
   theme,
   setTheme,
   setPreviousTheme,
+  noDarkColors,
+  noLightColors,
   showPaletteInput,
   setShowPaletteInput
 }) {
@@ -33,7 +35,7 @@ function SettingsBarContainer({
     heading: "Theme",
     name: "theme",
     options: ["dark", "both", "light"],
-    disabled: showPaletteInput,
+    disabled: showPaletteInput || noDarkColors || noLightColors,
     selected: theme,
     setState: setTheme
   };
@@ -50,10 +52,9 @@ function SettingsBarContainer({
 
   const editPaletteSetState = () => {
     setPreviousGrayscale(grayscale);
-    setGrayscale(false);
     setPreviousTheme(theme);
-    setTheme("both");
-    setShowPaletteInput(!showPaletteInput);
+
+    setShowPaletteInput(true);
   };
 
   const editPaletteProps = {
@@ -84,6 +85,8 @@ SettingsBarContainer.propTypes = {
   theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
   setTheme: PropTypes.func.isRequired,
   setPreviousTheme: PropTypes.func.isRequired,
+  noDarkColors: PropTypes.bool.isRequired,
+  noLightColors: PropTypes.bool.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
   setShowPaletteInput: PropTypes.func.isRequired
 };

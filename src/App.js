@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import SettingsBarContainer from "./containers/settingsBarContainer/SettingsBarContainer";
 import PaletteAreaContainer from "./containers/paletteAreaContainer/PaletteAreaContainer";
@@ -11,8 +11,35 @@ function App() {
   const [previousGrayscale, setPreviousGrayscale] = useState(grayscale);
   const [theme, setTheme] = useState("both");
   const [previousTheme, setPreviousTheme] = useState(theme);
+  const [noDarkColors, setNoDarkColors] = useState(false);
+  const [noLightColors, setNoLightColors] = useState(false);
   const [showPaletteInput, setShowPaletteInput] = useState(true);
   // const [showPaletteExport, setShowPaletteExport] = useState(false);
+
+  useEffect(() => {
+    if (showPaletteInput) {
+      setGrayscale(false);
+      setTheme("both");
+
+      if (noDarkColors || noLightColors) {
+        setPreviousTheme("both");
+      }
+    } else {
+      setGrayscale(previousGrayscale);
+
+      if (noDarkColors || noLightColors) {
+        setTheme(noDarkColors ? "light" : "dark");
+      } else {
+        setTheme(previousTheme);
+      }
+    }
+  }, [
+    showPaletteInput,
+    noDarkColors,
+    noLightColors,
+    previousGrayscale,
+    previousTheme
+  ]);
 
   return (
     <div className="app">
@@ -26,6 +53,8 @@ function App() {
           theme={theme}
           setTheme={setTheme}
           setPreviousTheme={setPreviousTheme}
+          noDarkColors={noDarkColors}
+          noLightColors={noLightColors}
           showPaletteInput={showPaletteInput}
           setShowPaletteInput={setShowPaletteInput}
           // showPaletteExport={showPaletteExport}
@@ -36,11 +65,9 @@ function App() {
         <PaletteAreaContainer
           contrastStandard={contrastStandard}
           grayscale={grayscale}
-          setGrayscale={setGrayscale}
-          previousGrayscale={previousGrayscale}
           theme={theme}
-          setTheme={setTheme}
-          previousTheme={previousTheme}
+          setNoDarkColors={setNoDarkColors}
+          setNoLightColors={setNoLightColors}
           showPaletteInput={showPaletteInput}
           setShowPaletteInput={setShowPaletteInput}
           // showPaletteExport={showPaletteExport}

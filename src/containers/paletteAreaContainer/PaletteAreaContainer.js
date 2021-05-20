@@ -3,18 +3,19 @@ import React, { useState } from "react";
 import PaletteInputContainer from "../paletteInputContainer/PaletteInputContainer";
 import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
-import { getAllColorPairData } from "./PaletteAreaContainerHelpers";
+import {
+  noThemeInPalette,
+  getAllColorPairData
+} from "./PaletteAreaContainerHelpers";
 
 import PropTypes from "prop-types";
 
 function PaletteAreaContainer({
   contrastStandard,
   grayscale,
-  setGrayscale,
-  previousGrayscale,
   theme,
-  setTheme,
-  previousTheme,
+  setNoDarkColors,
+  setNoLightColors,
   showPaletteInput,
   setShowPaletteInput
 }) {
@@ -30,8 +31,9 @@ function PaletteAreaContainer({
     setAllColorPairs(colorPairs);
     setMaxPairsCount(maxPairs);
 
-    setGrayscale(previousGrayscale);
-    setTheme(previousTheme);
+    setNoDarkColors(noThemeInPalette(paletteData, "dark"));
+    setNoLightColors(noThemeInPalette(paletteData, "light"));
+
     setShowPaletteInput(false);
   };
 
@@ -58,11 +60,9 @@ function PaletteAreaContainer({
 PaletteAreaContainer.propTypes = {
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,
-  setGrayscale: PropTypes.func.isRequired,
-  previousGrayscale: PropTypes.bool.isRequired,
   theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
-  setTheme: PropTypes.func.isRequired,
-  previousTheme: PropTypes.oneOf(["dark", "both", "light"]).isRequired,
+  setNoDarkColors: PropTypes.func.isRequired,
+  setNoLightColors: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
   setShowPaletteInput: PropTypes.func.isRequired
 };

@@ -1,3 +1,7 @@
+export function noThemeInPalette(paletteData, theme) {
+  return !paletteData.some((color) => Object.values(color).includes(theme));
+}
+
 export function getAllColorPairData(paletteData) {
   const rawColorPairs = getRawColorPairs(paletteData);
 
