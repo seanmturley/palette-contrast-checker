@@ -1,6 +1,8 @@
 export function parseRawPalette(rawPalette) {
   const parsedPalette = [];
 
+  if (!rawPalette) return parsedPalette;
+
   const hexPattern = /([a-f\d]{6})/gi;
   const hexMatch = rawPalette.match(hexPattern);
 
@@ -132,6 +134,18 @@ function addParsedColor(hex, rgbChannels, parsedPalette) {
   }
 }
 
+export function parsedPaletteChanged(parsedPalette, previousParsedPalette) {
+  if (parsedPalette === previousParsedPalette) return false;
+  if (parsedPalette.length !== previousParsedPalette.length) return true;
+
+  for (let i = parsedPalette.length - 1; i >= 0; i--) {
+    if (parsedPalette[i]["hex"] !== previousParsedPalette[i]["hex"])
+      return true;
+  }
+
+  return false;
+}
+
 // The quadratic formula is used to solve for "threshold luminance" i.e. the luminance which has equal contrast with black or white.
 const thresholdLuminance = (-0.1 + Math.sqrt(0.21)) / 2;
 
@@ -184,4 +198,16 @@ function getGrayscaleEquivalent(rgb) {
     singleChannelHex = "0" + singleChannelHex;
   }
   return singleChannelHex.repeat(3);
+}
+
+export function setInputText(newInputText) {
+  const inputTextArea = document.getElementById("palette-input");
+
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLTextAreaElement.prototype,
+    "value"
+  ).set;
+  nativeInputValueSetter.call(inputTextArea, newInputText);
+
+  inputTextArea.dispatchEvent(new Event("change", { bubbles: true }));
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import PaletteInput from "../../components/paletteInput/PaletteInput";
 
@@ -8,7 +8,9 @@ import PropTypes from "prop-types";
 
 import {
   parseRawPalette,
-  getPaletteData
+  parsedPaletteChanged,
+  getPaletteData,
+  setInputText
 } from "./PaletteInputContainerHelpers";
 
 function PaletteInputContainer({
@@ -17,32 +19,31 @@ function PaletteInputContainer({
   handleInputSubmit
 }) {
   const [rawPalette, setRawPalette] = useState("");
+  const [parsedPalette, setParsedPalette] = useState(false);
+  const [previousParsedPalette, setPreviousParsedPalette] = useState(
+    parsedPalette
+  );
   const [paletteLength, setPaletteLength] = useState(0);
 
   const handleInputChange = (event) => {
     const rawPaletteInput = event.target.value;
 
-    const parsedPalette = parseRawPalette(event.target.value);
-
-    if (parsedPalette) {
-      setPaletteData(getPaletteData(parsedPalette));
-      setPaletteLength(parsedPalette.length);
-    }
+    setParsedPalette(parseRawPalette(event.target.value));
 
     setRawPalette(rawPaletteInput);
   };
 
-  const setInputText = (newInputText) => {
-    const inputTextArea = document.getElementById("palette-input");
+  useEffect(() => {
+    if (
+      parsedPalette &&
+      parsedPaletteChanged(parsedPalette, previousParsedPalette)
+    ) {
+      setPreviousParsedPalette(parsedPalette);
 
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLTextAreaElement.prototype,
-      "value"
-    ).set;
-    nativeInputValueSetter.call(inputTextArea, newInputText);
-
-    inputTextArea.dispatchEvent(new Event("change", { bubbles: true }));
-  };
+      setPaletteData(getPaletteData(parsedPalette));
+      setPaletteLength(parsedPalette.length);
+    }
+  }, [parsedPalette, previousParsedPalette, setPaletteData]);
 
   const clearInputSetState = () => {
     setInputText("");
