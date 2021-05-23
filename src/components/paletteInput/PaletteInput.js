@@ -11,7 +11,8 @@ function PaletteInput({
   handleInputChange,
   handleInputSubmit,
   disableSubmit,
-  clearInputProps
+  clearInputProps,
+  pastePaletteProps
 }) {
   const clickability = disableSubmit ? "disabled" : "clickable";
 
@@ -44,6 +45,7 @@ function PaletteInput({
         />
         <section className="palette-input__bottom-controls">
           <IconButton {...clearInputProps} />
+          <IconButton {...pastePaletteProps} />
         </section>
       </form>
     </section>
@@ -55,7 +57,8 @@ PaletteInput.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleInputSubmit: PropTypes.func.isRequired,
   disableSubmit: PropTypes.bool.isRequired,
-  clearInputProps: PropTypes.object.isRequired
+  clearInputProps: PropTypes.object.isRequired,
+  pastePaletteProps: PropTypes.object.isRequired
 };
 
 export default PaletteInput;
