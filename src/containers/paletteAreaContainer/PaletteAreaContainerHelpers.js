@@ -1,5 +1,13 @@
-export function noThemeInPalette(paletteData, theme) {
-  return !paletteData.some((color) => Object.values(color).includes(theme));
+export function differenceBetween(newPaletteArray, previousPaletteArray) {
+  if (newPaletteArray === previousPaletteArray) return false;
+  if (newPaletteArray.length !== previousPaletteArray.length) return true;
+
+  for (let i = newPaletteArray.length - 1; i >= 0; i--) {
+    if (newPaletteArray[i]["hex"] !== previousPaletteArray[i]["hex"])
+      return true;
+  }
+
+  return false;
 }
 
 export function getAllColorPairData(paletteData) {
@@ -118,4 +126,8 @@ function getSortedColorPairs(pairingData) {
   });
 
   return sortedColorPairs;
+}
+
+export function noThemeInPalette(paletteData, theme) {
+  return !paletteData.some((color) => Object.values(color).includes(theme));
 }

@@ -6,9 +6,9 @@ import { FaTrash, FaPaste } from "react-icons/fa";
 
 import PropTypes from "prop-types";
 
+import { differenceBetween } from "../paletteAreaContainer/PaletteAreaContainerHelpers";
 import {
   parseRawPalette,
-  parsedPaletteChanged,
   getPaletteData,
   setInputText
 } from "./PaletteInputContainerHelpers";
@@ -36,7 +36,7 @@ function PaletteInputContainer({
   useEffect(() => {
     if (
       parsedPalette &&
-      parsedPaletteChanged(parsedPalette, previousParsedPalette)
+      differenceBetween(parsedPalette, previousParsedPalette)
     ) {
       setPreviousParsedPalette(parsedPalette);
 

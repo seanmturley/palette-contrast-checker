@@ -4,8 +4,9 @@ import PaletteInputContainer from "../paletteInputContainer/PaletteInputContaine
 import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
 import {
-  noThemeInPalette,
-  getAllColorPairData
+  differenceBetween,
+  getAllColorPairData,
+  noThemeInPalette
 } from "./PaletteAreaContainerHelpers";
 
 import PropTypes from "prop-types";
@@ -20,19 +21,24 @@ function PaletteAreaContainer({
   setShowPaletteInput
 }) {
   const [paletteData, setPaletteData] = useState([]);
+  const [previousPaletteData, setPreviousPaletteData] = useState(paletteData);
   const [allColorPairs, setAllColorPairs] = useState({});
   const [maxPairsCount, setMaxPairsCount] = useState(0);
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
 
-    const [colorPairs, maxPairs] = getAllColorPairData(paletteData);
+    if (differenceBetween(paletteData, previousPaletteData)) {
+      setPreviousPaletteData(paletteData);
 
-    setAllColorPairs(colorPairs);
-    setMaxPairsCount(maxPairs);
+      const [colorPairs, maxPairs] = getAllColorPairData(paletteData);
 
-    setNoDarkColors(noThemeInPalette(paletteData, "dark"));
-    setNoLightColors(noThemeInPalette(paletteData, "light"));
+      setAllColorPairs(colorPairs);
+      setMaxPairsCount(maxPairs);
+
+      setNoDarkColors(noThemeInPalette(paletteData, "dark"));
+      setNoLightColors(noThemeInPalette(paletteData, "light"));
+    }
 
     setShowPaletteInput(false);
   };

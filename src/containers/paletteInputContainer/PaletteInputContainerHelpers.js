@@ -134,18 +134,6 @@ function addParsedColor(hex, rgbChannels, parsedPalette) {
   }
 }
 
-export function parsedPaletteChanged(parsedPalette, previousParsedPalette) {
-  if (parsedPalette === previousParsedPalette) return false;
-  if (parsedPalette.length !== previousParsedPalette.length) return true;
-
-  for (let i = parsedPalette.length - 1; i >= 0; i--) {
-    if (parsedPalette[i]["hex"] !== previousParsedPalette[i]["hex"])
-      return true;
-  }
-
-  return false;
-}
-
 // The quadratic formula is used to solve for "threshold luminance" i.e. the luminance which has equal contrast with black or white.
 const thresholdLuminance = (-0.1 + Math.sqrt(0.21)) / 2;
 
