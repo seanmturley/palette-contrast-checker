@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/palette-contrast-checker/static/css/main.0f6e7337.chunk.css",
-    "main.js": "/palette-contrast-checker/static/js/main.f7c00bc0.chunk.js",
-    "main.js.map": "/palette-contrast-checker/static/js/main.f7c00bc0.chunk.js.map",
-    "runtime-main.js": "/palette-contrast-checker/static/js/runtime-main.b09acf2f.js",
-    "runtime-main.js.map": "/palette-contrast-checker/static/js/runtime-main.b09acf2f.js.map",
+    "main.js": "/palette-contrast-checker/static/js/main.21f76cf8.chunk.js",
+    "main.js.map": "/palette-contrast-checker/static/js/main.21f76cf8.chunk.js.map",
+    "runtime-main.js": "/palette-contrast-checker/static/js/runtime-main.5fba3141.js",
+    "runtime-main.js.map": "/palette-contrast-checker/static/js/runtime-main.5fba3141.js.map",
     "static/css/2.679831fc.chunk.css": "/palette-contrast-checker/static/css/2.679831fc.chunk.css",
-    "static/js/2.ce445271.chunk.js": "/palette-contrast-checker/static/js/2.ce445271.chunk.js",
-    "static/js/2.ce445271.chunk.js.map": "/palette-contrast-checker/static/js/2.ce445271.chunk.js.map",
-    "static/js/3.98f4e688.chunk.js": "/palette-contrast-checker/static/js/3.98f4e688.chunk.js",
-    "static/js/3.98f4e688.chunk.js.map": "/palette-contrast-checker/static/js/3.98f4e688.chunk.js.map",
+    "static/js/2.472fff82.chunk.js": "/palette-contrast-checker/static/js/2.472fff82.chunk.js",
+    "static/js/2.472fff82.chunk.js.map": "/palette-contrast-checker/static/js/2.472fff82.chunk.js.map",
+    "static/js/3.4741d57f.chunk.js": "/palette-contrast-checker/static/js/3.4741d57f.chunk.js",
+    "static/js/3.4741d57f.chunk.js.map": "/palette-contrast-checker/static/js/3.4741d57f.chunk.js.map",
     "index.html": "/palette-contrast-checker/index.html",
     "static/css/2.679831fc.chunk.css.map": "/palette-contrast-checker/static/css/2.679831fc.chunk.css.map",
     "static/css/main.0f6e7337.chunk.css.map": "/palette-contrast-checker/static/css/main.0f6e7337.chunk.css.map",
-    "static/js/2.ce445271.chunk.js.LICENSE.txt": "/palette-contrast-checker/static/js/2.ce445271.chunk.js.LICENSE.txt"
+    "static/js/2.472fff82.chunk.js.LICENSE.txt": "/palette-contrast-checker/static/js/2.472fff82.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b09acf2f.js",
+    "static/js/runtime-main.5fba3141.js",
     "static/css/2.679831fc.chunk.css",
-    "static/js/2.ce445271.chunk.js",
+    "static/js/2.472fff82.chunk.js",
     "static/css/main.0f6e7337.chunk.css",
-    "static/js/main.f7c00bc0.chunk.js"
+    "static/js/main.21f76cf8.chunk.js"
   ]
 }
