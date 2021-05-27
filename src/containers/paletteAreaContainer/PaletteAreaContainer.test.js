@@ -60,6 +60,31 @@ hsl(120, 100%, 50%)
 hsl(240, 200%, 50%)
 `;
 
+const twentyTwoColorPalette = `
+f72585
+b5179e
+7209b7
+560bad
+480ca8
+3a0ca3
+3f37c9
+4361ee
+4895ef
+4cc9f0
+03071e
+370617
+6a040f
+9d0208
+d00000
+dc2f02
+e85d04
+f48c06
+faa307
+ffba08
+000000
+ffffff
+`;
+
 describe("Palette input should accept hex values and", () => {
   it("should produce the correct number of stripes", () => {
     setup();
@@ -167,5 +192,15 @@ describe("When there are errors in the input the parser", () => {
     userEvent.type(input, duplicatePalette);
     const stripes = screen.getAllByTestId("color-stripe");
     expect(stripes).toHaveLength(2);
+  });
+});
+
+describe("When a large number of colors are added to the input the parser", () => {
+  it("should only parse a maximum of 20 colors", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, twentyTwoColorPalette);
+    const stripes = screen.getAllByTestId("color-stripe");
+    expect(stripes).toHaveLength(20);
   });
 });

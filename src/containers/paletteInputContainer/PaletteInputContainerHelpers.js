@@ -1,5 +1,6 @@
 export function parseRawPalette(rawPalette) {
   const parsedPalette = [];
+  const maxColors = 20;
 
   if (!rawPalette) return parsedPalette;
 
@@ -7,39 +8,45 @@ export function parseRawPalette(rawPalette) {
   const hexMatch = rawPalette.match(hexPattern);
 
   if (hexMatch) {
-    hexMatch.forEach((hexRaw) => {
+    for (const hexRaw of hexMatch) {
+      if (parsedPalette.length >= maxColors) break;
+
       const rgbChannels = hexToRgb(hexRaw);
       const hex = hexRaw.toLowerCase();
 
       addParsedColor(hex, rgbChannels, parsedPalette);
-    });
+    }
   }
 
   const rgbPattern = /(rgba?\(\d{1,3},?\s*\d{1,3},?\s*\d{1,3}(,?\s*\d?\.?\d*)?\))/gi;
   const rgbMatch = rawPalette.match(rgbPattern);
 
   if (rgbMatch) {
-    rgbMatch.forEach((rgbRaw) => {
+    for (const rgbRaw of rgbMatch) {
+      if (parsedPalette.length >= maxColors) break;
+
       const rgbChannels = parseChannels(rgbRaw);
       const checkedRgbChannels = checkRgbChannels(rgbChannels);
       const hex = rgbToHex(checkedRgbChannels);
 
       addParsedColor(hex, checkedRgbChannels, parsedPalette);
-    });
+    }
   }
 
   const hslPattern = /(hsla?\(\d{1,3}(deg)?,?\s*\d{1,3}%,?\s*\d{1,3}%,?\s*(,?\s*\d?\.?\d*)?\))/gi;
   const hslMatch = rawPalette.match(hslPattern);
 
   if (hslMatch) {
-    hslMatch.forEach((hslRaw) => {
+    for (const hslRaw of hslMatch) {
+      if (parsedPalette.length >= maxColors) break;
+
       const hslChannels = parseChannels(hslRaw);
       const checkedHslChannels = checkHslChannels(hslChannels);
       const rgbChannels = hslToRgb(checkedHslChannels);
       const hex = rgbToHex(rgbChannels);
 
       addParsedColor(hex, rgbChannels, parsedPalette);
-    });
+    }
   }
 
   return parsedPalette;
