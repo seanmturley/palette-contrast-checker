@@ -1,7 +1,6 @@
 import React from "react";
 
-import { IconContext } from "react-icons";
-import { RiHeartAddLine } from "react-icons/ri";
+import FavoritePair from "../favoritePair/FavoritePair";
 
 import "./ColorPair.css";
 
@@ -13,6 +12,9 @@ function ColorPair({
   contrast,
   hoverGrowClass,
   textSize,
+  stripeColor,
+  favorited,
+  handleChangeFavorite,
   hidePairs,
   grayscale
 }) {
@@ -26,9 +28,12 @@ function ColorPair({
         {Math.round((contrast + Number.EPSILON) * 10) / 10} : 1
       </p>
       <h1 className="color-pair__heading">{pairColor}</h1>
-      <IconContext.Provider value={{ className: "color-pair__heart" }}>
-        <RiHeartAddLine />
-      </IconContext.Provider>
+      <FavoritePair
+        pairColor={pairColor}
+        stripeColor={stripeColor}
+        favorited={favorited}
+        handleChangeFavorite={handleChangeFavorite}
+      />
       <p className={`color-pair__text-size color-pair__text-size--${textSize}`}>
         {textSize} font
       </p>
@@ -42,6 +47,9 @@ ColorPair.propTypes = {
   contrast: PropTypes.number.isRequired,
   hoverGrowClass: PropTypes.string.isRequired,
   textSize: PropTypes.string.isRequired,
+  stripeColor: PropTypes.string.isRequired,
+  favorited: PropTypes.bool.isRequired,
+  handleChangeFavorite: PropTypes.func.isRequired,
   hidePairs: PropTypes.string.isRequired,
   grayscale: PropTypes.bool.isRequired
 };

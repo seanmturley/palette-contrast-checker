@@ -13,6 +13,8 @@ function ColorStripe({
   maxPairsCount,
   placeholdersRequired,
   hoverGrowClass,
+  stripeFavorites,
+  handleChangeFavorite,
   hidePairs,
   contrastStandard,
   grayscale,
@@ -40,6 +42,13 @@ function ColorStripe({
                 contrast={colorPair.contrast}
                 hoverGrowClass={hoverGrowClass}
                 textSize={colorPair[contrastStandard]}
+                stripeColor={stripeColor}
+                favorited={
+                  stripeFavorites
+                    ? stripeFavorites[colorPair.hex] || false
+                    : false
+                }
+                handleChangeFavorite={handleChangeFavorite}
                 hidePairs={hidePairs}
                 grayscale={grayscale}
               />
@@ -82,6 +91,7 @@ ColorStripe.propTypes = {
   ),
   placeholdersRequired: PropTypes.number,
   hoverGrowClass: PropTypes.string.isRequired,
+  handleChangeFavorite: PropTypes.func.isRequired,
   hidePairs: PropTypes.string.isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,

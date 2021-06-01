@@ -8,6 +8,8 @@ function ColorStripeContainer({
   color,
   colorPairs,
   maxPairsCount,
+  stripeFavorites,
+  handleChangeFavorite,
   showPaletteInput,
   contrastStandard,
   grayscale,
@@ -43,6 +45,8 @@ function ColorStripeContainer({
             colorPairs && placeholdersRequired[contrastStandard]
           }
           hoverGrowClass={hoverGrowClass}
+          stripeFavorites={stripeFavorites}
+          handleChangeFavorite={handleChangeFavorite}
           hidePairs={hidePairs}
           contrastStandard={contrastStandard}
           grayscale={grayscale}
@@ -83,6 +87,7 @@ ColorStripeContainer.propTypes = {
     aaaPairsCount: PropTypes.number.isRequired
   }),
   maxPairsCount: PropTypes.number.isRequired,
+  handleChangeFavorite: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,

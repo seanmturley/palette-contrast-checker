@@ -10,6 +10,8 @@ function PaletteDisplay({
   paletteData,
   allColorPairs,
   maxPairsCount,
+  favorites,
+  handleChangeFavorite,
   showPaletteInput,
   contrastStandard,
   grayscale,
@@ -24,6 +26,8 @@ function PaletteDisplay({
             color={color}
             colorPairs={allColorPairs[color.hex]}
             maxPairsCount={maxPairsCount}
+            stripeFavorites={favorites[color.hex]}
+            handleChangeFavorite={handleChangeFavorite}
             showPaletteInput={showPaletteInput}
             contrastStandard={contrastStandard}
             grayscale={grayscale}
@@ -69,6 +73,7 @@ PaletteDisplay.propTypes = {
     })
   ).isRequired,
   maxPairsCount: PropTypes.number.isRequired,
+  handleChangeFavorite: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,

@@ -24,6 +24,7 @@ function PaletteAreaContainer({
   const [previousPaletteData, setPreviousPaletteData] = useState(paletteData);
   const [allColorPairs, setAllColorPairs] = useState({});
   const [maxPairsCount, setMaxPairsCount] = useState(0);
+  const [favorites, setFavorites] = useState({ ffffff: { 707070: true } });
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
@@ -43,6 +44,24 @@ function PaletteAreaContainer({
     setShowPaletteInput(false);
   };
 
+  const handleChangeFavorite = (event) => {
+    console.log(`${event.target.value} added as favorite`);
+
+    // Update favorites object
+    // Object has structure:
+    //   favorites = {backgroundHex1: {
+    //     pairHex1: "###",
+    //     pairHex2: "###"
+    //   },
+    //   backgroundHex2: {
+    //     pairHex1: "###",
+    //     pairHex2: "###"
+    //   }
+    // }
+
+    // // NOTE: Currently hardcoding a favorites value in state.
+  };
+
   return (
     <>
       <PaletteInputContainer
@@ -50,10 +69,13 @@ function PaletteAreaContainer({
         setPaletteData={setPaletteData}
         handleInputSubmit={handleInputSubmit}
       />
+      {/* <ExportFavorites /> */}
       <PaletteDisplay
         paletteData={paletteData}
         allColorPairs={allColorPairs}
         maxPairsCount={maxPairsCount}
+        favorites={favorites}
+        handleChangeFavorite={handleChangeFavorite}
         showPaletteInput={showPaletteInput}
         contrastStandard={contrastStandard}
         grayscale={grayscale}

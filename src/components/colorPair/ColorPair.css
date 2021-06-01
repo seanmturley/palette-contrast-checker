@@ -77,6 +77,21 @@
   opacity: 1;
 }
 
+.color-pair__heart-label-text {
+  border-width: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.color-pair__heart-input {
+  display: none;
+}
+
 .color-pair__heart {
   transition: all 0.2s ease;
   width: 0;
