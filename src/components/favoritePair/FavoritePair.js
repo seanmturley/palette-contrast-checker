@@ -23,7 +23,7 @@ function FavoritePair({
           type="checkbox"
           name={`${stripeColor}-${pairColor}`}
           id={`${stripeColor}-${pairColor}`}
-          value={`${stripeColor}-${pairColor}`}
+          value={`${stripeColor}-${pairColor}-${favorited}`}
           onChange={handleChangeFavorite}
         />
         <IconContext.Provider value={{ className: "color-pair__heart" }}>

@@ -86,6 +86,7 @@ ColorStripeContainer.propTypes = {
     ).isRequired,
     aaaPairsCount: PropTypes.number.isRequired
   }),
+  stripeFavorites: PropTypes.objectOf(PropTypes.bool),
   maxPairsCount: PropTypes.number.isRequired,
   handleChangeFavorite: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,

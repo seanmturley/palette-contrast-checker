@@ -4,20 +4,19 @@ import ColorStripeContainer from "./ColorStripeContainer";
 
 import { render, screen } from "@testing-library/react";
 
-const setup = (stripeContainerProps, theme, contrastStandard) => {
+const setup = (colorData, theme, contrastStandard) => {
   render(
     <ColorStripeContainer
-      {...stripeContainerProps}
-      theme={theme}
+      {...colorData}
+      maxPairsCount={3}
+      stripeFavorites={undefined}
+      handleChangeFavorite={jest.fn()}
+      showPaletteInput={false}
       contrastStandard={contrastStandard || "aa"}
+      grayscale={false}
+      theme={theme}
     />
   );
-};
-
-const generalProps = {
-  maxPairsCount: 3,
-  showPaletteInput: false,
-  grayscale: false
 };
 
 const darkColorData = {
@@ -127,26 +126,16 @@ const lightColorData = {
   }
 };
 
-const darkStripeContainer = {
-  ...darkColorData,
-  ...generalProps
-};
-
-const lightStripeContainer = {
-  ...lightColorData,
-  ...generalProps
-};
-
 describe("ColorStripeContainer with theme set to 'both'", () => {
   it("should render dark stripes", () => {
-    setup(darkStripeContainer, "both");
+    setup(darkColorData, "both");
     const darkStripe = screen.getByTestId("color-stripe");
     expect(darkStripe).toHaveStyle(
       `background-color: ${darkColorData.color.backgroundRgb}`
     );
   });
   it("should render light stripes", () => {
-    setup(lightStripeContainer, "both");
+    setup(lightColorData, "both");
     const lightStripe = screen.getByTestId("color-stripe");
     expect(lightStripe).toHaveStyle(
       `background-color: ${lightColorData.color.backgroundRgb}`
@@ -156,14 +145,14 @@ describe("ColorStripeContainer with theme set to 'both'", () => {
 
 describe("ColorStripeContainer with theme set to 'dark'", () => {
   it("should render dark stripes", () => {
-    setup(darkStripeContainer, "dark");
+    setup(darkColorData, "dark");
     const darkStripe = screen.getByTestId("color-stripe");
     expect(darkStripe).toHaveStyle(
       `background-color: ${darkColorData.color.backgroundRgb}`
     );
   });
   it("should NOT render light stripes", () => {
-    setup(lightStripeContainer, "dark");
+    setup(lightColorData, "dark");
     const lightStripe = screen.queryByTestId("color-stripe");
     expect(lightStripe).not.toBeInTheDocument();
   });
@@ -171,12 +160,12 @@ describe("ColorStripeContainer with theme set to 'dark'", () => {
 
 describe("ColorStripeContainer with theme set to 'light'", () => {
   it("should NOT render dark stripes", () => {
-    setup(darkStripeContainer, "light");
+    setup(darkColorData, "light");
     const darkStripe = screen.queryByTestId("color-stripe");
     expect(darkStripe).not.toBeInTheDocument();
   });
   it("should render light stripes", () => {
-    setup(lightStripeContainer, "light");
+    setup(lightColorData, "light");
     const lightStripe = screen.getByTestId("color-stripe");
     expect(lightStripe).toHaveStyle(
       `background-color: ${lightColorData.color.backgroundRgb}`
@@ -186,13 +175,13 @@ describe("ColorStripeContainer with theme set to 'light'", () => {
 
 describe("The number of color pairings displayed in the ColorStripe", () => {
   it("should generally be higher when the AA standard is selected", () => {
-    setup(lightStripeContainer, "both", "aa");
+    setup(lightColorData, "both", "aa");
     const colorPairs = screen.queryAllByTestId("color-pair");
     expect(colorPairs).toHaveLength(3);
   });
 
   it("should generally be lower when the AAA standard is selected", () => {
-    setup(lightStripeContainer, "both", "aaa");
+    setup(lightColorData, "both", "aaa");
     const colorPairs = screen.queryAllByTestId("color-pair");
     expect(colorPairs).toHaveLength(2);
   });

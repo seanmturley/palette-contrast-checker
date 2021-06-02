@@ -73,6 +73,8 @@ PaletteDisplay.propTypes = {
     })
   ).isRequired,
   maxPairsCount: PropTypes.number.isRequired,
+  favorites: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool).isRequired)
+    .isRequired,
   handleChangeFavorite: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,

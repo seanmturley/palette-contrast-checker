@@ -7,13 +7,10 @@ import { render, screen } from "@testing-library/react";
 const setup = (color) => {
   render(
     <ColorPair
-      pairColor={color.pairColor}
-      pairGrayscaleEquivalent={color.pairGrayscaleEquivalent}
-      contrast={color.contrast}
-      hoverGrowClass={color.hoverGrowClass}
-      textSize={color.textSize}
-      hidePairs={color.hidePairs}
-      grayscale={color.grayscale}
+      {...color}
+      favorited={false}
+      handleChangeFavorite={jest.fn()}
+      hidePairs={""}
     />
   );
 };
@@ -24,7 +21,7 @@ const color = {
   contrast: 3.6,
   hoverGrowClass: "",
   textSize: "Large",
-  hidePairs: "",
+  stripeColor: "ffffff",
   grayscale: false,
   textRgb: "rgb(70, 143, 175)",
   textGrayscaleRgb: "rgb(130, 130, 130)"
@@ -36,7 +33,7 @@ const colorGrayscaleMode = {
   contrast: 3.6,
   hoverGrowClass: "",
   textSize: "Large",
-  hidePairs: "",
+  stripeColor: "ffffff",
   grayscale: true,
   textRgb: "rgb(70, 143, 175)",
   textGrayscaleRgb: "rgb(130, 130, 130)"

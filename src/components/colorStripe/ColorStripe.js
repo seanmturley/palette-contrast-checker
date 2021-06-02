@@ -91,6 +91,7 @@ ColorStripe.propTypes = {
   ),
   placeholdersRequired: PropTypes.number,
   hoverGrowClass: PropTypes.string.isRequired,
+  stripeFavorites: PropTypes.objectOf(PropTypes.bool),
   handleChangeFavorite: PropTypes.func.isRequired,
   hidePairs: PropTypes.string.isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,

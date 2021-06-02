@@ -7,23 +7,20 @@ import { render, screen } from "@testing-library/react";
 const setup = (color, grayscale) => {
   render(
     <ColorStripe
-      stripeColor={color.hex}
-      grayscaleEquivalent={color.grayscaleEquivalent}
-      hoverGrowClass={color.hoverGrowClass}
-      hidePairs={color.hidePairs}
-      contrastStandard={color.contrastStandard}
+      {...color}
+      hoverGrowClass={""}
+      stripeFavorites={undefined}
+      handleChangeFavorite={jest.fn()}
+      hidePairs={""}
+      contrastStandard={"aa"}
       grayscale={grayscale || false}
-      stripeTheme={color.stripeTheme}
     />
   );
 };
 
 const darkColor = {
-  hex: "14213d",
+  stripeColor: "14213d",
   grayscaleEquivalent: "202020",
-  hoverGrowClass: "",
-  hidePairs: "",
-  contrastStandard: "aa",
   stripeTheme: "dark",
   backgroundRgb: "rgb(20, 33, 61)",
   grayscaleRgb: "rgb(32, 32, 32)",
@@ -31,11 +28,8 @@ const darkColor = {
 };
 
 const lightUnsaturatedColor = {
-  hex: "e5e5e5",
+  stripeColor: "e5e5e5",
   grayscaleEquivalent: "e5e5e5",
-  hoverGrowClass: "",
-  hidePairs: "",
-  contrastStandard: "aa",
   stripeTheme: "light",
   backgroundRgb: "rgb(229, 229, 229)",
   grayscaleRgb: "rgb(229, 229, 229)",
@@ -51,19 +45,19 @@ describe("Color stripe", () => {
 
   it("should display the color's hex value", () => {
     setup(darkColor);
-    const stripeLabel = screen.queryByText(darkColor.hex);
+    const stripeLabel = screen.queryByText(darkColor.stripeColor);
     expect(stripeLabel).toBeInTheDocument();
   });
 
   it("should display the color's hex value in white if the color is dark", () => {
     setup(darkColor);
-    const stripeLabel = screen.getByText(darkColor.hex);
+    const stripeLabel = screen.getByText(darkColor.stripeColor);
     expect(stripeLabel).toHaveClass("color-stripe__heading--theme-dark");
   });
 
   it("should display the color's hex value in black if the color is light", () => {
     setup(lightUnsaturatedColor);
-    const stripeLabel = screen.getByText(lightUnsaturatedColor.hex);
+    const stripeLabel = screen.getByText(lightUnsaturatedColor.stripeColor);
     expect(stripeLabel).toHaveClass("color-stripe__heading--theme-light");
   });
 });
