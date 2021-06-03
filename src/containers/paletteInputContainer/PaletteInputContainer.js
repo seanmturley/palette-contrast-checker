@@ -15,6 +15,7 @@ import {
 
 function PaletteInputContainer({
   showPaletteInput,
+  setFavorites,
   setPaletteData,
   handleInputSubmit
 }) {
@@ -47,6 +48,7 @@ function PaletteInputContainer({
 
   const clearInputSetState = () => {
     setInputText("");
+    setFavorites({});
   };
 
   const clearInputProps = {
@@ -91,6 +93,7 @@ function PaletteInputContainer({
 
 PaletteInputContainer.propTypes = {
   showPaletteInput: PropTypes.bool.isRequired,
+  setFavorites: PropTypes.func.isRequired,
   setPaletteData: PropTypes.func.isRequired,
   handleInputSubmit: PropTypes.func.isRequired
 };

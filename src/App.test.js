@@ -201,3 +201,28 @@ describe("The 'contrast standard' radio button", () => {
     expect(contrastStandardForm).toHaveClass("radio-button-group--clickable");
   });
 });
+
+describe("The 'clear palette' button in the palette input", () => {
+  it("should clear all favorites", () => {
+    setup();
+    typePalette();
+    submitPalette();
+
+    const favoritePair = screen.getByLabelText("000000-ffffff");
+    userEvent.click(favoritePair);
+
+    const colorPair = screen.getAllByTestId("color-pair");
+    expect(colorPair[0]).toHaveClass("color-pair--favorited");
+
+    clickEditPaletteButton();
+    const clearPaletteButton = screen.getByRole("button", {
+      name: /^clear palette$/i
+    });
+    userEvent.click(clearPaletteButton);
+
+    typePalette();
+    submitPalette();
+
+    expect(colorPair[0]).not.toHaveClass("color-pair--favorited");
+  });
+});

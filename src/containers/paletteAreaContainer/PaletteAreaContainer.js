@@ -60,6 +60,7 @@ function PaletteAreaContainer({
     <>
       <PaletteInputContainer
         showPaletteInput={showPaletteInput}
+        setFavorites={setFavorites}
         setPaletteData={setPaletteData}
         handleInputSubmit={handleInputSubmit}
       />
