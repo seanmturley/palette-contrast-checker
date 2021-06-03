@@ -4,11 +4,12 @@ import ColorPair from "./ColorPair";
 
 import { render, screen } from "@testing-library/react";
 
-const setup = (color) => {
+const setup = (color, grayscale, favorited) => {
   render(
     <ColorPair
       {...color}
-      favorited={false}
+      grayscale={grayscale || false}
+      favorited={favorited || false}
       handleChangeFavorite={jest.fn()}
       hidePairs={""}
     />
@@ -23,18 +24,6 @@ const color = {
   textSize: "Large",
   stripeColor: "ffffff",
   grayscale: false,
-  textRgb: "rgb(70, 143, 175)",
-  textGrayscaleRgb: "rgb(130, 130, 130)"
-};
-
-const colorGrayscaleMode = {
-  pairColor: "468faf",
-  pairGrayscaleEquivalent: "828282",
-  contrast: 3.6,
-  hoverGrowClass: "",
-  textSize: "Large",
-  stripeColor: "ffffff",
-  grayscale: true,
   textRgb: "rgb(70, 143, 175)",
   textGrayscaleRgb: "rgb(130, 130, 130)"
 };
@@ -71,12 +60,20 @@ describe("Color pair", () => {
       `color-pair__text-size--${color.textSize}`
     );
   });
+});
 
+describe("In grayscale mode the color pair", () => {
   it("should have text color set to the color's grayscale equivalent rgb value", () => {
-    setup(colorGrayscaleMode);
+    setup(color, true);
     const colorPair = screen.getByTestId("color-pair");
-    expect(colorPair).toHaveStyle(
-      `color: ${colorGrayscaleMode.textGrayscaleRgb}`
-    );
+    expect(colorPair).toHaveStyle(`color: ${color.textGrayscaleRgb}`);
+  });
+});
+
+describe("Favorited color pair", () => {
+  it("should display heart in place of hex value (when not hovered)", () => {
+    setup(color, false, true);
+    const colorPair = screen.getByTestId("color-pair");
+    expect(colorPair).toHaveClass("color-pair--favorited");
   });
 });

@@ -53,6 +53,18 @@
   margin: 0;
 }
 
+.color-pair--favorited .color-pair__heading {
+  transition: all 0.2s ease;
+  font-size: 0;
+  opacity: 0;
+}
+
+.color-pair--favorited:hover .color-pair__heading {
+  transition: all 0.2s ease;
+  font: var(--mono-medium);
+  opacity: 1;
+}
+
 .color-pair__contrast,
 .color-pair__text-size--Any {
   font: var(--sans-regular);
@@ -99,6 +111,7 @@
   opacity: 0;
 }
 
+.color-pair--favorited .color-pair__heart,
 .color-pair:hover .color-pair__heart {
   transition: all 0.2s ease;
   width: 3em;

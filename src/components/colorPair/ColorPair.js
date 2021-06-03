@@ -18,9 +18,10 @@ function ColorPair({
   hidePairs,
   grayscale
 }) {
+  const favoritedPair = favorited ? " color-pair--favorited" : "";
   return (
     <article
-      className={`color-pair${hidePairs}${hoverGrowClass}`}
+      className={`color-pair${hidePairs}${hoverGrowClass}${favoritedPair}`}
       style={{ color: `#${grayscale ? pairGrayscaleEquivalent : pairColor}` }}
       data-testid="color-pair"
     >
