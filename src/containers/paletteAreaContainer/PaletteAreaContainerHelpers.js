@@ -131,3 +131,22 @@ function getSortedColorPairs(pairingData) {
 export function noThemeInPalette(paletteData, theme) {
   return !paletteData.some((color) => Object.values(color).includes(theme));
 }
+
+export function purgeFavorites(favorites, paletteData) {
+  const purgedFavorites = favorites;
+  const paletteColors = paletteData.map((color) => color.hex);
+
+  for (const backgroundColor in favorites) {
+    if (paletteColors.includes(backgroundColor)) {
+      for (const foregroundColor in favorites[backgroundColor]) {
+        if (!paletteColors.includes(foregroundColor)) {
+          delete purgedFavorites[backgroundColor][foregroundColor];
+        }
+      }
+    } else {
+      delete purgedFavorites[backgroundColor];
+    }
+  }
+
+  return purgedFavorites;
+}

@@ -6,7 +6,8 @@ import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 import {
   differenceBetween,
   getAllColorPairData,
-  noThemeInPalette
+  noThemeInPalette,
+  purgeFavorites
 } from "./PaletteAreaContainerHelpers";
 
 import PropTypes from "prop-types";
@@ -39,6 +40,8 @@ function PaletteAreaContainer({
 
       setNoDarkColors(noThemeInPalette(paletteData, "dark"));
       setNoLightColors(noThemeInPalette(paletteData, "light"));
+
+      setFavorites(purgeFavorites(favorites, paletteData));
     }
 
     setShowPaletteInput(false);

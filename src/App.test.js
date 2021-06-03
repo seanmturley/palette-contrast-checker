@@ -16,6 +16,7 @@ const typePalette = (palette) => {
 
 const darkPalette = "000000, 111111";
 const lightPalette = "ffffff, eeeeee";
+const threeColorPalette = "000000, ffffff, ff0000";
 
 const submitPalette = () => {
   const paletteSubmit = screen.getByRole("button", {
@@ -29,6 +30,11 @@ const clickEditPaletteButton = () => {
     name: /edit palette/i
   });
   userEvent.click(editPaletteButton);
+};
+
+const clearPaletteManually = () => {
+  const paletteInput = screen.getByLabelText(/add palette/i);
+  userEvent.clear(paletteInput);
 };
 
 describe("When the palette input is open, the 'grayscale mode' button", () => {
@@ -202,8 +208,8 @@ describe("The 'contrast standard' radio button", () => {
   });
 });
 
-describe("The 'clear palette' button in the palette input", () => {
-  it("should clear all favorites", () => {
+describe("Favourites", () => {
+  it("should all be cleared when the 'clear palette' button is pressed", () => {
     setup();
     typePalette();
     submitPalette();
@@ -224,5 +230,33 @@ describe("The 'clear palette' button in the palette input", () => {
     submitPalette();
 
     expect(colorPair[0]).not.toHaveClass("color-pair--favorited");
+  });
+
+  it("should should be purged of colors no longer present in the palette", () => {
+    setup();
+    typePalette(threeColorPalette);
+    submitPalette();
+
+    const favoritePairInitial = screen.getByLabelText("000000-ff0000");
+    userEvent.click(favoritePairInitial);
+
+    const colorPairInitial = screen.getAllByTestId("color-pair");
+    expect(colorPairInitial[1]).toHaveClass("color-pair--favorited");
+
+    clickEditPaletteButton();
+    clearPaletteManually();
+    typePalette();
+    submitPalette();
+
+    const favoritePairRemoved = screen.queryByLabelText("000000-ff0000");
+    expect(favoritePairRemoved).not.toBeInTheDocument();
+
+    clickEditPaletteButton();
+    clearPaletteManually();
+    typePalette(threeColorPalette);
+    submitPalette();
+
+    const colorPairReadded = screen.getAllByTestId("color-pair");
+    expect(colorPairReadded[1]).not.toHaveClass("color-pair--favorited");
   });
 });
