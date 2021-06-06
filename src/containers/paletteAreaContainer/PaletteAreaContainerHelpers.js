@@ -143,6 +143,10 @@ export function purgeFavorites(favorites, paletteData) {
           delete purgedFavorites[backgroundColor][foregroundColor];
         }
       }
+
+      if (Object.keys(purgedFavorites[backgroundColor]).length === 0) {
+        delete purgedFavorites[backgroundColor];
+      }
     } else {
       delete purgedFavorites[backgroundColor];
     }
