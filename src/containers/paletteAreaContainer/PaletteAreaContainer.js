@@ -7,7 +7,8 @@ import {
   differenceBetween,
   getAllColorPairData,
   noThemeInPalette,
-  purgeFavorites
+  purgeFavorites,
+  updateFavorites
 } from "./PaletteAreaContainerHelpers";
 
 import PropTypes from "prop-types";
@@ -48,15 +49,7 @@ function PaletteAreaContainer({
   };
 
   const handleChangeFavorite = (event) => {
-    const [background, foreground, favorited] = event.target.value.split("-");
-
-    setFavorites((previousFavorites) => ({
-      ...previousFavorites,
-      [background]: {
-        ...previousFavorites[background],
-        [foreground]: favorited === "false"
-      }
-    }));
+    setFavorites(updateFavorites(favorites, event.target.value));
   };
 
   return (

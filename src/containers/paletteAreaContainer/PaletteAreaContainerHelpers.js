@@ -133,7 +133,7 @@ export function noThemeInPalette(paletteData, theme) {
 }
 
 export function purgeFavorites(favorites, paletteData) {
-  const purgedFavorites = favorites;
+  const purgedFavorites = { ...favorites };
   const paletteColors = paletteData.map((color) => color.hex);
 
   for (const backgroundColor in favorites) {
@@ -149,4 +149,32 @@ export function purgeFavorites(favorites, paletteData) {
   }
 
   return purgedFavorites;
+}
+
+export function updateFavorites(favorites, favoriteToUpdate) {
+  const [backgroundColor, foregroundColor, favorited] = favoriteToUpdate.split(
+    "-"
+  );
+
+  let updatedFavorites;
+
+  if (favorited === "true") {
+    updatedFavorites = { ...favorites };
+
+    if (Object.keys(updatedFavorites[backgroundColor]).length > 1) {
+      delete updatedFavorites[backgroundColor][foregroundColor];
+    } else {
+      delete updatedFavorites[backgroundColor];
+    }
+  } else {
+    updatedFavorites = {
+      ...favorites,
+      [backgroundColor]: {
+        ...favorites[backgroundColor],
+        [foregroundColor]: true
+      }
+    };
+  }
+
+  return updatedFavorites;
 }
