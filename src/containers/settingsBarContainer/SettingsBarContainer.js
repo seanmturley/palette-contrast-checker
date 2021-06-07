@@ -5,6 +5,7 @@ import ToggleSwitch from "../../components/toggleSwitch/ToggleSwitch";
 import IconButton from "../../components/iconButton/IconButton";
 
 import { FaPalette } from "react-icons/fa";
+import { RiHeartLine } from "react-icons/ri";
 
 import PropTypes from "prop-types";
 
@@ -20,8 +21,26 @@ function SettingsBarContainer({
   noDarkColors,
   noLightColors,
   showPaletteInput,
-  setShowPaletteInput
+  setShowPaletteInput,
+  favorites,
+  setFavorites
 }) {
+  const editPaletteSetState = () => {
+    setPreviousGrayscale(grayscale);
+    setPreviousTheme(theme);
+
+    setShowPaletteInput(true);
+  };
+
+  const editPaletteProps = {
+    heading: "Edit \n palette",
+    name: "edit-palette",
+    icon: <FaPalette />,
+    disableOnClick: true,
+    state: showPaletteInput,
+    setState: editPaletteSetState
+  };
+
   const contrastStandardProps = {
     heading: "WCAG \n standard",
     name: "contrast-standard",
@@ -50,28 +69,28 @@ function SettingsBarContainer({
     setState: setGrayscale
   };
 
-  const editPaletteSetState = () => {
-    setPreviousGrayscale(grayscale);
-    setPreviousTheme(theme);
+  const noFavorites = Object.keys(favorites).length === 0;
 
-    setShowPaletteInput(true);
+  const clearFavoritesSetState = () => {
+    setFavorites({});
   };
 
-  const editPaletteProps = {
-    heading: "Edit \n palette",
-    name: "edit-palette",
-    icon: <FaPalette />,
+  const clearFavoritesProps = {
+    heading: "Clear \n favorites",
+    name: "clear-favorites",
+    icon: <RiHeartLine />,
     disableOnClick: true,
-    state: showPaletteInput,
-    setState: editPaletteSetState
+    state: showPaletteInput || noFavorites,
+    setState: clearFavoritesSetState
   };
 
   return (
     <>
+      <IconButton {...editPaletteProps} />
       <RadioButtonGroup {...contrastStandardProps} />
       <RadioButtonGroup {...themeProps} />
       <ToggleSwitch {...grayscaleProps} />
-      <IconButton {...editPaletteProps} />
+      <IconButton {...clearFavoritesProps} />
     </>
   );
 }
@@ -88,7 +107,10 @@ SettingsBarContainer.propTypes = {
   noDarkColors: PropTypes.bool.isRequired,
   noLightColors: PropTypes.bool.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
-  setShowPaletteInput: PropTypes.func.isRequired
+  setShowPaletteInput: PropTypes.func.isRequired,
+  favorites: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool).isRequired)
+    .isRequired,
+  setFavorites: PropTypes.func.isRequired
 };
 
 export default SettingsBarContainer;

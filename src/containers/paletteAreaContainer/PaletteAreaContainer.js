@@ -20,13 +20,14 @@ function PaletteAreaContainer({
   setNoDarkColors,
   setNoLightColors,
   showPaletteInput,
-  setShowPaletteInput
+  setShowPaletteInput,
+  favorites,
+  setFavorites
 }) {
   const [paletteData, setPaletteData] = useState([]);
   const [previousPaletteData, setPreviousPaletteData] = useState(paletteData);
   const [allColorPairs, setAllColorPairs] = useState({});
   const [maxPairsCount, setMaxPairsCount] = useState(0);
-  const [favorites, setFavorites] = useState({});
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
@@ -83,7 +84,10 @@ PaletteAreaContainer.propTypes = {
   setNoDarkColors: PropTypes.func.isRequired,
   setNoLightColors: PropTypes.func.isRequired,
   showPaletteInput: PropTypes.bool.isRequired,
-  setShowPaletteInput: PropTypes.func.isRequired
+  setShowPaletteInput: PropTypes.func.isRequired,
+  favorites: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool).isRequired)
+    .isRequired,
+  setFavorites: PropTypes.func.isRequired
 };
 
 export default PaletteAreaContainer;

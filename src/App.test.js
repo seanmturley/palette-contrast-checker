@@ -209,6 +209,25 @@ describe("The 'contrast standard' radio button", () => {
 });
 
 describe("Favourites", () => {
+  it("should all be cleared when the 'clear favorites' button is pressed", () => {
+    setup();
+    typePalette();
+    submitPalette();
+
+    const favoritePair = screen.getByLabelText("000000-ffffff");
+    userEvent.click(favoritePair);
+
+    const colorPair = screen.getAllByTestId("color-pair");
+    expect(colorPair[0]).toHaveClass("color-pair--favorited");
+
+    const clearFavoritesButton = screen.getByRole("button", {
+      name: /clear favorites/i
+    });
+    userEvent.click(clearFavoritesButton);
+
+    expect(colorPair[0]).not.toHaveClass("color-pair--favorited");
+  });
+
   it("should all be cleared when the 'clear palette' button is pressed", () => {
     setup();
     typePalette();

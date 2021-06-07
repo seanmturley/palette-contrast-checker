@@ -15,6 +15,8 @@ const setup = () => {
       setNoLightColors={jest.fn()}
       showPaletteInput={true}
       setShowPaletteInput={jest.fn()}
+      favorites={{}}
+      setFavorites={jest.fn()}
     />
   );
 };

@@ -14,6 +14,7 @@ function App() {
   const [noDarkColors, setNoDarkColors] = useState(false);
   const [noLightColors, setNoLightColors] = useState(false);
   const [showPaletteInput, setShowPaletteInput] = useState(true);
+  const [favorites, setFavorites] = useState({});
   // const [showPaletteExport, setShowPaletteExport] = useState(false);
 
   useEffect(() => {
@@ -57,6 +58,8 @@ function App() {
           noLightColors={noLightColors}
           showPaletteInput={showPaletteInput}
           setShowPaletteInput={setShowPaletteInput}
+          favorites={favorites}
+          setFavorites={setFavorites}
           // showPaletteExport={showPaletteExport}
           // setShowPaletteExport={setShowPaletteExport}
         />
@@ -70,6 +73,8 @@ function App() {
           setNoLightColors={setNoLightColors}
           showPaletteInput={showPaletteInput}
           setShowPaletteInput={setShowPaletteInput}
+          favorites={favorites}
+          setFavorites={setFavorites}
           // showPaletteExport={showPaletteExport}
           // setShowPaletteExport={setShowPaletteExport}
         />
