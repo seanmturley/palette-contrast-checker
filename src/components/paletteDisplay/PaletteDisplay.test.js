@@ -14,7 +14,7 @@ const emptyPalette = {
   maxPairsCount: 0,
   favorites: {},
   handleChangeFavorite: jest.fn(),
-  showPaletteInput: true,
+  hidePairs: " color-pair--hide",
   contrastStandard: "aa",
   grayscale: false,
   theme: "both"
@@ -260,7 +260,7 @@ const palette = {
   maxPairsCount: 3,
   favorites: {},
   handleChangeFavorite: jest.fn(),
-  showPaletteInput: false,
+  hidePairs: "",
   contrastStandard: "aa",
   grayscale: false,
   theme: "both"

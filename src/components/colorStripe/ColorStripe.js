@@ -93,7 +93,7 @@ ColorStripe.propTypes = {
   hoverGrowClass: PropTypes.string.isRequired,
   stripeFavorites: PropTypes.objectOf(PropTypes.bool),
   handleChangeFavorite: PropTypes.func.isRequired,
-  hidePairs: PropTypes.string.isRequired,
+  hidePairs: PropTypes.oneOf([" color-pair--hide", ""]).isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,
   stripeTheme: PropTypes.oneOf(["dark", "light"]).isRequired

@@ -10,7 +10,7 @@ function ColorStripeContainer({
   maxPairsCount,
   stripeFavorites,
   handleChangeFavorite,
-  showPaletteInput,
+  hidePairs,
   contrastStandard,
   grayscale,
   theme
@@ -21,8 +21,6 @@ function ColorStripeContainer({
   } else {
     displayStripe = false;
   }
-
-  const hidePairs = showPaletteInput ? " color-pair--hide" : "";
 
   const placeholdersRequired = {};
   if (colorPairs) {
@@ -89,7 +87,7 @@ ColorStripeContainer.propTypes = {
   stripeFavorites: PropTypes.objectOf(PropTypes.bool),
   maxPairsCount: PropTypes.number.isRequired,
   handleChangeFavorite: PropTypes.func.isRequired,
-  showPaletteInput: PropTypes.bool.isRequired,
+  hidePairs: PropTypes.oneOf([" color-pair--hide", ""]).isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,
   theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired

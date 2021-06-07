@@ -51,7 +51,7 @@ ColorPair.propTypes = {
   stripeColor: PropTypes.string.isRequired,
   favorited: PropTypes.bool.isRequired,
   handleChangeFavorite: PropTypes.func.isRequired,
-  hidePairs: PropTypes.string.isRequired,
+  hidePairs: PropTypes.oneOf([" color-pair--hide", ""]).isRequired,
   grayscale: PropTypes.bool.isRequired
 };
 

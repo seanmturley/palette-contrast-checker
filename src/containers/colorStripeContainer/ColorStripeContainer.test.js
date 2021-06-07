@@ -11,7 +11,7 @@ const setup = (colorData, theme, contrastStandard) => {
       maxPairsCount={3}
       stripeFavorites={undefined}
       handleChangeFavorite={jest.fn()}
-      showPaletteInput={false}
+      hidePairs={""}
       contrastStandard={contrastStandard || "aa"}
       grayscale={false}
       theme={theme}

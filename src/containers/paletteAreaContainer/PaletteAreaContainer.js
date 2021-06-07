@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import PaletteInputContainer from "../paletteInputContainer/PaletteInputContainer";
+import ExportFavoritesContainer from "../exportFavoritesContainer/ExportFavoritesContainer";
 import PaletteDisplay from "../../components/paletteDisplay/PaletteDisplay";
 
 import {
@@ -22,7 +23,9 @@ function PaletteAreaContainer({
   showPaletteInput,
   setShowPaletteInput,
   favorites,
-  setFavorites
+  setFavorites,
+  showExportFavorites,
+  setShowExportFavorites
 }) {
   const [paletteData, setPaletteData] = useState([]);
   const [previousPaletteData, setPreviousPaletteData] = useState(paletteData);
@@ -53,6 +56,9 @@ function PaletteAreaContainer({
     setFavorites(updateFavorites(favorites, event.target.value));
   };
 
+  const hidePairs =
+    showPaletteInput || showExportFavorites ? " color-pair--hide" : "";
+
   return (
     <>
       <PaletteInputContainer
@@ -61,14 +67,17 @@ function PaletteAreaContainer({
         setPaletteData={setPaletteData}
         handleInputSubmit={handleInputSubmit}
       />
-      {/* <ExportFavorites /> */}
+      <ExportFavoritesContainer
+        showExportFavorites={showExportFavorites}
+        setShowExportFavorites={setShowExportFavorites}
+      />
       <PaletteDisplay
         paletteData={paletteData}
         allColorPairs={allColorPairs}
         maxPairsCount={maxPairsCount}
         favorites={favorites}
         handleChangeFavorite={handleChangeFavorite}
-        showPaletteInput={showPaletteInput}
+        hidePairs={hidePairs}
         contrastStandard={contrastStandard}
         grayscale={grayscale}
         theme={theme}
@@ -87,7 +96,9 @@ PaletteAreaContainer.propTypes = {
   setShowPaletteInput: PropTypes.func.isRequired,
   favorites: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool).isRequired)
     .isRequired,
-  setFavorites: PropTypes.func.isRequired
+  setFavorites: PropTypes.func.isRequired,
+  showExportFavorites: PropTypes.bool.isRequired,
+  setShowExportFavorites: PropTypes.func.isRequired
 };
 
 export default PaletteAreaContainer;

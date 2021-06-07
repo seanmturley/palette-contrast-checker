@@ -15,7 +15,7 @@ function App() {
   const [noLightColors, setNoLightColors] = useState(false);
   const [showPaletteInput, setShowPaletteInput] = useState(true);
   const [favorites, setFavorites] = useState({});
-  // const [showPaletteExport, setShowPaletteExport] = useState(false);
+  const [showExportFavorites, setShowExportFavorites] = useState(false);
 
   useEffect(() => {
     if (showPaletteInput) {
@@ -60,8 +60,8 @@ function App() {
           setShowPaletteInput={setShowPaletteInput}
           favorites={favorites}
           setFavorites={setFavorites}
-          // showPaletteExport={showPaletteExport}
-          // setShowPaletteExport={setShowPaletteExport}
+          showExportFavorites={showExportFavorites}
+          setShowExportFavorites={setShowExportFavorites}
         />
       </nav>
       <main className="app__main">
@@ -75,8 +75,8 @@ function App() {
           setShowPaletteInput={setShowPaletteInput}
           favorites={favorites}
           setFavorites={setFavorites}
-          // showPaletteExport={showPaletteExport}
-          // setShowPaletteExport={setShowPaletteExport}
+          showExportFavorites={showExportFavorites}
+          setShowExportFavorites={setShowExportFavorites}
         />
       </main>
     </div>

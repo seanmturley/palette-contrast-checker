@@ -32,9 +32,26 @@ const clickEditPaletteButton = () => {
   userEvent.click(editPaletteButton);
 };
 
+const selectFavorite = (favoriteColors) => {
+  const favoritePair = screen.getByLabelText(favoriteColors || "000000-ffffff");
+  userEvent.click(favoritePair);
+};
+
 const clearPaletteManually = () => {
   const paletteInput = screen.getByLabelText(/add palette/i);
   userEvent.clear(paletteInput);
+};
+
+const openExportFavorites = () => {
+  setup();
+  typePalette();
+  submitPalette();
+  selectFavorite();
+
+  const exportFavoritesButton = screen.getByRole("button", {
+    name: /export favorites/i
+  });
+  userEvent.click(exportFavoritesButton);
 };
 
 describe("When the palette input is open, the 'grayscale mode' button", () => {
@@ -213,9 +230,7 @@ describe("Favourites", () => {
     setup();
     typePalette();
     submitPalette();
-
-    const favoritePair = screen.getByLabelText("000000-ffffff");
-    userEvent.click(favoritePair);
+    selectFavorite();
 
     const colorPair = screen.getAllByTestId("color-pair");
     expect(colorPair[0]).toHaveClass("color-pair--favorited");
@@ -232,9 +247,7 @@ describe("Favourites", () => {
     setup();
     typePalette();
     submitPalette();
-
-    const favoritePair = screen.getByLabelText("000000-ffffff");
-    userEvent.click(favoritePair);
+    selectFavorite();
 
     const colorPair = screen.getAllByTestId("color-pair");
     expect(colorPair[0]).toHaveClass("color-pair--favorited");
@@ -252,12 +265,11 @@ describe("Favourites", () => {
   });
 
   it("should should be purged of colors no longer present in the palette", () => {
+    const pairToBeRemoved = "000000-ff0000";
     setup();
     typePalette(threeColorPalette);
     submitPalette();
-
-    const favoritePairInitial = screen.getByLabelText("000000-ff0000");
-    userEvent.click(favoritePairInitial);
+    selectFavorite(pairToBeRemoved);
 
     const colorPairInitial = screen.getAllByTestId("color-pair");
     expect(colorPairInitial[1]).toHaveClass("color-pair--favorited");
@@ -267,7 +279,7 @@ describe("Favourites", () => {
     typePalette();
     submitPalette();
 
-    const favoritePairRemoved = screen.queryByLabelText("000000-ff0000");
+    const favoritePairRemoved = screen.queryByLabelText(pairToBeRemoved);
     expect(favoritePairRemoved).not.toBeInTheDocument();
 
     clickEditPaletteButton();
@@ -277,5 +289,58 @@ describe("Favourites", () => {
 
     const colorPairReadded = screen.getAllByTestId("color-pair");
     expect(colorPairReadded[1]).not.toHaveClass("color-pair--favorited");
+  });
+});
+
+describe("The 'export favorites' modal being open", () => {
+  it("should NOT disable the 'contrast standard' radio button", () => {
+    openExportFavorites();
+
+    const contrastStandardForm = screen
+      .getByLabelText(/wcag\s+standard/i)
+      .closest("form");
+    expect(contrastStandardForm).not.toHaveClass(
+      "radio-button-group--disabled"
+    );
+  });
+
+  it("should disable 'edit palette' button", () => {
+    openExportFavorites();
+
+    const editPaletteButton = screen.getByRole("button", {
+      name: /edit palette/i
+    });
+    expect(editPaletteButton).toHaveClass("icon-button--disabled");
+  });
+
+  it("should disable 'theme' radio button group", () => {
+    openExportFavorites();
+
+    const themeForm = screen.getByLabelText(/theme/i).closest("form");
+    expect(themeForm).toHaveClass("radio-button-group--disabled");
+  });
+
+  it("should disable 'grayscale mode' button", () => {
+    setup();
+    const grayscaleCheckbox = screen.getByLabelText(/grayscale mode/i);
+    expect(grayscaleCheckbox).toHaveAttribute("disabled");
+  });
+
+  it("should disable 'clear favorites' button", () => {
+    openExportFavorites();
+
+    const clearFavoritesButton = screen.getByRole("button", {
+      name: /clear favorites/i
+    });
+    expect(clearFavoritesButton).toHaveClass("icon-button--disabled");
+  });
+
+  it("should disable 'export favorites' button", () => {
+    openExportFavorites();
+
+    const exportFavoritesButton = screen.getByRole("button", {
+      name: /export favorites/i
+    });
+    expect(exportFavoritesButton).toHaveClass("icon-button--disabled");
   });
 });

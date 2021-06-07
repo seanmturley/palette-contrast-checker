@@ -4,7 +4,7 @@ import RadioButtonGroup from "../../components/radioButtonGroup/RadioButtonGroup
 import ToggleSwitch from "../../components/toggleSwitch/ToggleSwitch";
 import IconButton from "../../components/iconButton/IconButton";
 
-import { FaPalette } from "react-icons/fa";
+import { FaPalette, FaFileExport } from "react-icons/fa";
 import { RiHeartLine } from "react-icons/ri";
 
 import PropTypes from "prop-types";
@@ -23,8 +23,12 @@ function SettingsBarContainer({
   showPaletteInput,
   setShowPaletteInput,
   favorites,
-  setFavorites
+  setFavorites,
+  showExportFavorites,
+  setShowExportFavorites
 }) {
+  const modalOpen = showPaletteInput || showExportFavorites;
+
   const editPaletteSetState = () => {
     setPreviousGrayscale(grayscale);
     setPreviousTheme(theme);
@@ -37,7 +41,7 @@ function SettingsBarContainer({
     name: "edit-palette",
     icon: <FaPalette />,
     disableOnClick: true,
-    state: showPaletteInput,
+    state: modalOpen,
     setState: editPaletteSetState
   };
 
@@ -54,7 +58,7 @@ function SettingsBarContainer({
     heading: "Theme",
     name: "theme",
     options: ["dark", "both", "light"],
-    disabled: showPaletteInput || noDarkColors || noLightColors,
+    disabled: modalOpen || noDarkColors || noLightColors,
     selected: theme,
     setState: setTheme
   };
@@ -64,7 +68,7 @@ function SettingsBarContainer({
     name: "grayscale-mode",
     optionLabels: { true: "on", false: "off" },
     showLabels: true,
-    disabled: showPaletteInput,
+    disabled: modalOpen,
     state: grayscale,
     setState: setGrayscale
   };
@@ -80,8 +84,21 @@ function SettingsBarContainer({
     name: "clear-favorites",
     icon: <RiHeartLine />,
     disableOnClick: true,
-    state: showPaletteInput || noFavorites,
+    state: modalOpen || noFavorites,
     setState: clearFavoritesSetState
+  };
+
+  const exportFavoritesSetState = () => {
+    setShowExportFavorites(true);
+  };
+
+  const exportFavoritesProps = {
+    heading: "Export \n favorites",
+    name: "export-favorites",
+    icon: <FaFileExport />,
+    disableOnClick: true,
+    state: modalOpen || noFavorites,
+    setState: exportFavoritesSetState
   };
 
   return (
@@ -91,6 +108,7 @@ function SettingsBarContainer({
       <RadioButtonGroup {...themeProps} />
       <ToggleSwitch {...grayscaleProps} />
       <IconButton {...clearFavoritesProps} />
+      <IconButton {...exportFavoritesProps} />
     </>
   );
 }
@@ -110,7 +128,9 @@ SettingsBarContainer.propTypes = {
   setShowPaletteInput: PropTypes.func.isRequired,
   favorites: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool).isRequired)
     .isRequired,
-  setFavorites: PropTypes.func.isRequired
+  setFavorites: PropTypes.func.isRequired,
+  showExportFavorites: PropTypes.bool.isRequired,
+  setShowExportFavorites: PropTypes.func.isRequired
 };
 
 export default SettingsBarContainer;

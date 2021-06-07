@@ -12,7 +12,7 @@ function PaletteDisplay({
   maxPairsCount,
   favorites,
   handleChangeFavorite,
-  showPaletteInput,
+  hidePairs,
   contrastStandard,
   grayscale,
   theme
@@ -28,7 +28,7 @@ function PaletteDisplay({
             maxPairsCount={maxPairsCount}
             stripeFavorites={favorites[color.hex]}
             handleChangeFavorite={handleChangeFavorite}
-            showPaletteInput={showPaletteInput}
+            hidePairs={hidePairs}
             contrastStandard={contrastStandard}
             grayscale={grayscale}
             theme={theme}
@@ -76,7 +76,7 @@ PaletteDisplay.propTypes = {
   favorites: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool).isRequired)
     .isRequired,
   handleChangeFavorite: PropTypes.func.isRequired,
-  showPaletteInput: PropTypes.bool.isRequired,
+  hidePairs: PropTypes.oneOf([" color-pair--hide", ""]).isRequired,
   contrastStandard: PropTypes.oneOf(["aa", "aaa"]).isRequired,
   grayscale: PropTypes.bool.isRequired,
   theme: PropTypes.oneOf(["dark", "both", "light"]).isRequired

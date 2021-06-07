@@ -5,7 +5,7 @@ import PaletteAreaContainer from "./PaletteAreaContainer";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-const setup = () => {
+const setup = (showExportFavorites) => {
   render(
     <PaletteAreaContainer
       contrastStandard="aa"
@@ -13,12 +13,21 @@ const setup = () => {
       theme="both"
       setNoDarkColors={jest.fn()}
       setNoLightColors={jest.fn()}
-      showPaletteInput={true}
+      showPaletteInput={!showExportFavorites || true}
       setShowPaletteInput={jest.fn()}
       favorites={{}}
       setFavorites={jest.fn()}
+      showExportFavorites={showExportFavorites || false}
+      setShowExportFavorites={jest.fn()}
     />
   );
+};
+
+const clickSubmit = () => {
+  const submit = screen.getByRole("button", {
+    name: /^\+$/i
+  });
+  userEvent.click(submit);
 };
 
 const hexPalette = `
@@ -111,13 +120,11 @@ describe("Palette input should accept hex values and", () => {
     setup();
     const input = screen.getByLabelText(/add palette/i);
     userEvent.type(input, hexPalette);
-    const submit = screen.getByRole("button", {
-      name: /^\+$/i
-    });
-    userEvent.click(submit);
-    const pairs = screen.getAllByTestId("color-pair");
-    expect(pairs[0].firstChild).toHaveTextContent(/3\s*:\s*1/);
-    expect(pairs[5].firstChild).toHaveTextContent(/4\.5\s*:\s*1/);
+    clickSubmit();
+
+    const colorPairs = screen.getAllByTestId("color-pair");
+    expect(colorPairs[0].firstChild).toHaveTextContent(/3\s*:\s*1/);
+    expect(colorPairs[5].firstChild).toHaveTextContent(/4\.5\s*:\s*1/);
   });
 });
 
@@ -204,5 +211,27 @@ describe("When a large number of colors are added to the input the parser", () =
     userEvent.type(input, twentyTwoColorPalette);
     const stripes = screen.getAllByTestId("color-stripe");
     expect(stripes).toHaveLength(20);
+  });
+});
+
+describe("Color pairs", () => {
+  it("should be hidden when the 'palette input' modal is open", () => {
+    setup();
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, hexPalette);
+    clickSubmit();
+
+    const colorPairs = screen.getAllByTestId(/color-pair/i);
+    expect(colorPairs[0]).toHaveClass("color-pair--hide");
+  });
+
+  it("should be hidden when the 'export favorites' modal is open", () => {
+    setup(true);
+    const input = screen.getByLabelText(/add palette/i);
+    userEvent.type(input, hexPalette);
+    clickSubmit();
+
+    const colorPairs = screen.getAllByTestId(/color-pair/i);
+    expect(colorPairs[0]).toHaveClass("color-pair--hide");
   });
 });
