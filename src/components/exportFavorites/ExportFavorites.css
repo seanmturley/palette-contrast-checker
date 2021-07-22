@@ -19,6 +19,7 @@
   font: var(--sans-medium);
   font-size: 2.6em;
   color: var(--accent-color);
+  margin: 0;
 }
 
 .export-favorites__close-button {
@@ -29,9 +30,13 @@
   font: var(--sans-medium);
   font-size: 4.6em;
   line-height: 0.7;
+  transform: rotate(45deg);
+  color: var(--accent-color);
 }
 
 .export-favorites__code-container {
+  font: var(--mono-regular);
+  color: var(--primary-color);
   text-align: left;
   margin: 0.8em;
   padding: 0.5em 0.81em;
@@ -40,8 +45,6 @@
 }
 
 .export-favorites__code {
-  font: var(--mono-regular);
-  color: var(--primary-color);
   white-space: pre-line;
 }
 
